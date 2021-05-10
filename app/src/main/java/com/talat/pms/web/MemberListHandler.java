@@ -4,20 +4,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
-import javax.servlet.Servlet;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import com.talat.pms.domain.Member;
 import com.talat.pms.service.MemberService;
 
+@SuppressWarnings("serial")
 @WebServlet("/member/list") 
-public class MemberListHandler implements Servlet {
+public class MemberListHandler extends HttpServlet {
 
   @Override
-  public void service(ServletRequest request, ServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
@@ -34,8 +34,8 @@ public class MemberListHandler implements Servlet {
             m.getNo(), 
             m.getName(), 
             m.getEmail(),
-            m.getPhoto(),
-            m.getTel());
+            m.getTel(),
+            m.getBirth());
       }
     } catch (Exception e) {
       StringWriter strWriter = new StringWriter();
@@ -45,23 +45,6 @@ public class MemberListHandler implements Servlet {
     }
   }
 
-  @Override
-  public void init(ServletConfig config) throws ServletException {
-  }
-
-  @Override
-  public void destroy() {
-  }
-
-  @Override
-  public ServletConfig getServletConfig() {
-    return null;
-  }
-
-  @Override
-  public String getServletInfo() {
-    return null;
-  }
 }
 
 

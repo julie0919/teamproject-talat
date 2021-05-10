@@ -29,7 +29,6 @@ public class UserInfoHandler extends HttpServlet {
     out.printf("사용자번호: %d\n", member.getNo());
     out.printf("이름: %s\n", member.getName());
     out.printf("이메일: %s\n", member.getEmail());
-    out.printf("사진: %s\n", member.getPhoto());
   }
 }
 

@@ -16,7 +16,7 @@ import com.talat.pms.service.MemberService;
 public class MemberDetailHandler extends HttpServlet {
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
@@ -38,9 +38,8 @@ public class MemberDetailHandler extends HttpServlet {
 
       out.printf("이름: %s\n", m.getName());
       out.printf("이메일: %s\n", m.getEmail());
-      out.printf("사진: %s\n", m.getPhoto());
       out.printf("전화: %s\n", m.getTel());
-      out.printf("가입일: %s\n", m.getRegisteredDate());
+      out.printf("생년월일: %s\n", m.getBirth());
 
     } catch (Exception e) {
       StringWriter strWriter = new StringWriter();

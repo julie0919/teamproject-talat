@@ -40,7 +40,7 @@ public class AppInitHandler implements Servlet {
     try {
       // 1) Mybatis 관련 객체 준비
       InputStream mybatisConfigStream = Resources.getResourceAsStream(
-          "com/eomcs/pms/conf/mybatis-config.xml");
+          "com/talat/pms/conf/mybatis-config.xml");
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(mybatisConfigStream);
       SqlSessionFactoryProxy sqlSessionFactoryProxy = new SqlSessionFactoryProxy(sqlSessionFactory);
 

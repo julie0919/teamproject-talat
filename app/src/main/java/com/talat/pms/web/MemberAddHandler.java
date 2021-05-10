@@ -3,6 +3,7 @@ package com.talat.pms.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,18 +26,19 @@ public class MemberAddHandler extends HttpServlet {
     PrintWriter out = response.getWriter();
 
     try {
-      out.println("[회원 등록]");
+      out.println("[관리자 등록]");
 
       Member m = new Member();
       m.setName(request.getParameter("name"));
       m.setEmail(request.getParameter("email"));
       m.setPassword(request.getParameter("password"));
-      m.setPhoto(request.getParameter("photo"));
       m.setTel(request.getParameter("tel"));
+      m.setBirth(Date.valueOf(request.getParameter("birth")));
+      m.setmType(Integer.parseInt(request.getParameter("mType")));
 
       memberService.add(m);
 
-      out.println("회원을 등록하였습니다.");
+      out.println("관리자를 등록하였습니다.");
     } catch (Exception e) {
       StringWriter strWriter = new StringWriter();
       PrintWriter printWriter = new PrintWriter(strWriter);
