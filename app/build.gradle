@@ -8,7 +8,23 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    id 'application'
+    id 'java'
+    id 'eclipse-wtp'
+    id 'war'
+}
+
+tasks.withType(JavaCompile){
+    options.encoding = 'UTF-8'
+}
+
+eclipse {
+    project {
+        name = "teamproject-talat"
+    }
+}
+
+war {
+    archiveBaseName="web"
 }
 
 repositories {
@@ -17,14 +33,18 @@ repositories {
 }
 
 dependencies {
+
+    // 썸네일 이미지 생성 라이브러리
+    implementation 'net.coobird:thumbnailator:0.4.14'
+
+    // multipart / form-data 형식으로 넘어온 데이터를 처리하는 라이브러리
+    implementation 'commons-fileupload:commons-fileupload:1.4'
+    
+    providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13'
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
-}
-
-application {
-    // Define the main class for the application.
-    mainClass = 'com.talat.pms.App'
 }
