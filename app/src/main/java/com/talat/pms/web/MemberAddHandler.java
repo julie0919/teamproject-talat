@@ -17,7 +17,7 @@ import com.talat.pms.service.MemberService;
 public class MemberAddHandler extends HttpServlet {
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");

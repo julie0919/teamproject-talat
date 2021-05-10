@@ -30,12 +30,11 @@ public class MemberListHandler extends HttpServlet {
       List<Member> list = memberService.list();
 
       for (Member m : list) {
-        out.printf("%d, %s, %s, %s, %s\n", 
+        out.printf("%d, %s, %s, %s\n", 
             m.getNo(), 
             m.getName(), 
             m.getEmail(),
-            m.getTel(),
-            m.getBirth());
+            m.getTel());
       }
     } catch (Exception e) {
       StringWriter strWriter = new StringWriter();
