@@ -1,4 +1,4 @@
-package com.eomcs.pms.web;
+package com.talat.pms.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.eomcs.pms.service.MemberService;
+import com.talat.pms.service.MemberService;
 
 @SuppressWarnings("serial")
 @WebServlet("/member/delete")

@@ -1,7 +1,7 @@
-package com.eomcs.pms.dao;
+package com.talat.pms.dao;
 
 import java.util.List;
-import com.eomcs.pms.domain.Board;
+import com.talat.pms.domain.Board;
 
 // BoardDao 의 규칙 정의
 public interface BoardDao {

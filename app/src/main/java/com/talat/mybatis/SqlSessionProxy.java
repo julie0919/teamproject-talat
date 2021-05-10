@@ -1,4 +1,4 @@
-package com.eomcs.mybatis;
+package com.talat.mybatis;
 
 import java.sql.Connection;
 import java.util.List;

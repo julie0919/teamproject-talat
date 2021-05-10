@@ -1,4 +1,4 @@
-package com.eomcs.pms.web;
+package com.talat.pms.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,9 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.eomcs.pms.domain.Board;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.pms.service.BoardService;
+import com.talat.pms.domain.Board;
+import com.talat.pms.domain.Member;
+import com.talat.pms.service.BoardService;
 
 @SuppressWarnings("serial")
 @WebServlet("/board/update")

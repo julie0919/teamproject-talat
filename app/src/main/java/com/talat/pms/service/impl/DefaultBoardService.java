@@ -1,9 +1,9 @@
-package com.eomcs.pms.service.impl;
+package com.talat.pms.service.impl;
 
 import java.util.List;
-import com.eomcs.pms.dao.BoardDao;
-import com.eomcs.pms.domain.Board;
-import com.eomcs.pms.service.BoardService;
+import com.talat.pms.dao.BoardDao;
+import com.talat.pms.domain.Board;
+import com.talat.pms.service.BoardService;
 
 public class DefaultBoardService implements BoardService {
 

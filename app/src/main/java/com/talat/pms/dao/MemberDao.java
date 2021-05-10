@@ -1,8 +1,8 @@
-package com.eomcs.pms.dao;
+package com.talat.pms.dao;
 
 import java.util.List;
 import java.util.Map;
-import com.eomcs.pms.domain.Member;
+import com.talat.pms.domain.Member;
 
 public interface MemberDao {
 

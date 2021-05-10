@@ -1,11 +1,11 @@
-package com.eomcs.pms.service.impl;
+package com.talat.pms.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.eomcs.pms.dao.MemberDao;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.pms.service.MemberService;
+import com.talat.pms.dao.MemberDao;
+import com.talat.pms.domain.Member;
+import com.talat.pms.service.MemberService;
 
 public class DefaultMemberService implements MemberService {
 

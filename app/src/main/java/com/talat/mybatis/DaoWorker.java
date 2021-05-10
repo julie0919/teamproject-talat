@@ -1,4 +1,4 @@
-package com.eomcs.mybatis;
+package com.talat.mybatis;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

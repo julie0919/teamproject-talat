@@ -1,4 +1,4 @@
-package com.eomcs.mybatis;
+package com.talat.mybatis;
 
 // 트랜잭션 제어 코드를 캡슐화 한다.
 //

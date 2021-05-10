@@ -1,4 +1,4 @@
-package com.eomcs.mybatis;
+package com.talat.mybatis;
 
 public class TransactionManager {
 

@@ -1,7 +1,7 @@
-package com.eomcs.pms.service;
+package com.talat.pms.service;
 
 import java.util.List;
-import com.eomcs.pms.domain.Board;
+import com.talat.pms.domain.Board;
 
 public interface BoardService {
 

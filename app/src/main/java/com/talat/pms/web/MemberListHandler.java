@@ -1,4 +1,4 @@
-package com.eomcs.pms.web;
+package com.talat.pms.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,8 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-import com.eomcs.pms.domain.Member;
-import com.eomcs.pms.service.MemberService;
+import com.talat.pms.domain.Member;
+import com.talat.pms.service.MemberService;
 
 @WebServlet("/member/list") 
 public class MemberListHandler implements Servlet {

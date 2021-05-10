@@ -39,7 +39,7 @@ dependencies {
 
     // multipart / form-data 형식으로 넘어온 데이터를 처리하는 라이브러리
     implementation 'commons-fileupload:commons-fileupload:1.4'
-    
+
     providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
 
     // Use JUnit test framework.
@@ -47,4 +47,11 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
+
+    // MariaDB JDBC 드라이버
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
+    
+    // Mybatis 퍼시스턴스 프레임워크
+    implementation 'org.mybatis:mybatis:3.5.6'
+    
 }
