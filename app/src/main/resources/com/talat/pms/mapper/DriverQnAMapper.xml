@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talat.pms.dao.DriverQnADao">
+  
+  <resultMap id="driverQnAMap" type="driverQnA">
+    <id column="dqno" property="no"/>
+    <result column="qno" property="qnaTypeNo"/>
+    <result column="qtitle" property="qnaType"/>
+    <result column="jno" property="jno"/>
+    
+    <result column="dqdate" property="date"/>
+    <result column="dqtime" property="time"/>
+    <result column="dwrt" property="writer"/>
+    <result column="answ_stat_d" property="status"/>
+    <result column="dqcont" property="qContent"/>
+    <result column="answ_cont_d" property="aContent"/>
+    <result column="dfile" property="file"/>
+    
+    <association property="writer" javaType="member">
+	    <id column="writer_no" property="no"/>
+	    <result column="writer_name" property="name"/>
+    </association>
+    
+  </resultMap>
+  
+  <insert id="insert" parameterType="driverQnA">
+    insert into talat_qna_driver(
+    qno, jno, dqdate, dqtime, dwrt, answ_stat_d, dqcont, answ_cont_d, dfile) 
+    values(
+    #{qnaTypeNo}, #{jno}, #{date}, #{time}, #{writer.name}, #{status}, #{qContent}, #{aContent}, #{file})
+  </insert>
+
+  <select id="findByKeyword" resultMap="driverQnAMap" parameterType="string">
+    select
+      dq.dqno,
+      q.qno,
+      q.qtitle,
+      dq.dqdate,
+      dq.dqtime,
+      dq.dwrt,
+      dq.answ_stat_d,
+      dq.dqcont,
+      dq.answ_cont_d,
+      dq.dfile
+    from talat_qna_driver dq
+      inner join talat_qna q on dq.qno=q.qno
+    
+    <if test="value != null">
+    where 
+      q.qtitle like concat('%', #{value},'%')
+      or dq.name like concat('%', #{value},'%')
+    </if>
+    
+    order by dq.dqno desc
+  </select>
+  
+  <select id="findByNo" resultMap="driverQnAMap" parameterType="int">
+    select
+      dq.dqno,
+      q.qno,
+      q.qtitle,
+      dq.dqdate,
+      dq.dqtime,
+      dq.dwrt,
+      dq.answ_stat_d,
+      dq.dqcont,
+      dq.answ_cont_d,
+      dq.dfile
+    from talat_qna_driver dq
+      inner join talat_qna q on dq.qno=q.qno
+    where dq.dqno = #{value}
+  </select>
+  
+  <update id="update" parameterType="driverQnA">
+  update talat_qna_driver set
+        answ_stat_d = 1, 
+        answ_cont_d = #{aContent}
+    where dqno = #{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from talat_qna_driver 
+    where dqno = #{value}
+  </delete>
+
+</mapper>
+
+
+
+
+
+
+
