@@ -17,10 +17,13 @@ import com.talat.mybatis.SqlSessionFactoryProxy;
 import com.talat.mybatis.TransactionManager;
 import com.talat.pms.dao.BoardDao;
 import com.talat.pms.dao.MemberDao;
+import com.talat.pms.dao.ReviewDao;
 import com.talat.pms.service.BoardService;
 import com.talat.pms.service.MemberService;
+import com.talat.pms.service.ReviewService;
 import com.talat.pms.service.impl.DefaultBoardService;
 import com.talat.pms.service.impl.DefaultMemberService;
+import com.talat.pms.service.impl.DefaultReviewService;
 
 @WebServlet(
     value="/init",   // 클라인언트에서 요청할 때 사용할 명령이다.
@@ -40,7 +43,7 @@ public class AppInitHandler implements Servlet {
     try {
       // 1) Mybatis 관련 객체 준비
       InputStream mybatisConfigStream = Resources.getResourceAsStream(
-          "com/eomcs/pms/conf/mybatis-config.xml");
+          "com/talat/pms/conf/mybatis-config.xml");
       SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(mybatisConfigStream);
       SqlSessionFactoryProxy sqlSessionFactoryProxy = new SqlSessionFactoryProxy(sqlSessionFactory);
 
@@ -48,18 +51,21 @@ public class AppInitHandler implements Servlet {
       MybatisDaoFactory daoFactory = new MybatisDaoFactory(sqlSessionFactoryProxy);
       BoardDao boardDao = daoFactory.createDao(BoardDao.class);
       MemberDao memberDao = daoFactory.createDao(MemberDao.class);
+      ReviewDao reviewDao = daoFactory.createDao(ReviewDao.class);
 
       // 3) 서비스 관련 객체 준비
       TransactionManager txManager = new TransactionManager(sqlSessionFactoryProxy);
 
       BoardService boardService = new DefaultBoardService(boardDao);
       MemberService memberService = new DefaultMemberService(memberDao);
+      ReviewService reviewService = new DefaultReviewService(reviewDao);
 
       // 4) 서비스 객체를 ServletContext 보관소에 저장한다.
       ServletContext servletContext = config.getServletContext();
 
       servletContext.setAttribute("boardService", boardService);
       servletContext.setAttribute("memberService", memberService);
+      servletContext.setAttribute("reviewService", reviewService);
 
       System.out.println("의존 객체를 모두 준비하였습니다.");
 

@@ -6,79 +6,75 @@
 <mapper namespace="com.talat.pms.dao.MemberDao">
   
   <resultMap id="memberMap" type="member">
-    <id column="no" property="no"/>
-    <result column="name" property="name"/>
+    <id column="mno" property="no"/>
+    <result column="mname" property="name"/>
     <result column="email" property="email"/>
-    <result column="photo" property="photo"/>
     <result column="tel" property="tel"/>
-    <result column="cdt" property="registeredDate"/>
+    <result column="birth" property="birth"/>
+   <result column="mtype" property="mType"/>
   </resultMap>
   
   <insert id="insert" parameterType="member">
-    insert into pms_member(name,email,password,photo,tel) 
-    values(#{name}, #{email}, password(#{password}), #{photo}, #{tel})
+    insert into talat_memb(mname,email,pwd,tel,birth,mtype) 
+    values(#{name}, #{email}, password(#{password}), #{tel}, #{birth}, #{mType})
   </insert>
   
   <select id="findAll" resultMap="memberMap">
     select 
-      no,
-      name,
+      mno,
+      mname,
       email,
-      photo,
       tel 
-    from pms_member 
-    order by name asc
+    from talat_memb
+    order by mname asc
   </select>
   
   <select id="findByName" resultMap="memberMap" parameterType="string">
     select 
-      no,
-      name,
+      mno,
+      mname,
       email,
-      photo,
       tel 
-    from pms_member
-    where name = #{value}
-    order by name asc
+    from talat_memb
+    where mname = #{value}
+    order by mname asc
   </select>
   
   <select id="findByNo" resultMap="memberMap" parameterType="int">
     select 
-      no,
-      name,
+      mno,
+      mname,
       email,
-      photo,
       tel,
-      cdt 
-    from pms_member 
-    where no = #{value}
+      birth
+    from talat_memb
+    where mno = #{value}
   </select>
   
   <select id="findByEmailPassword" resultMap="memberMap" parameterType="map">
     select 
-      no,
-      name,
-      email,
-      photo
-    from pms_member 
-    where email = #{email} and password = password(#{password})
+      mno,
+      mname,
+      email
+    from talat_memb
+    where email = #{email} and pwd = password(#{password})
   </select>
   
   <update id="update" parameterType="member">
-    update pms_member 
+    update talat_memb
     <set> 
-      <if test="name != ''">name=#{name},</if>
+      <if test="name != ''">mname=#{name},</if>
       <if test="email != ''">email=#{email},</if>
-      <if test="password != ''">password=password(#{password}),</if>
-      <if test="photo != ''">photo=#{photo},</if>
+      <if test="password != ''">pwd=password(#{password}),</if>
       <if test="tel != ''">tel=#{tel}</if> 
+      <if test="birth != ''">birth=#{birth}</if> 
     </set>
-    where no=#{no}
+    where mno=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from pms_member 
-    where no=#{value}
+    delete from talat_memb
+    where mno=#{value}
   </delete>
 
 </mapper>

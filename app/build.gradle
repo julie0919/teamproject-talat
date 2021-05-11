@@ -24,7 +24,7 @@ eclipse {
 }
 
 war {
-    archiveBaseName="web"
+    archiveBaseName="talat"
 }
 
 repositories {

@@ -23,7 +23,7 @@ public class MemberDeleteHandler extends HttpServlet {
     response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
-    out.println("[회원 삭제]");
+    out.println("[관리자 삭제]");
 
     try {
       int no = Integer.parseInt(request.getParameter("no"));

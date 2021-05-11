@@ -3,6 +3,7 @@ package com.talat.pms.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ import com.talat.pms.service.MemberService;
 public class MemberUpdateHandler extends HttpServlet {
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
@@ -40,8 +41,8 @@ public class MemberUpdateHandler extends HttpServlet {
       member.setName(request.getParameter("name"));
       member.setEmail(request.getParameter("email"));
       member.setPassword(request.getParameter("password"));
-      member.setPhoto(request.getParameter("photo"));
       member.setTel(request.getParameter("tel"));
+      member.setBirth(Date.valueOf(request.getParameter("birth")));
 
       memberService.update(member);
 
