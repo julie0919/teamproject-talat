@@ -29,7 +29,7 @@ public class MemberAddHandler extends HttpServlet {
       out.println("[관리자 등록]");
 
       Member m = new Member();
-      m.setName(request.getParameter("name"));
+      m.setMname(request.getParameter("name"));
       m.setEmail(request.getParameter("email"));
       m.setPassword(request.getParameter("password"));
       m.setTel(request.getParameter("tel"));

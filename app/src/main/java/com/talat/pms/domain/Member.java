@@ -21,6 +21,8 @@ public class Member {
   private Date registeredDate;
   private double starAverage;
 
+  public Member() {}
+
   public Member(int mno, String mname, String email, String password, String tel, Date birth,
       int mType, int no, String nicName, int gender, String postNo, String basicAddress,
       String detailAddress, String profile, int preferenceGender, Date registeredDate,

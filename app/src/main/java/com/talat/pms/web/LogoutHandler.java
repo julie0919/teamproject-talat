@@ -28,7 +28,7 @@ public class LogoutHandler extends HttpServlet {
 
     request.getSession().invalidate();
 
-    out.printf("%s 님 안녕히 가세요!\n", member.getName());
+    out.printf("%s 님 안녕히 가세요!\n", member.getMname());
   }
 }
 

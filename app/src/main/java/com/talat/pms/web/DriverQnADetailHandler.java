@@ -56,7 +56,7 @@ public class DriverQnADetailHandler extends HttpServlet {
           + " <td><input name='qnaType' type='text' value='%s'></td></tr>\n", dq.getQnaType());
       out.printf("<tr><th>문의내용</th>"
           + " <td><textarea name='qContent' rows='10' cols='60'>%s</textarea></td></tr>\n", dq.getqContent());
-      out.printf("<tr><th>작성자</th> <td>%s</td></tr>\n", dq.getWriter().getName());
+      out.printf("<tr><th>작성자</th> <td>%s</td></tr>\n", dq.getWriter().getMname());
       out.printf("<tr><th>등록일</th> <td>%s</td></tr>\n", dFormatter.format(dq.getDate()));
       out.printf("<tr><th>등록시간</th> <td>%s</td></tr>\n", tFormatter.format(dq.getTime()));
       out.printf("<tr><th>답변상태</th> <td>%s</td></tr>\n", dq.getStatus());

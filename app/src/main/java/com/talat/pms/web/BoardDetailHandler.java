@@ -55,7 +55,7 @@ public class BoardDetailHandler extends HttpServlet {
           + " <td><input name='title' type='text' value='%s'></td></tr>\n", b.getTitle());
       out.printf("<tr><th>내용</th>"
           + " <td><textarea name='content' rows='10' cols='60'>%s</textarea></td></tr>\n", b.getContent());
-      out.printf("<tr><th>작성자</th> <td>%s</td></tr>\n", b.getWriter().getName());
+      out.printf("<tr><th>작성자</th> <td>%s</td></tr>\n", b.getWriter().getMname());
       out.printf("<tr><th>등록일</th> <td>%s</td></tr>\n", formatter.format(b.getRegisteredDate()));
       out.printf("<tr><th>조회수</th> <td>%s</td></tr>\n", b.getViewCount());
       out.printf("<tr><th>좋아요</th> <td>%s</td></tr>\n", b.getLike());

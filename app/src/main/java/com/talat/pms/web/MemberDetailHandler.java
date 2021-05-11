@@ -36,7 +36,7 @@ public class MemberDetailHandler extends HttpServlet {
         return;
       }
 
-      out.printf("이름: %s\n", m.getName());
+      out.printf("이름: %s\n", m.getMname());
       out.printf("이메일: %s\n", m.getEmail());
       out.printf("전화: %s\n", m.getTel());
       out.printf("생년월일: %s\n", m.getBirth());

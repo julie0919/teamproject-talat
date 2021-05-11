@@ -46,7 +46,7 @@ public class LoginHandler extends HttpServlet {
       // 로그인 성공한다면, 로그인 사용자 정보를 세션 객체에 보관한다.
       request.getSession().setAttribute("loginUser", member);
 
-      out.printf("%s 님 환영합니다.\n", member.getName());
+      out.printf("%s 님 환영합니다.\n", member.getMname());
 
     } catch (Exception e) {
       StringWriter strWriter = new StringWriter();

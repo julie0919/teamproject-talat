@@ -57,7 +57,7 @@ public class DriverQnAListHandler extends HttpServlet {
             + " <td>%d</td> </tr>\n", 
             d.getNo(), 
             d.getQnaType(), 
-            d.getWriter().getName(),
+            d.getWriter().getMname(),
             d.getDate(),
             d.getTime());
       }

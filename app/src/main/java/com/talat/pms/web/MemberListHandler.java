@@ -32,7 +32,7 @@ public class MemberListHandler extends HttpServlet {
       for (Member m : list) {
         out.printf("%d, %s, %s, %s\n", 
             m.getNo(), 
-            m.getName(), 
+            m.getMname(), 
             m.getEmail(),
             m.getTel());
       }
