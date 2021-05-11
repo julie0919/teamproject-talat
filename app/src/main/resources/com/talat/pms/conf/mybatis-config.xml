@@ -25,6 +25,7 @@
   <mappers>
     <mapper resource="com/talat/pms/mapper/BoardMapper.xml"/>
     <mapper resource="com/talat/pms/mapper/MemberMapper.xml"/>
+    <mapper resource="com/talat/pms/mapper/ReviewMapper.xml"/>
   </mappers>
 </configuration>
 
