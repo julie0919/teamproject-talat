@@ -16,15 +16,12 @@ import com.talat.mybatis.MybatisDaoFactory;
 import com.talat.mybatis.SqlSessionFactoryProxy;
 import com.talat.mybatis.TransactionManager;
 import com.talat.pms.dao.BoardDao;
-import com.talat.pms.dao.DriverQnADao;
 import com.talat.pms.dao.MemberDao;
 import com.talat.pms.dao.ReviewDao;
 import com.talat.pms.service.BoardService;
-import com.talat.pms.service.DriverQnAService;
 import com.talat.pms.service.MemberService;
 import com.talat.pms.service.ReviewService;
 import com.talat.pms.service.impl.DefaultBoardService;
-import com.talat.pms.service.impl.DefaultDriverQnAService;
 import com.talat.pms.service.impl.DefaultMemberService;
 import com.talat.pms.service.impl.DefaultReviewService;
 
@@ -54,7 +51,7 @@ public class AppInitHandler implements Servlet {
       MybatisDaoFactory daoFactory = new MybatisDaoFactory(sqlSessionFactoryProxy);
       BoardDao boardDao = daoFactory.createDao(BoardDao.class);
       MemberDao memberDao = daoFactory.createDao(MemberDao.class);
-      DriverQnADao driverQnADao = daoFactory.createDao(DriverQnADao.class);
+      //      DriverQnADao driverQnADao = daoFactory.createDao(DriverQnADao.class);
       ReviewDao reviewDao = daoFactory.createDao(ReviewDao.class);
 
       // 3) 서비스 관련 객체 준비
@@ -63,13 +60,13 @@ public class AppInitHandler implements Servlet {
       BoardService boardService = new DefaultBoardService(boardDao);
       MemberService memberService = new DefaultMemberService(memberDao);
       ReviewService reviewService = new DefaultReviewService(reviewDao);
-      DriverQnAService driverQnAService = new DefaultDriverQnAService(driverQnADao);
+      //      DriverQnAService driverQnAService = new DefaultDriverQnAService(driverQnADao);
       // 4) 서비스 객체를 ServletContext 보관소에 저장한다.
       ServletContext servletContext = config.getServletContext();
 
       servletContext.setAttribute("boardService", boardService);
       servletContext.setAttribute("memberService", memberService);
-      servletContext.setAttribute("driverQnAService", driverQnAService);
+      //      servletContext.setAttribute("driverQnAService", driverQnAService);
       servletContext.setAttribute("reviewService", reviewService);
 
       System.out.println("의존 객체를 모두 준비하였습니다.");

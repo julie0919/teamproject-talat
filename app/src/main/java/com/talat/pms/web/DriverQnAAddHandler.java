@@ -30,7 +30,7 @@ public class DriverQnAAddHandler extends HttpServlet {
     request.setCharacterEncoding("UTF-8");
 
     dQna.setQnaTypeNo(Integer.parseInt(request.getParameter("qnaTypeNo")));
-    dQna.setQnaType(request.getParameter("qnaType"));
+    //    dQna.setQnaType(request.getParameter("qnaType"));
     dQna.setDate(Date.valueOf(request.getParameter("date")));
     dQna.setTime(Time.valueOf(request.getParameter("time")));
 

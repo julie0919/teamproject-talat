@@ -6,7 +6,7 @@ import java.sql.Time;
 public class DriverQnA {
   private int no;
   private int qnaTypeNo;
-  private String qnaType;
+  //  private String qnaType;
   // 여정번호
   private Date date;
   private Time time;
@@ -18,7 +18,7 @@ public class DriverQnA {
 
   @Override
   public String toString() {
-    return "DriverQnA [no=" + no + ", qnaTypeNo=" + qnaTypeNo + ", qnaType=" + qnaType + ", date="
+    return "DriverQnA [no=" + no + ", qnaTypeNo=" + qnaTypeNo + ", qnaType=" + ", date="
         + date + ", time=" + time + ", writer=" + writer + ", status=" + status + ", qContent="
         + qContent + ", aContent=" + aContent + ", file=" + file + "]";
   }
@@ -35,12 +35,12 @@ public class DriverQnA {
   public void setQnaTypeNo(int qnaTypeNo) {
     this.qnaTypeNo = qnaTypeNo;
   }
-  public String getQnaType() {
-    return qnaType;
-  }
-  public void setQnaType(String qnaType) {
-    this.qnaType = qnaType;
-  }
+  //  public String getQnaType() {
+  //    return qnaType;
+  //  }
+  //  public void setQnaType(String qnaType) {
+  //    this.qnaType = qnaType;
+  //  }
   public Date getDate() {
     return date;
   }
