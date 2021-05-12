@@ -67,7 +67,7 @@ CREATE TABLE talat_driver (
   car_photo  VARCHAR(255) NOT NULL COMMENT '차량 측면 사진', -- 차량 측면 사진
   corp_photo VARCHAR(255) NOT NULL COMMENT '회사 인증 사진', -- 회사 인증 사진
   apvl       INTEGER      NOT NULL COMMENT '승인여부', -- 승인여부
-  drdt       DATE         NOT NULL DEFAULT curdate() COMMENT '승인날짜', -- 승인날짜
+  drdt       DATETIME     NOT NULL DEFAULT curdate() COMMENT '승인날짜', -- 승인날짜
   apvl_cont  LONGTEXT     NULL     COMMENT '비고' -- 비고
 )
 COMMENT '드라이버';
@@ -105,10 +105,9 @@ CREATE UNIQUE INDEX UIX_talat_driver2
 CREATE TABLE talat_qna_driver (
   dqno        INTEGER      NOT NULL COMMENT '드라이버문의번호', -- 드라이버문의번호
   qno         INTEGER      NOT NULL COMMENT '문의유형번호', -- 문의유형번호
+  qtitle      VARCHAR(100) NULL     COMMENT '문의유형제목', -- 문의유형제목
   jno         INTEGER      NOT NULL COMMENT '여정번호', -- 여정번호
-  dqdate      DATE         NOT NULL DEFAULT curdate()  COMMENT '날짜', -- 날짜
-  dqtime      TIME         NOT NULL DEFAULT curtime() COMMENT '시간', -- 시간
-  dwrt        VARCHAR(50)  NOT NULL COMMENT '작성자', -- 작성자
+  dqdate      DATETIME     NOT NULL DEFAULT now()  COMMENT '날짜', -- 날짜
   answ_stat_d INTEGER      NOT NULL COMMENT '답변여부', -- 답변여부
   dqcont      LONGTEXT     NOT NULL COMMENT '문의 내용', -- 문의 내용
   answ_cont_d LONGTEXT     NOT NULL COMMENT '답변 내용', -- 답변 내용
@@ -211,7 +210,7 @@ CREATE TABLE talat_join (
   det_addr    VARCHAR(255) NOT NULL COMMENT '상세주소', -- 상세주소
   prof        VARCHAR(255) NOT NULL COMMENT '프로필사진', -- 프로필사진
   pref_gender INTEGER      NOT NULL COMMENT '선호성별', -- 선호성별
-  mrdt        DATE         NOT NULL DEFAULT curdate() COMMENT '등록날짜', -- 등록날짜
+  mrdt        DATETIME     NOT NULL DEFAULT now() COMMENT '등록날짜', -- 등록날짜
   star_avg    FLOAT        NOT NULL COMMENT '별점통계' -- 별점통계
 )
 COMMENT '회원가입 기본정보';
@@ -285,8 +284,8 @@ ALTER TABLE talat_journey_route
 
 -- 문의유형
 CREATE TABLE talat_qna (
-  qno    INTEGER NOT NULL COMMENT '문의유형번호', -- 문의유형번호
-  qtitle INTEGER NOT NULL COMMENT '문의유형제목' -- 문의유형제목
+  qno    INTEGER      NOT NULL COMMENT '문의유형번호', -- 문의유형번호
+  qtitle VARCHAR(100) NOT NULL COMMENT '문의유형제목' -- 문의유형제목
 )
 COMMENT '문의유형';
 
@@ -294,7 +293,8 @@ COMMENT '문의유형';
 ALTER TABLE talat_qna
   ADD CONSTRAINT PK_talat_qna -- 문의유형 기본키
     PRIMARY KEY (
-      qno -- 문의유형번호
+      qno,    -- 문의유형번호
+      qtitle  -- 문의유형제목
     );
 
 -- 문의유형
@@ -306,10 +306,9 @@ ALTER TABLE talat_qna
 CREATE TABLE talat_qna_rider (
   rqno        INTEGER      NOT NULL COMMENT '라이더문의번호', -- 라이더문의번호
   qno         INTEGER      NOT NULL COMMENT '문의유형번호', -- 문의유형번호
+  qtitle      VARCHAR(100) NULL     COMMENT '문의유형제목', -- 문의유형제목
   rjno        INTEGER      NOT NULL COMMENT '라이더여정신청번호', -- 라이더여정신청번호
-  rqdate      DATE         NOT NULL DEFAULT curdate()  COMMENT '날짜', -- 날짜
-  rqtime      TIME         NOT NULL DEFAULT curtime() COMMENT '시간', -- 시간
-  rwrt        VARCHAR(50)  NOT NULL COMMENT '작성자', -- 작성자
+  rqdate      DATE         NOT NULL DEFAULT now()  COMMENT '날짜', -- 날짜
   answ_stat_r INTEGER      NOT NULL COMMENT '답변여부', -- 답변여부
   rqcont      LONGTEXT     NOT NULL COMMENT '문의 내용', -- 문의 내용
   answ_cont_r LONGTEXT     NOT NULL COMMENT '답변 내용', -- 답변 내용
@@ -412,10 +411,12 @@ ALTER TABLE talat_qna_driver
 ALTER TABLE talat_qna_driver
   ADD CONSTRAINT FK_talat_qna_TO_talat_qna_driver -- 문의유형 -> 드라이버문의
     FOREIGN KEY (
-      qno -- 문의유형번호
+      qno,    -- 문의유형번호
+      qtitle  -- 문의유형제목
     )
     REFERENCES talat_qna ( -- 문의유형
-      qno -- 문의유형번호
+      qno,    -- 문의유형번호
+      qtitle  -- 문의유형제목
     );
 
 -- 카풀여정
@@ -482,10 +483,12 @@ ALTER TABLE talat_qna_rider
 ALTER TABLE talat_qna_rider
   ADD CONSTRAINT FK_talat_qna_TO_talat_qna_rider -- 문의유형 -> 라이더문의
     FOREIGN KEY (
-      qno -- 문의유형번호
+      qno,    -- 문의유형번호
+      qtitle  -- 문의유형제목
     )
     REFERENCES talat_qna ( -- 문의유형
-      qno -- 문의유형번호
+      qno,    -- 문의유형번호
+      qtitle  -- 문의유형제목
     );
 
 -- 드라이버평가

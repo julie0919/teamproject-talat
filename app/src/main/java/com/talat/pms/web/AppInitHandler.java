@@ -16,14 +16,19 @@ import com.talat.mybatis.MybatisDaoFactory;
 import com.talat.mybatis.SqlSessionFactoryProxy;
 import com.talat.mybatis.TransactionManager;
 import com.talat.pms.dao.BoardDao;
+//import com.talat.pms.dao.JourneyDao;
 import com.talat.pms.dao.MemberDao;
 import com.talat.pms.dao.ReviewDao;
+import com.talat.pms.dao.RouteDao;
 import com.talat.pms.service.BoardService;
 import com.talat.pms.service.MemberService;
 import com.talat.pms.service.ReviewService;
+import com.talat.pms.service.RouteService;
 import com.talat.pms.service.impl.DefaultBoardService;
+//import com.talat.pms.service.impl.DefaultJourneyService;
 import com.talat.pms.service.impl.DefaultMemberService;
 import com.talat.pms.service.impl.DefaultReviewService;
+import com.talat.pms.service.impl.DefaultRouteService;
 
 @WebServlet(
     value="/init",   // 클라인언트에서 요청할 때 사용할 명령이다.
@@ -53,6 +58,8 @@ public class AppInitHandler implements Servlet {
       MemberDao memberDao = daoFactory.createDao(MemberDao.class);
       //      DriverQnADao driverQnADao = daoFactory.createDao(DriverQnADao.class);
       ReviewDao reviewDao = daoFactory.createDao(ReviewDao.class);
+      //      JourneyDao journeyDao = daoFactory.createDao(JourneyDao.class);
+      RouteDao routeDao = daoFactory.createDao(RouteDao.class);
 
       // 3) 서비스 관련 객체 준비
       TransactionManager txManager = new TransactionManager(sqlSessionFactoryProxy);
@@ -61,6 +68,9 @@ public class AppInitHandler implements Servlet {
       MemberService memberService = new DefaultMemberService(memberDao);
       ReviewService reviewService = new DefaultReviewService(reviewDao);
       //      DriverQnAService driverQnAService = new DefaultDriverQnAService(driverQnADao);
+      //      JourneyService journeyService = new DefaultJourneyService(journeyDao);
+      RouteService routeService = new DefaultRouteService(routeDao);
+
       // 4) 서비스 객체를 ServletContext 보관소에 저장한다.
       ServletContext servletContext = config.getServletContext();
 
@@ -68,6 +78,8 @@ public class AppInitHandler implements Servlet {
       servletContext.setAttribute("memberService", memberService);
       //      servletContext.setAttribute("driverQnAService", driverQnAService);
       servletContext.setAttribute("reviewService", reviewService);
+      //      servletContext.setAttribute("journeyService", journeyService);
+      servletContext.setAttribute("routeService", routeService);
 
       System.out.println("의존 객체를 모두 준비하였습니다.");
 
