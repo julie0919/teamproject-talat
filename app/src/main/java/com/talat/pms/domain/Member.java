@@ -10,7 +10,7 @@ public class Member {
   private String tel;
   private Date birth;
   private int mType;
-  private int no;
+
   private String nicName;
   private int gender;
   private String postNo;
@@ -20,31 +20,6 @@ public class Member {
   private int preferenceGender;
   private Date registeredDate;
   private double starAverage;
-
-  public Member() {}
-
-  public Member(int mno, String mname, String email, String password, String tel, Date birth,
-      int mType, int no, String nicName, int gender, String postNo, String basicAddress,
-      String detailAddress, String profile, int preferenceGender, Date registeredDate,
-      double starAverage) {
-    this.mno = mno;
-    this.mname = mname;
-    this.email = email;
-    this.password = password;
-    this.tel = tel;
-    this.birth = birth;
-    this.mType = mType;
-    this.no = no;
-    this.nicName = nicName;
-    this.gender = gender;
-    this.postNo = postNo;
-    this.basicAddress = basicAddress;
-    this.detailAddress = detailAddress;
-    this.profile = profile;
-    this.preferenceGender = preferenceGender;
-    this.registeredDate = registeredDate;
-    this.starAverage = starAverage;
-  }
 
   public int getMno() {
     return mno;
@@ -100,14 +75,6 @@ public class Member {
 
   public void setmType(int mType) {
     this.mType = mType;
-  }
-
-  public int getNo() {
-    return no;
-  }
-
-  public void setNo(int no) {
-    this.no = no;
   }
 
   public String getNicName() {
