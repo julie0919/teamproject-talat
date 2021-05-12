@@ -17,7 +17,7 @@ tasks.withType(JavaCompile){
     options.encoding = 'UTF-8'
 }
 
-eclipse {
+eclipse {  
     project {
         name = "teamproject-talat"
     }
