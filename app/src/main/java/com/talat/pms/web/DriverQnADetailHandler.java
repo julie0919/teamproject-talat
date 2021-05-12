@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.talat.pms.domain.DriverQnA;
-import com.talat.pms.domain.Member;
 import com.talat.pms.service.DriverQnAService;
 
 @SuppressWarnings("serial")
@@ -64,15 +63,15 @@ public class DriverQnADetailHandler extends HttpServlet {
       out.printf("<tr><th>답변내용</th> <td>%s</td></tr>\n", dq.getaContent());
       out.println("</tbody>");
 
-      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-      if (loginUser != null && dq.getWriter().getNo() == loginUser.getNo()) {
-        out.println("<tfoot>");
-        out.println("<tr><td colspan='2'>");
-        out.println("<input type='submit' value='변경'> "
-            + "<a href='delete?no=" + dq.getNo() + "'>삭제</a> ");
-        out.println("</td></tr>");
-        out.println("</tfoot>");
-      }
+      //      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+      //      if (loginUser != null && dq.getWriter().getNo() == loginUser.getNo()) {
+      //        out.println("<tfoot>");
+      //        out.println("<tr><td colspan='2'>");
+      //        out.println("<input type='submit' value='변경'> "
+      //            + "<a href='delete?no=" + dq.getNo() + "'>삭제</a> ");
+      //        out.println("</td></tr>");
+      //        out.println("</tfoot>");
+      //      }
 
       out.println("</table>");
       out.println("</form>");

@@ -37,6 +37,14 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findByEmailPassword(params);
   }
 
+  //사용자 조회 업무
+  @Override
+  public Member get(int no) throws Exception {
+    Member member = memberDao.findByNo(no);
+
+    return member;
+  }
+
   // 변경 업무
   @Override
   public int update(Member member) throws Exception {

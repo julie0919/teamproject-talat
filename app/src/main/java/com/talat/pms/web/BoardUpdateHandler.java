@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.talat.pms.domain.Board;
-import com.talat.pms.domain.Member;
 import com.talat.pms.service.BoardService;
 
 @SuppressWarnings("serial")
@@ -38,10 +37,10 @@ public class BoardUpdateHandler extends HttpServlet {
         throw new Exception("해당 번호의 게시글이 없습니다.");
       } 
 
-      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-      if (oldBoard.getWriter().getNo() != loginUser.getNo()) {
-        throw new Exception("변경 권한이 없습니다!");
-      }
+      //      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+      //      if (oldBoard.getWriter().getNo() != loginUser.getNo()) {
+      //        throw new Exception("변경 권한이 없습니다!");
+      //      }
 
       Board board = new Board();
       board.setNo(oldBoard.getNo());

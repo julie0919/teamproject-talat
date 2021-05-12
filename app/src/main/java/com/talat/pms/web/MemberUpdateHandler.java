@@ -37,7 +37,7 @@ public class MemberUpdateHandler extends HttpServlet {
       }
 
       Member member = new Member();
-      member.setNo(oldMember.getNo());
+      member.setMno(oldMember.getMno());
       member.setMname(request.getParameter("name"));
       member.setEmail(request.getParameter("email"));
       member.setPassword(request.getParameter("password"));

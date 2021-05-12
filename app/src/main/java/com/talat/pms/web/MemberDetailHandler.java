@@ -27,7 +27,7 @@ public class MemberDetailHandler extends HttpServlet {
     out.println("[회원 상세보기]");
 
     try {
-      int no = Integer.parseInt(request.getParameter("no"));
+      int no = Integer.parseInt(request.getParameter("mno"));
 
       Member m = memberService.get(no);
 
