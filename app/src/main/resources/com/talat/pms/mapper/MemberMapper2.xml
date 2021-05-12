@@ -25,7 +25,7 @@
           , #{profile}, #{preference_gender}, #{registeredDate}, #{starAverage})
   </insert>
   
-  <select id="findAll" resultMap="memberMap">
+  <select id="findAll" resultMap="userMemberMap">
     select 
       tm.mno,
       tm.mname,

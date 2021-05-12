@@ -3,29 +3,28 @@ package com.talat.pms.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.sql.Date;
-import java.sql.Time;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.talat.pms.domain.Journey;
-import com.talat.pms.service.JourneyService;
+import com.talat.pms.domain.Route;
+import com.talat.pms.service.RouteService;
 
 @SuppressWarnings("serial")
-@WebServlet("/journey/search")
-public class JourneySearchHandler extends HttpServlet {
+@WebServlet("/route/search")
+public class RouteSearchHandler extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    String departure = request.getParameter("departure");
-    String arrival = request.getParameter("arrival");
-    Date journeyDate = Date.valueOf(request.getParameter("journeyDate"));
-    Time journeyTime = Time.valueOf(request.getParameter("journeyTime"));
+    BigDecimal latitude = BigDecimal.valueOf(
+        Double.parseDouble(request.getParameter("latitude")));
+    BigDecimal longitude = BigDecimal.valueOf(
+        Double.parseDouble(request.getParameter("longitude")));
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -33,45 +32,48 @@ public class JourneySearchHandler extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("<title>여정 검색</title>");
+    out.println("<title>경유지 검색</title>");
     out.println("</head>");
     out.println("<body>");
-    out.printf("<h1>여정 검색 결과 : %s</h1>\n", departure, arrival, journeyDate, journeyTime);
+    out.printf("<h1>경유지 검색 결과 : %s</h1>\n", latitude, longitude);
 
     try {
-      if ((departure == null || departure.length() == 0)
-          && (arrival == null || arrival.length() == 0)
-          && journeyDate == null && journeyTime == null) {
+      if (latitude == null && longitude == null) {
         throw new SearchException("검색어를 입력하세요.");
       }
 
-      JourneyService journeyService = (JourneyService) request.getServletContext().getAttribute("journeyService");
-      List<Journey> list = journeyService.search(departure, arrival, journeyDate, journeyTime);
+      RouteService routeService = (RouteService) request.getServletContext().getAttribute("routeService");
+      List<Route> list = routeService.search(latitude, longitude);
 
       if (list.size() == 0) {
-        throw new SearchException("검색어에 해당하는 여정이 없습니다.");
+        throw new SearchException("검색어에 해당하는 경유지가 없습니다.");
       }
 
       out.println("<table border='1'>");
       out.println("<thead>");
       out.println("<tr>");
-      out.println("<th>번호</th> <th>출발지</th> <th>도착지</th> <th>여정 날짜</th> <th>시간</th>");
+      out.println("<th>경로 번호</th> <th>여정 번호</th> <th>경로 순서</th> "
+          + "<th>위도</th> <th>경도</th> <th>장소명</th> <th>정차 예상 시간</th>");
       out.println("</tr>");
       out.println("</thead>");
       out.println("<tbody>");
 
-      for (Journey j : list) {
+      for (Route r : list) {
         out.printf("<tr>"
             + " <td>%d</td>"
+            + " <td>%d</td>"
+            + " <td>%d</td>"
+            + " <td>%f</td>"
+            + " <td>%f</td>"
             + " <td><a href='detail?no=%1$d'>%s</a></td>"
-            + " <td>%s</td>"
-            + " <td>%s</td>"
             + " <td>%s</td> </tr>\n", 
-            j.getJno(), 
-            j.getDeparture(), 
-            j.getArrival(),
-            j.getJourneyDate(),
-            j.getJourneyTime());
+            r.getRno(), 
+            r.getJno(), 
+            r.getSpotOrder(),
+            r.getLatitude(),
+            r.getLongitude(),
+            r.getSpotName(),
+            r.getSpotTime());
       }
       out.println("</tbody>");
       out.println("</table>");

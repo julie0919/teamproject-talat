@@ -33,7 +33,7 @@ public class RouteAddHandler extends HttpServlet {
     r.setLongitude(BigDecimal.valueOf(
         Double.parseDouble(request.getParameter("longitude"))));
     r.setSpotName(request.getParameter("spotName"));
-    r.setSpotTime(Time.valueOf(request.getParameter("SpotTime")));
+    r.setSpotTime(Time.valueOf(request.getParameter("spotTime")));
 
     //
     //    // 작성자는 로그인 사용자이다.

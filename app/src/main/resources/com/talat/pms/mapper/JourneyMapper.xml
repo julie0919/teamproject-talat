@@ -17,19 +17,32 @@
     <result column="jfee" property="fee"/>
     <result column="jcont" property="content"/>
     
-    <association property="driver" javaType="member">
+    <association property="mno" javaType="member">
 	    <id column="driver_no" property="mno"/>
 	    <result column="driver_name" property="mname"/>
-	    <result column="member_type" property="mType"/>
     </association>
     
   </resultMap>
   
   <insert id="insert" parameterType="journey">
-    insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(#{driver.no},#{departure},#{arrival},#{journeyDate},#{journeyTime},#{seatPassenger},#{seatRear},#{pet},#{fee},#{content})
+    insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(#{mno},#{departure},#{arrival},#{journeyDate},#{journeyTime},#{seatPassenger},#{seatRear},#{pet},#{fee},#{content})
   </insert>
 
+<select id="findAll" resultMap="journeyMap">
+    select
+      j.jno,
+      j.dept,
+      j.arr,
+      j.jdate,
+      j.jtime,
+      m.mno as driver_no,
+      m.mname as driver_name
+    from talat_journey j
+      inner join talat_memb m on j.mno=m.mno
+    order by j.jno desc
+  </select>
+  
   <select id="findByKeyword" resultMap="journeyMap" parameterType="string">
     select
       j.jno,
@@ -38,10 +51,9 @@
       j.jdate,
       j.jtime,
       m.mno as driver_no,
-      m.mname as driver_name,
-      m.mtype as member_type
+      m.mname as driver_name
     from talat_journey j
-      inner join talat_memb m on m.mno=j.driver_no
+      inner join talat_memb m on j.mno=m.mno
     
     <if test="value != null">
     where 
@@ -66,10 +78,9 @@
       j.fee,
       j.jcont,
       m.mno as driver_no,
-      m.mname as driver_name,
-      m.mtype as member_type
+      m.mname as driver_name
     from talat_journey j
-      inner join talat_memb m on m.mno=j.driver_no
+      inner join talat_memb m on j.mno=m.mno
     where j.jno = #{value}
   </select>
   

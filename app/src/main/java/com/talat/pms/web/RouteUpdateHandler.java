@@ -51,7 +51,7 @@ public class RouteUpdateHandler extends HttpServlet {
       r.setLongitude(BigDecimal.valueOf(
           Double.parseDouble(request.getParameter("longitude"))));
       r.setSpotName(request.getParameter("spotName"));
-      r.setSpotTime(Time.valueOf(request.getParameter("SpotTime")));
+      r.setSpotTime(Time.valueOf(request.getParameter("spotTime")));
       routeService.update(r);
 
       out.println("<meta http-equiv='Refresh' content='1;url=list'>");

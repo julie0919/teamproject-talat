@@ -1,5 +1,7 @@
 package com.talat.pms.service.impl;
 
+import java.math.BigDecimal;
+import java.util.List;
 import com.talat.pms.dao.RouteDao;
 import com.talat.pms.domain.Route;
 import com.talat.pms.service.RouteService;
@@ -19,11 +21,11 @@ public class DefaultRouteService implements RouteService {
   }
   //
   //  // 목록 조회 업무
-  //  @Override
-  //  public List<Journey> list() throws Exception {
-  //    return journeyDao.findByKeyword(null, null, null, null);
-  //  }
-  //
+  @Override
+  public List<Route> list() throws Exception {
+    return routeDao.findAll();
+  }
+
   // 상세 조회 업무
   @Override
   public Route get(int no) throws Exception {
@@ -42,12 +44,12 @@ public class DefaultRouteService implements RouteService {
   public int delete(int no) throws Exception {
     return routeDao.delete(no);
   }
-  //
-  //  // 검색 업무
-  //  @Override
-  //  public List<Journey> search(String departure, String arrival, Date journeyDate, Time journeyTime) throws Exception {
-  //    return journeyDao.findByKeyword(departure, arrival, journeyDate, journeyTime);
-  //  }
+
+  // 검색 업무
+  @Override
+  public List<Route> search(BigDecimal latitude, BigDecimal longitude) throws Exception {
+    return routeDao.findByKeyword(latitude, longitude);
+  }
 }
 
 

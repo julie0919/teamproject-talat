@@ -12,11 +12,15 @@
     <result column="lng" property="longitude"/>
     <result column="spot_name" property="spotName"/>
     <result column="spot_time" property="spotTime"/>    
+  
+  <association property="jno" javaType="journey">
+      <id column="journey_no" property="jno"/>
+    </association>
   </resultMap>
   
   <insert id="insert" parameterType="route">
-    insert into talat_journey_route(lat,lng,spot_name,spot_time) 
-    values(#{latitude},#{longitude},#{spotName},#{spotTime})
+    insert into talat_journey_route(jno,lat,lng,spot_name,spot_time) 
+    values(#{jno},#{latitude},#{longitude},#{spotName},#{spotTime})
   </insert>
 
   <select id="findByNo" resultMap="routeMap" parameterType="int">
@@ -25,9 +29,30 @@
       r.lat,
       r.lng,
       r.spot_name,
-      r.spot_time
+      r.spot_time,
+      j.jno as journey_no
     from talat_journey_route r
+      inner join talat_journey j on r.jno=j.jno
     where r.rno = #{value}
+  </select>
+  
+  <select id="findByKeyword" resultMap="routeMap" parameterType="string">
+    select
+      r.rno,
+      r.lat,
+      r.lng,
+      r.spot_name,
+      r.spot_time,
+      j.jno as journey_no
+    from talat_journey_route r
+      inner join talat_journey j on r.jno=j.jno
+    
+    <if test="value != null">
+    where 
+      r.lat like concat('%', #{value},'%')
+      and r.lng like concat('%', #{value},'%')
+    </if>
+    order by r.rno desc
   </select>
   
   <update id="update" parameterType="route">
