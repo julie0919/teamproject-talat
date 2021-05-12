@@ -1,3 +1,87 @@
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('a가각간','aaa@test.com',password(1111),'010-2020-2020','1990-01-01',0);
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('b','bbb@test.com',password(1111),'010-2020-2020','1990-01-01',1);
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('c','ccc@test.com',password(1111),'010-2020-2020','1990-01-01',1);
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('d','ddd@test.com',password(1111),'010-2020-2020','1990-01-01',1);
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('e','eee@test.com',password(1111),'010-2020-2020','1990-01-01',1);
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('f','fff@test.com',password(1111),'010-2020-2020','1990-01-01',1);
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('g','ggg@test.com',password(1111),'010-2020-2020','1990-01-01',1);
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('h','hhh@test.com',password(1111),'010-2020-2020','1990-01-01',1);
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('i','iii@test.com',password(1111),'010-2020-2020','1990-01-01',1);
+insert into talat_memb(mname,email,pwd,tel,birth,mtype)
+    values('j','jjj@test.com',password(1111),'010-2020-2020','1990-01-01',1);
+
+
+
+
+
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
+    values(2,'bbbbb',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','bbb.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
+    values(3,'ccccc',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ccc.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
+    values(4,'ddddd',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ddd.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
+    values(5,'eeeee',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','eee.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
+    values(6,'fffff',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','fff.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
+    values(7,'ggggg',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','ggg.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
+    values(8,'hhhhh',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','hhh.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
+    values(9,'iiiii',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','iii.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
+    values(10,'jjjjj',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','jjj.jpg',0,5.0);
+
+
+
+
+
+
+
+
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(2,'비트캠프','광화문','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 여성 1명 있습니다. 괜찮으시면 연락주세요. ');
+
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(3,'광화문','비트캠프','2021-5-12','8:50:00',1,0,1,5000,'소소한 대화하는 거 좋아합니다. ');
+
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(4,'광화문','비트캠프','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 여성 1명, 남성 1명 있어요. ');
+
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(5,'신사역','구로디지털단지역','2021-5-12','8:50:00',1,0,1,5000,'');
+
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(6,'강남역','구로디지털단지역','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 없음');
+
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(7,'홍대입구역','강남역','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 없어요. ');
+
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(8,'서울광장 분수대','강남역','2021-5-12','8:50:00',1,0,1,5000,'반려동물 환영입니다!');
+
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(9,'고속터미널역','교보문고 강남점','2021-5-12','8:50:00',1,0,1,5000,'');
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(10,'묵동자이 1단지','종각역','2021-5-12','8:50:00',1,0,1,5000,'');
+
+
+
+
+
+
+
 insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(1,1,37.50326795334012,127.02430725467384,'비트캠프','7:50:00');
 
@@ -105,33 +189,3 @@ insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time)
 
 
 
-insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(2,'비트캠프','광화문','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 여성 1명 있습니다. 괜찮으시면 연락주세요. ')
-
-insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(3,'광화문','비트캠프','2021-5-12','8:50:00',1,0,1,5000,'소소한 대화하는 거 좋아합니다. ')
-
-insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(4,'광화문','비트캠프','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 여성 1명, 남성 1명 있어요. ')
-
-insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(5,'신사역','구로디지털단지역','2021-5-12','8:50:00',1,0,1,5000,'')
-
-insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(6,'강남역','구로디지털단지역','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 없음')
-
-insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(7,'홍대입구역','강남역','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 없어요. ')
-
-insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(8,'서울광장 분수대','강남역','2021-5-12','8:50:00',1,0,1,5000,'반려동물 환영입니다!')
-
-insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(9,'고속터미널역','교보문고 강남점','2021-5-12','8:50:00',1,0,1,5000,'')
-    
-insert into talat_journey(driver,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(10,'묵동자이 1단지','종각역','2021-5-12','8:50:00',1,0,1,5000,'')
-
-
-
-insert into talat_memb()
