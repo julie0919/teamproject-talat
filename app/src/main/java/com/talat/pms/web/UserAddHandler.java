@@ -13,8 +13,8 @@ import com.talat.pms.domain.Member;
 import com.talat.pms.service.MemberService;
 
 @SuppressWarnings("serial")
-@WebServlet("/member/add")
-public class MemberAddHandler extends HttpServlet {
+@WebServlet("/member/add2")
+public class UserAddHandler extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -22,34 +22,30 @@ public class MemberAddHandler extends HttpServlet {
 
     MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
 
-    response.setContentType("text/plain;charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
-    try {
-      out.println("[관리자 등록]");
+    Member m = new Member();
 
-      Member m = new Member();
-      m.setMname(request.getParameter("name"));
+    try {
+      m.setMname(request.getParameter("mname"));
       m.setEmail(request.getParameter("email"));
       m.setPassword(request.getParameter("password"));
       m.setTel(request.getParameter("tel"));
       m.setBirth(Date.valueOf(request.getParameter("birth")));
-      m.setmType(Integer.parseInt(request.getParameter("mType")));
+      m.setPreferenceGender(Integer.parseInt(request.getParameter("mType")));
 
       memberService.add(m);
 
-      out.println("관리자를 등록하였습니다.");
+      out.println("<p>성공적으로 회원가입 되었습니다.<p>");
+
     } catch (Exception e) {
       StringWriter strWriter = new StringWriter();
       PrintWriter printWriter = new PrintWriter(strWriter);
       e.printStackTrace(printWriter);
       out.println(strWriter.toString());
     }
+    //    out.println("<meta http-equiv='Refresh' content='1;url=list'>");
   }
 }
-
-
-
-
-
-
