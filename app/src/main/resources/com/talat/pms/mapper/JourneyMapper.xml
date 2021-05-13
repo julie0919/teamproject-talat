@@ -17,7 +17,7 @@
     <result column="jfee" property="fee"/>
     <result column="jcont" property="content"/>
     
-    <association property="mno" javaType="member">
+    <association property="driver" javaType="member">
 	    <id column="driver_no" property="mno"/>
 	    <result column="driver_name" property="mname"/>
     </association>
@@ -25,8 +25,8 @@
   </resultMap>
   
   <insert id="insert" parameterType="journey">
-    insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(#{mno},#{departure},#{arrival},#{journeyDate},#{journeyTime},#{seatPassenger},#{seatRear},#{pet},#{fee},#{content})
+    insert into talat_journey(dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont,mno) 
+    values(#{departure},#{arrival},#{journeyDate},#{journeyTime},#{seatPassenger},#{seatRear},#{pet},#{fee},#{content},#{driver.no})
   </insert>
 
 <select id="findAll" resultMap="journeyMap">

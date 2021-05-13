@@ -3,7 +3,7 @@ package com.talat.pms.domain;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Journey extends Member {
+public class Journey{
   private int jno;
   private Member driver;
   private String departure;

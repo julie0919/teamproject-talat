@@ -41,19 +41,21 @@ public class JourneyListHandler extends HttpServlet {
       out.println("<table border='1'>");
       out.println("<thead>");
       out.println("<tr>");
-      out.println("<th>번호</th> <th>출발지</th> <th>도착지</th> <th>시간</th> <th>일자</th>");
+      out.println("<th>번호</th> <th>드라이버</th> <th>출발지</th> <th>도착지</th> <th>시간</th> <th>일자</th>");
       out.println("</tr>");
       out.println("</thead>");
       out.println("<tbody>");
 
       for (Journey j : journeys) {
         out.printf("<tr>"
-            + " <td>%d</td>"
-            + " <td><a href='detail?no=%1$d'>%s</a></td>"
+            + " <td><a href='detail?no=%1$d'>%d</a></td>"
+            + " <td>%s</td>"
+            + " <td>%s</td>"
             + " <td>%s</td>"
             + " <td>%s</td>"
             + " <td>%s</td> </tr>\n", 
             j.getJno(), 
+            j.getDriver().getMname(),
             j.getDeparture(), 
             j.getArrival(), 
             j.getJourneyTime(),
