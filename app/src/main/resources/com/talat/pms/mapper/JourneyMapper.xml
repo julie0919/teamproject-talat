@@ -75,7 +75,7 @@
       j.seat_psgr_cap,
       j.seat_rear_cap,
       j.pet,
-      j.fee,
+      j.jfee,
       j.jcont,
       m.mno as driver_no,
       m.mname as driver_name

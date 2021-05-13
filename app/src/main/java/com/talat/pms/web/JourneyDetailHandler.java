@@ -16,7 +16,7 @@ import com.talat.pms.service.JourneyService;
 @WebServlet("/journey/detail")
 public class JourneyDetailHandler extends HttpServlet {
 
-  SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
   SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
 
   @Override
@@ -28,12 +28,12 @@ public class JourneyDetailHandler extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
-    int no = Integer.parseInt(request.getParameter("jno"));
+    int no = Integer.parseInt(request.getParameter("no"));
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("<title>여정 상세</title>");
+    out.println("<title>2여정 상세</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>여정 상세보기</h1>");
@@ -64,7 +64,7 @@ public class JourneyDetailHandler extends HttpServlet {
       out.printf("<tr><th>여정 설명</th>"
           + " <td><textarea name='content' rows='10' cols='60'>%s</textarea></td></tr>\n", j.getContent());
 
-      out.println("</tbody>");      //
+      out.println("</tbody>");
       //      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
       //      if (loginUser != null && j.getDriver().getMno() == loginUser.getMno()) {
       //        out.println("<tfoot>");
