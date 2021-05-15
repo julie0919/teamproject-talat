@@ -11,10 +11,13 @@ import com.talat.mybatis.MybatisDaoFactory;
 import com.talat.mybatis.SqlSessionFactoryProxy;
 import com.talat.mybatis.TransactionManager;
 import com.talat.pms.dao.JourneyDao;
+import com.talat.pms.dao.RiderQnADao;
 import com.talat.pms.dao.RouteDao;
 import com.talat.pms.service.JourneyService;
+import com.talat.pms.service.RiderQnAService;
 import com.talat.pms.service.RouteService;
 import com.talat.pms.service.impl.DefaultJourneyService;
+import com.talat.pms.service.impl.DefaultRiderQnAService;
 import com.talat.pms.service.impl.DefaultRouteService;
 
 // 웹 애플리케이션을 시작하거나 종료할 때 서버로부터 보고를 받는다.
@@ -37,6 +40,7 @@ public class ContextLoaderListener implements ServletContextListener {
       //      BoardDao boardDao = daoFactory.createDao(BoardDao.class);
       //      MemberDao memberDao = daoFactory.createDao(MemberDao.class);
       JourneyDao journeyDao = daoFactory.createDao(JourneyDao.class);
+      RiderQnADao riderQnADao = daoFactory.createDao(RiderQnADao.class);
       RouteDao routeDao = daoFactory.createDao(RouteDao.class);
 
       // 3) 서비스 관련 객체 준비
@@ -46,12 +50,14 @@ public class ContextLoaderListener implements ServletContextListener {
       //      MemberService memberService = new DefaultMemberService(memberDao);
       JourneyService journeyService = new DefaultJourneyService(txManager,journeyDao,routeDao);
       RouteService routeService = new DefaultRouteService(routeDao);
+      RiderQnAService riderQnAService = new DefaultRiderQnAService(riderQnADao);
 
       // 4) 서비스 객체를 ServletContext 보관소에 저장한다.
       //      servletContext.setAttribute("boardService", boardService);
       //      servletContext.setAttribute("memberService", memberService);
       servletContext.setAttribute("journeyService", journeyService);
       servletContext.setAttribute("routeService", routeService);
+      servletContext.setAttribute("riderQnAService", riderQnAService);
 
 
       System.out.println("ContextLoaderListener: 의존 객체를 모두 준비하였습니다.");
