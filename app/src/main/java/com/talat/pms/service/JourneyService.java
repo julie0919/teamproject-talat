@@ -1,9 +1,8 @@
 package com.talat.pms.service;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
 import com.talat.pms.domain.Journey;
+import com.talat.pms.domain.Route;
 
 public interface JourneyService {
 
@@ -17,7 +16,14 @@ public interface JourneyService {
 
   int delete(int no) throws Exception;
 
-  List<Journey> search(String departure, String arrival, Date journeyDate, Time journeyTime) throws Exception;
+  //  List<Journey> search(String departure, String arrival) throws Exception;
+
+  List<Route> getRoutes(int journeyNo) throws Exception;
+
+  int deleteRoutes (int journeyNo) throws Exception;
+
+  int updateRoutes(int journeyNo, List<Route> routes) throws Exception;
+
 }
 
 

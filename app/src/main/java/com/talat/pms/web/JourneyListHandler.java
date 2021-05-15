@@ -2,7 +2,6 @@ package com.talat.pms.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +19,6 @@ public class JourneyListHandler extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    // 클라이언트가 /journey/list 를 요청하면 톰캣 서버가 이 메서드를 호출한다. 
 
     JourneyService journeyService = (JourneyService) request.getServletContext().getAttribute("journeyService");
 
@@ -36,7 +34,10 @@ public class JourneyListHandler extends HttpServlet {
     out.println("<h1>여정 목록</h1>");
 
     try {
-      List<Journey> journeys = journeyService.list();
+      List<Journey> journeys = journeyService.list();;
+
+      String item = request.getParameter("item");
+      String keyword = request.getParameter("keyword");
 
       out.println("<table border='1'>");
       out.println("<thead>");
@@ -47,16 +48,28 @@ public class JourneyListHandler extends HttpServlet {
       out.println("<tbody>");
 
       for (Journey j : journeys) {
+
+        //        StringBuilder strBuilder = new StringBuilder();
+        //        List<Route> routes = j.getRoutes();
+        //        for (Route r : routes) {
+        //          if (strBuilder.length() > 0) {
+        //            strBuilder.append(",");
+        //          }
+        //          strBuilder.append(r.getSpotName());
+        //        }
+
         out.printf("<tr>"
-            + " <td><a href='detail?no=%1$d'>%d</a></td>"
+            + " <td><a href='detail?jno=%1$d'>%d</a></td>"
             + " <td>%s</td>"
             + " <td>%s</td>"
+            //            + " <td>%s</td>"
             + " <td>%s</td>"
             + " <td>%s</td>"
             + " <td>%s</td> </tr>\n", 
             j.getJno(), 
             j.getDriver().getMname(),
             j.getDeparture(), 
+            //          strBuilder.toString(),
             j.getArrival(), 
             j.getJourneyTime(),
             j.getJourneyDate());
@@ -69,15 +82,26 @@ public class JourneyListHandler extends HttpServlet {
       out.println("<button>검색</button>");
       out.println("</form>");
 
+      out.println("<form method='get'>");
+      out.println("<select name='item'>");
+      out.printf("  <option value='0' %s>전체</option>\n", 
+          (item != null && item.equals("0")) ? "selected" : "");
+      out.printf("  <option value='1' %s>출발지</option>\n", 
+          (item != null && item.equals("1")) ? "selected" : "");
+      out.printf("  <option value='2' %s>도착지</option>\n", 
+          (item != null && item.equals("2")) ? "selected" : "");
+      out.println("</select>");
+      out.printf("<input type='search' name='keyword' value='%s'> \n",
+          keyword != null ? keyword : "");
+      out.println("<button>검색</button>");
+      out.println("</form>");
+
+
+
+
 
     } catch (Exception e) {
-      // 상세 오류 내용을 StringWriter로 출력한다.
-      StringWriter strWriter = new StringWriter();
-      PrintWriter printWriter = new PrintWriter(strWriter);
-      e.printStackTrace(printWriter);
-
-      // StringWriter 에 들어 있는 출력 내용을 꺼내 클라이언트로 보낸다.
-      out.printf("<pre>%s</pre>\n", strWriter.toString());
+      throw new ServletException(e);
     }
 
     out.println("</body>");

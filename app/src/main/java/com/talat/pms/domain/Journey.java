@@ -2,11 +2,13 @@ package com.talat.pms.domain;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 public class Journey{
   private int jno;
   private Member driver;
   private String departure;
+  private List<Route> routes;
   private String arrival;
   private Date journeyDate;
   private Time journeyTime;
@@ -18,10 +20,10 @@ public class Journey{
 
   @Override
   public String toString() {
-    return "Journey [jno=" + jno + ", driver=" + driver + ", departure=" + departure + ", arrival="
-        + arrival + ", journeyDate=" + journeyDate + ", journeyTime=" + journeyTime
-        + ", seatPassenger=" + seatPassenger + ", seatRear=" + seatRear + ", pet=" + pet + ", fee="
-        + fee + ", content=" + content + "]";
+    return "Journey [jno=" + jno + ", driver=" + driver + ", departure=" + departure + ", routes="
+        + routes + ", arrival=" + arrival + ", journeyDate=" + journeyDate + ", journeyTime="
+        + journeyTime + ", seatPassenger=" + seatPassenger + ", seatRear=" + seatRear + ", pet="
+        + pet + ", fee=" + fee + ", content=" + content + "]";
   }
   public int getJno() {
     return jno;
@@ -40,6 +42,12 @@ public class Journey{
   }
   public void setDeparture(String departure) {
     this.departure = departure;
+  }
+  public List<Route> getRoutes() {
+    return routes;
+  }
+  public void setRoutes(List<Route> routes) {
+    this.routes = routes;
   }
   public String getArrival() {
     return arrival;
@@ -92,7 +100,7 @@ public class Journey{
   @Override
   public int hashCode() {
     final int prime = 31;
-    int result = super.hashCode();
+    int result = 1;
     result = prime * result + ((arrival == null) ? 0 : arrival.hashCode());
     result = prime * result + ((content == null) ? 0 : content.hashCode());
     result = prime * result + ((departure == null) ? 0 : departure.hashCode());
@@ -102,6 +110,7 @@ public class Journey{
     result = prime * result + ((journeyDate == null) ? 0 : journeyDate.hashCode());
     result = prime * result + ((journeyTime == null) ? 0 : journeyTime.hashCode());
     result = prime * result + pet;
+    result = prime * result + ((routes == null) ? 0 : routes.hashCode());
     result = prime * result + seatPassenger;
     result = prime * result + seatRear;
     return result;
@@ -110,7 +119,7 @@ public class Journey{
   public boolean equals(Object obj) {
     if (this == obj)
       return true;
-    if (!super.equals(obj))
+    if (obj == null)
       return false;
     if (getClass() != obj.getClass())
       return false;
@@ -151,10 +160,18 @@ public class Journey{
       return false;
     if (pet != other.pet)
       return false;
+    if (routes == null) {
+      if (other.routes != null)
+        return false;
+    } else if (!routes.equals(other.routes))
+      return false;
     if (seatPassenger != other.seatPassenger)
       return false;
     if (seatRear != other.seatRear)
       return false;
     return true;
   }
+
+
+
 }

@@ -18,6 +18,8 @@ public interface RouteDao {
   int update(Route route) throws Exception;
 
   int delete(int no) throws Exception;
+
+  int deleteByJourneyNo(int journeyNo) throws Exception;
 }
 
 

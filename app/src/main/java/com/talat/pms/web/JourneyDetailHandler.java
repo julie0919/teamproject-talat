@@ -2,7 +2,6 @@ package com.talat.pms.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,17 +27,17 @@ public class JourneyDetailHandler extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
-    int no = Integer.parseInt(request.getParameter("no"));
-
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("<title>2여정 상세</title>");
+    out.println("<title>여정 상세</title>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>여정 상세보기</h1>");
 
     try {
+      int no = Integer.parseInt(request.getParameter("jno"));
+
       Journey j = journeyService.get(no);
       if (j == null) {
         out.println("<p>해당 번호의 여정이 없습니다.</p>");
@@ -53,6 +52,7 @@ public class JourneyDetailHandler extends HttpServlet {
           + " <td><input type='text' name='jno' value='%d' readonly></td></tr>\n", j.getJno());
       out.printf("<tr><th>출발지</th>"
           + " <td><input name='departure' type='text' value='%s'></td></tr>\n", j.getDeparture());
+
       out.printf("<tr><th>도착지</th>"
           + " <td><input name='arrival' type='text' value='%s'></td></tr>\n", j.getArrival());
       out.printf("<tr><th>여정날짜</th> <td>%s</td></tr>\n", formatterDate.format(j.getJourneyDate()));
@@ -60,7 +60,7 @@ public class JourneyDetailHandler extends HttpServlet {
       out.printf("<tr><th>보조석 인원</th> <td>%d명</td></tr>\n", j.getSeatPassenger());
       out.printf("<tr><th>뒷자석 인원</th> <td>%d명</td></tr>\n", j.getSeatRear());
       out.printf("<tr><th>반려동물 탑승</th>"
-          + " <td><input type='radio' name='pet' value='%d' checked onclick='return(false)></td></tr>\n", j.getPet());
+          + " <td><input type='radio' name='pet' value='%d' checked onclick='return(false)'></td></tr>\n", j.getPet());
       out.printf("<tr><th>여정 설명</th>"
           + " <td><textarea name='content' rows='10' cols='60'>%s</textarea></td></tr>\n", j.getContent());
 
@@ -76,14 +76,14 @@ public class JourneyDetailHandler extends HttpServlet {
       //      }
 
       out.println("</table>");
+
+      out.println("<input type='submit' value='변경'> ");
+      out.printf("<a href='delete?jno=%d'>삭제</a>\n", j.getJno());
       out.println("</form>");
 
 
     } catch (Exception e) {
-      StringWriter strWriter = new StringWriter();
-      PrintWriter printWriter = new PrintWriter(strWriter);
-      e.printStackTrace(printWriter);
-      out.printf("<pre>%s</pre>\n", strWriter.toString());
+      throw new ServletException(e);    
     }
     out.println("<p><a href='list'>목록</a></p>");
 
