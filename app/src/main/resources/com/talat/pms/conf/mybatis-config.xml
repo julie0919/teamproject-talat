@@ -29,7 +29,7 @@
     <mapper resource="com/talat/pms/mapper/JourneyMapper.xml"/>
     <mapper resource="com/talat/pms/mapper/RouteMapper.xml"/>
     <mapper resource="com/talat/pms/mapper/ReviewMapper.xml"/>
-
+    <mapper resource="com/talat/pms/mapper/RiderQnAMapper.xml"/>
   </mappers>
 </configuration>
 

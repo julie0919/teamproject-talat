@@ -27,7 +27,7 @@ public class JourneyListHandler extends HttpServlet {
       request.setAttribute("list", journeys);
 
       response.setContentType("text/html;charset=UTF-8");
-      request.getRequestDispatcher("/jsp/journey/list.jsp").include(request, response);;
+      request.getRequestDispatcher("/jsp/journey/list.jsp").include(request, response);
 
     } catch (Exception e) {
       throw new ServletException(e);

@@ -5,7 +5,7 @@
 
 <mapper namespace="com.talat.pms.dao.RiderQnADao">
   
-  <resultMap id="riderQnAMap" type="RiderQnA">
+  <resultMap id="riderQnAMap" type="riderQnA">
     <id column="rqno" property="no"/>
     <result column="rqdate" property="registeredDate"/>
     <result column="answ_stat_r" property="status"/>
@@ -14,6 +14,7 @@
     <result column="rfile" property="file"/>
     
     <!-- 여정신청 association -->
+     <result column="rjno" property="rjno"/>
 
     <association property="qtype" javaType="qna">
       <id column="qna_no" property="no"/>
@@ -32,9 +33,9 @@
     
   </resultMap>
   
-  <insert id="insert" parameterType="RiderQnA">
+  <insert id="insert" parameterType="riderQnA">
     insert into talat_qna_rider(qno,qtitle,rjno,rqdate,answ_stat_r,rqcont,answ_cont_r,rfile) 
-    values(#{qtype.qno}, #{qtype.qtitle}, #{riderJourney.no},#{registeredDate},#{status},#{qContent},#{aContent},#{file})
+    values(#{qtype.no}, #{qtype.typeTitle}, #{rjno},#{registeredDate},#{status},#{qContent},#{aContent},#{file})
   </insert>
 
   <select id="findAll" resultMap="riderQnAMap">
@@ -48,7 +49,7 @@
       rm.mno as writer_no,
       rm.mname as writer_name,
       dm.mno as partner_no,
-      dm.mname as partner_name 
+      dm.mname as partner_name
     from talat_qna_rider rq
     inner join talat_qna q on rq.qno=q.qno
       inner join talat_journey_rider rj on rq.rjno=rj.rjno
@@ -58,7 +59,7 @@
     order by rq.rqno desc
   </select>
   
-  <select id="findByKeyword" resultMap="boardMap" parameterType="string">
+  <select id="findByKeyword" resultMap="riderQnAMap" parameterType="string">
  
   </select>
   
