@@ -87,7 +87,10 @@
   </select>
   
   <update id="update" parameterType="riderQnA">
-
+    update talat_qna_rider set
+        answ_cont_r = #{aContent},
+        answ_stat_r = 1
+    where rqno = #{no}
   </update>
   
   <delete id="delete" parameterType="int">
