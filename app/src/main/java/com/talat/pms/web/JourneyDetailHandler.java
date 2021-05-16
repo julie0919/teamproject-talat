@@ -82,7 +82,6 @@ public class JourneyDetailHandler extends HttpServlet {
       //      }
 
       out.println("</table>");
-
       out.println("<input type='submit' value='변경'> ");
       out.printf("<a href='delete?jno=%d'>삭제</a>\n", j.getJno());
       out.println("</form>");

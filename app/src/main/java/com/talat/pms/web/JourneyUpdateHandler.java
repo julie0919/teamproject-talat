@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.talat.pms.domain.Journey;
+import com.talat.pms.domain.Member;
 import com.talat.pms.service.JourneyService;
 
 @SuppressWarnings("serial")
@@ -29,11 +30,11 @@ public class JourneyUpdateHandler extends HttpServlet {
       if (oldJourney== null) {
         throw new Exception("해당 번호의 여정이 없습니다.");
       } 
-      //
-      //      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-      //      if (oldJourney.getDriver().getMno() != loginUser.getMno()) {
-      //        throw new Exception("변경 권한이 없습니다!");
-      //      }
+
+      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+      if (oldJourney.getDriver().getMno() != loginUser.getMno()) {
+        throw new Exception("변경 권한이 없습니다!");
+      }
 
       Journey j = new Journey();
       j.setJno(oldJourney.getJno());
