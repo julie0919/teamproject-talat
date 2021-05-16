@@ -288,6 +288,10 @@ insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time)
     
 insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
     values(1,1,'-',5,5,11);
+insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
+    values(2,0,'-',5,5,13);
+insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
+    values(3,1,'-',4,3,12);
     
     
     
