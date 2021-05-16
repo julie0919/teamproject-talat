@@ -20,7 +20,7 @@ if (jr != null) {
 <tr><th>여정번호</th> <td><%=jr.getJourney().getJno()%></td></tr>
 <tr>
 <th>드라이버</th><td><%=jr.getDriver().getMname()%></td>
-<th>평균 별점</th><td>평균별점</td>
+<th>평균 별점</th><td><%=jr.getDriver().getStarAverage()%></td>
 </tr>
 <tr><th>차량정보</th><td>차량정보</td></tr>
 <tr>
@@ -39,7 +39,7 @@ if (jr != null) {
 <tr><th>여정설명</th><td>여정설명</td></tr>
 <tr>
 <td>
-  <input type='submit' value='돌아가기'><a href='add?no=<%=jr.getJourney().getJno()%>'>카풀신청</a> 
+  <input type='submit' value='돌아가기'><a href='add.html'>카풀신청</a> 
 </td>
 </tr>
 </tbody>

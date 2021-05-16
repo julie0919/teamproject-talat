@@ -24,6 +24,7 @@
     <association property="driver" javaType="member">
       <id column="driver_mno" property="mno"/>
       <result column="driver_mname" property="mname"/>
+      <result column="driver_star" property="starAverage"/>
     </association>
     
     <association property="rider" javaType="member">
@@ -99,6 +100,7 @@
       jr.rjno,
       m.mno as driver_mno,
       m.mname as driver_mname,
+      m.star_avg as driver_star,
       j.jno,
       j.jdate as jno_jdate,
       j.jtime as jno_jtime,
