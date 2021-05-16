@@ -286,6 +286,8 @@ insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time)
 
   
     
+insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
+    values(1,1,'-',5,5,11);
     
     
     
@@ -299,6 +301,18 @@ insert into talat_qna(qno,qtitle)
     values(4,'여정 관련 고객지원');
     
 
+    
+insert into talat_qna_rider(qno,qtitle,rjno,rqdate,answ_stat_r,rqcont,answ_cont_r,rfile) 
+    values(1,'분실물 문의',1,'2021-05-15',1,
+    '아ㅠ 출근 급해서 바빠서 급하게 내리다가 지갑을 두고 왔어요ㅠ',
+    '문의주신 분실 건은 드라이버님께 전달드렸습니다. ','abcde.png');
+
+insert into talat_qna_rider(qno,qtitle,rjno,rqdate,answ_stat_r,rqcont,answ_cont_r) 
+    values(1,'분실물 문의',1,'2021-05-20',0,
+    '에어팟 분실','-');
+
+    
+    
     
 
 insert into talat_review(rev_no,rev)
@@ -315,4 +329,6 @@ insert into talat_review(rev_no,rev)
     values(6,'약속 잘 지켜요!');
     
     
+
+
     

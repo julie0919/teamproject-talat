@@ -59,8 +59,14 @@ public class JourneyDetailHandler extends HttpServlet {
       out.printf("<tr><th>도착시간</th> <td>%s</td></tr>\n", formatterTime.format(j.getJourneyTime()));
       out.printf("<tr><th>보조석 인원</th> <td>%d명</td></tr>\n", j.getSeatPassenger());
       out.printf("<tr><th>뒷자석 인원</th> <td>%d명</td></tr>\n", j.getSeatRear());
-      out.printf("<tr><th>반려동물 탑승</th>"
-          + " <td><input type='radio' name='pet' value='%d' checked onclick='return(false)'></td></tr>\n", j.getPet());
+
+      if (j.getPet() == 0) {
+        out.println("<tr><th>반려동물 탑승</th>"
+            + " <td>아니오</td></tr>");
+      } else {
+        out.println("<tr><th>반려동물 탑승</th>"
+            + " <td>예</td></tr>");
+      }
       out.printf("<tr><th>여정 설명</th>"
           + " <td><textarea name='content' rows='10' cols='60'>%s</textarea></td></tr>\n", j.getContent());
 
