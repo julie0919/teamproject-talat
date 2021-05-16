@@ -11,11 +11,15 @@ import com.talat.mybatis.MybatisDaoFactory;
 import com.talat.mybatis.SqlSessionFactoryProxy;
 import com.talat.mybatis.TransactionManager;
 import com.talat.pms.dao.JourneyDao;
+import com.talat.pms.dao.JourneyRiderDao;
 import com.talat.pms.dao.RiderQnADao;
+//github.com/julie0919/teamproject-talat.git
 import com.talat.pms.dao.RouteDao;
+import com.talat.pms.service.JourneyRiderService;
 import com.talat.pms.service.JourneyService;
 import com.talat.pms.service.RiderQnAService;
 import com.talat.pms.service.RouteService;
+import com.talat.pms.service.impl.DefaultJourneyRiderService;
 import com.talat.pms.service.impl.DefaultJourneyService;
 import com.talat.pms.service.impl.DefaultRiderQnAService;
 import com.talat.pms.service.impl.DefaultRouteService;
@@ -40,6 +44,7 @@ public class ContextLoaderListener implements ServletContextListener {
       //      BoardDao boardDao = daoFactory.createDao(BoardDao.class);
       //      MemberDao memberDao = daoFactory.createDao(MemberDao.class);
       JourneyDao journeyDao = daoFactory.createDao(JourneyDao.class);
+      JourneyRiderDao journeyRiderDao = daoFactory.createDao(JourneyRiderDao.class);
       RiderQnADao riderQnADao = daoFactory.createDao(RiderQnADao.class);
       RouteDao routeDao = daoFactory.createDao(RouteDao.class);
 
@@ -49,6 +54,7 @@ public class ContextLoaderListener implements ServletContextListener {
       //      BoardService boardService = new DefaultBoardService(boardDao);
       //      MemberService memberService = new DefaultMemberService(memberDao);
       JourneyService journeyService = new DefaultJourneyService(txManager,journeyDao,routeDao);
+      JourneyRiderService journeyRiderService = new DefaultJourneyRiderService(journeyRiderDao);
       RouteService routeService = new DefaultRouteService(routeDao);
       RiderQnAService riderQnAService = new DefaultRiderQnAService(riderQnADao);
 
@@ -56,6 +62,7 @@ public class ContextLoaderListener implements ServletContextListener {
       //      servletContext.setAttribute("boardService", boardService);
       //      servletContext.setAttribute("memberService", memberService);
       servletContext.setAttribute("journeyService", journeyService);
+      servletContext.setAttribute("journeyRiderService", journeyRiderService);
       servletContext.setAttribute("routeService", routeService);
       servletContext.setAttribute("riderQnAService", riderQnAService);
 
