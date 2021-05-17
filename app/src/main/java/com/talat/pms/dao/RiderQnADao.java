@@ -16,6 +16,8 @@ public interface RiderQnADao {
 
   int update(RiderQnA driverQnA) throws Exception;
 
+  int managerUpdate(RiderQnA driverQnA) throws Exception;
+
   int delete(int no) throws Exception;
 }
 

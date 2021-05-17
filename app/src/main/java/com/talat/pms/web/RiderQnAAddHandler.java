@@ -50,7 +50,7 @@ public class RiderQnAAddHandler extends HttpServlet {
     out.println("<h1>새 라이더 문의</h1>");
 
     try {
-      int no = Integer.parseInt(request.getParameter("jno"));
+      int no = Integer.parseInt(request.getParameter("no"));
 
       Journey j = journeyService.get(no);
       if (j == null) {
@@ -96,11 +96,11 @@ public class RiderQnAAddHandler extends HttpServlet {
 
     out.println("<hr>");
     out.println("<select name='qtype'>");
-    out.println("  <option value='0' selected>-- 문의유형 --</option>");
+    out.println("  <option value='0' selected disabled>-- 문의유형 --</option>");
     out.println("  <option value='1'>분실물 문의</option>");
-    out.println("  <option value='2' %s>안전문제보고</option>");
-    out.println("  <option value='3' %s>파트너의 의견 제공</option>");
-    out.println("  <option value='4' %s>여정 관련 고객지원</option>");
+    out.println("  <option value='2'>안전문제보고</option>");
+    out.println("  <option value='3'>파트너의 의견 제공</option>");
+    out.println("  <option value='4'>여정 관련 고객지원</option>");
     out.println("</select>");
     out.println("첨부파일: <br>");
 

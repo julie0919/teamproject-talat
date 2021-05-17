@@ -286,16 +286,16 @@ insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time)
 
   
     
-insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
-    values(1,1,'-',5,5,11);
-insert into talat_journey_rider(jno,mstat,mcont,mno)
-    values(2,0,'-',12);
-insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
-    values(3,1,'-',4,3,13);
-insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
-    values(4,1,'-',5,2,14);
-insert into talat_journey_rider(jno,mstat,mcont,mno)
-    values(5,0,'-',15);
+insert into talat_journey_rider(jno,mstat,dstar,rstar,mno)
+    values(1,1,5,5,11);
+insert into talat_journey_rider(jno,mstat,mno)
+    values(2,0,12);
+insert into talat_journey_rider(jno,mstat,dstar,rstar,mno)
+    values(3,1,4,3,13);
+insert into talat_journey_rider(jno,mstat,dstar,rstar,mno)
+    values(4,1,5,2,14);
+insert into talat_journey_rider(jno,mstat,mno)
+    values(5,0,15);
 insert into talat_journey_rider(jno,mstat,mcont,mno)
     values(6,0,'인원초과',16);
     
