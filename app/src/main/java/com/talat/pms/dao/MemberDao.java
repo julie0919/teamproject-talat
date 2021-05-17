@@ -6,7 +6,9 @@ import com.talat.pms.domain.Member;
 
 public interface MemberDao {
 
-  int insert(Member member) throws Exception;
+  int insert1(Member member) throws Exception;
+
+  int insert2(Member member) throws Exception;
 
   List<Member> findAll() throws Exception;
 
