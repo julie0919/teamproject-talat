@@ -38,6 +38,12 @@ public class DefaultRiderQnAService implements RiderQnAService {
     return riderQnADao.update(riderQnA);
   }
 
+  // 답변 업데이트
+  @Override
+  public int managerUpdate(RiderQnA riderQnA) throws Exception {
+    return riderQnADao.managerUpdate(riderQnA);
+  }
+
   // 게시글 삭제 업무
   @Override
   public int delete(int no) throws Exception {

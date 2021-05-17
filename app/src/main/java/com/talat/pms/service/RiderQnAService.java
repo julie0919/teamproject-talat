@@ -13,6 +13,8 @@ public interface RiderQnAService {
 
   int update(RiderQnA riderQnA) throws Exception;
 
+  int managerUpdate(RiderQnA riderQnA) throws Exception;
+
   int delete(int no) throws Exception;
 
   List<RiderQnA> search(String keyword) throws Exception;

@@ -12,7 +12,7 @@ import com.talat.pms.domain.RiderQnA;
 import com.talat.pms.service.RiderQnAService;
 
 @SuppressWarnings("serial")
-@WebServlet("/qna/rider/manager_detail")
+@WebServlet("/qna/rider/manager/detail")
 public class RiderQnAManagerDetailHandler extends HttpServlet {
 
   SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,13 +52,21 @@ public class RiderQnAManagerDetailHandler extends HttpServlet {
         return;
       }
 
-      out.println("<form action='manager_update' method='post'>");
+      out.println("<form action='update' method='post'>");
       out.println("<table border='1'>");
       out.println("<tbody>");
       out.printf("<tr><th>번호</th>"
           + " <td><input type='text' name='no' value='%d' readonly></td></tr>\n", rq.getNo());
-      out.printf("<tr><th>문의 유형</th>"
-          + " <td><input name='typeTitle' type='text' value='%s' readonly></td></tr>\n", rq.getQtype().getTypeTitle());
+
+      out.printf("<tr><th>문의 유형</th>");
+      out.println("<td><select name='qtype'>");
+      out.printf("  <option value='0' %s>-- 문의유형 --</option>\n", rq.getQtype().getNo() == 0 ? "selected" : "disabled");
+      out.printf("  <option value='1' %s>분실물 문의</option>\n", rq.getQtype().getNo() == 1 ? "selected" : "disabled");
+      out.printf("  <option value='2' %s>안전문제보고</option>\n", rq.getQtype().getNo() == 2 ? "selected" : "disabled");
+      out.printf("  <option value='3' %s>파트너의 의견 제공</option>\n", rq.getQtype().getNo() == 3 ? "selected" : "disabled");
+      out.printf("  <option value='4' %s>여정 관련 고객지원</option>\n", rq.getQtype().getNo() == 4 ? "selected" : "disabled");
+      out.println("</select></td></tr>");
+
       out.printf("<tr><th>작성자</th>"
           + " <td><input name='writer' type='text' value='%s' readonly></td></tr>\n", rq.getWriter().getMname());
       out.printf("<tr><th>파트너</th>"

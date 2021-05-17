@@ -10,11 +10,11 @@ import com.talat.pms.domain.RiderQnA;
 import com.talat.pms.service.RiderQnAService;
 
 @SuppressWarnings("serial")
-@WebServlet("/qna/rider/manager/update")
-public class RiderQnAManagerUpdateHandler extends HttpServlet {
+@WebServlet("/qna/rider/manager/delete")
+public class RiderQnAManagerDeleteHandler extends HttpServlet {
 
   @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     RiderQnAService riderQnAService = (RiderQnAService) request.getServletContext().getAttribute("riderQnAService");
@@ -28,18 +28,12 @@ public class RiderQnAManagerUpdateHandler extends HttpServlet {
         throw new Exception("해당 번호의 라이더 문의가 없습니다.");
       }
 
-      RiderQnA rq = new RiderQnA();
-      rq.setNo(oldRiderQnA.getNo());
-      rq.setQtype(oldRiderQnA.getQtype());
-      rq.setWriter(oldRiderQnA.getWriter());
-      rq.setPartner(oldRiderQnA.getPartner());
-      rq.setRegisteredDate(oldRiderQnA.getRegisteredDate());
-      rq.setStatus(1);
-      rq.setqContent(oldRiderQnA.getqContent());
-      rq.setaContent(request.getParameter("aContent"));
-      rq.setFile(oldRiderQnA.getFile());
+      //      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+      //      if (oldJourney.getDriver().getMno() != loginUser.getMno()) {
+      //        throw new Exception("삭제 권한이 없습니다!");
+      //      }
 
-      riderQnAService.managerUpdate(rq);
+      riderQnAService.delete(no);
 
       response.sendRedirect("list");
 
