@@ -24,11 +24,6 @@
     <association property="driver" javaType="member">
       <id column="driver_mno" property="mno"/>
       <result column="driver_mname" property="mname"/>
-      <result column="driver_star" property="starAverage"/>
-    </association>
-    
-    <association property="rider" javaType="member">
-      <id column="rider_mno" property="mno"/>
     </association>
     
     <association property="route" javaType="route">
@@ -79,17 +74,19 @@
       inner join talat_journey j on j.jno=jr.jno
       inner join talat_journey_route r on jr.jno=r.jno
     <where>
-      <if test="departure != null and departure != ''">
-        j.dept like concat('%', #{departure}, '%')
+      <if test="spot_order == 1">
+        r.spot_name like concat('%', #{keyword1}, '%')
       </if>
-      <if test="arrival != null and arrival != ''">
-        and j.arr like concat('%', #{arrival}, '%')
+      <if test="spot_order == 2">
+        r.spot_name like concat('%', #{keyword1}, '%')   
+        r.spot_name like concat('%', #{keyword2}, '%')
       </if>
-      <if test="journeyDate != null and journeyDate != ''">
-        and j.jdate like concat('%', #{journeyDate}, '%')
+      <if test="spot_order == 3">
+        r.spot_name like concat('%', #{keyword1}, '%')   
+        r.spot_name like concat('%', #{keyword2}, '%')
       </if>
-      <if test="journeyTime != null and journeyTime != ''">
-        and j.jtime like concat('%', #{journeyTime}, '%')
+      <if test="spot_order == 4">
+        r.spot_name like concat('%', #{keyword2}, '%')
       </if>
     </where>
     order by departure desc
@@ -100,7 +97,6 @@
       jr.rjno,
       m.mno as driver_mno,
       m.mname as driver_mname,
-      m.star_avg as driver_star,
       j.jno,
       j.jdate as jno_jdate,
       j.jtime as jno_jtime,
@@ -130,12 +126,16 @@
   </update>
   -->
   
-  <!-- 여정 삭제 
+  <!-- 신청 여정 삭제 -->
   <delete id="delete" parameterType="int">
-    delete from talat_journey  
-    where no = #{value}
+    delete from talat_journey_rider 
+    where rjno = #{value}
   </delete>
--->
+  
+  <insert id="insertJourney" parameterType="map">
+    insert into talat_journey_rider(rjno, jno)
+    values(#{journeyRiderNo}, #{journeyNo})
+  </insert>
 </mapper>
 
 

@@ -1,5 +1,7 @@
 package com.talat.pms.domain;
 
+import java.util.List;
+
 public class JourneyRider {
   private int journeyRiderNo;
   private int machingStatus;
@@ -7,6 +9,7 @@ public class JourneyRider {
   private double driverStar;
   private double riderStar;
   private Journey journey;
+  private List<Journey> journeys;
   private Member driver;
   private Member rider;
   private Route route;
@@ -15,16 +18,8 @@ public class JourneyRider {
   public String toString() {
     return "JourneyRider [journeyRiderNo=" + journeyRiderNo + ", machingStatus=" + machingStatus
         + ", machingContent=" + machingContent + ", driverStar=" + driverStar + ", riderStar="
-        + riderStar + ", journey=" + journey + ", driver=" + driver + ", rider=" + rider
-        + ", route=" + route + "]";
-  }
-
-  public Route getRoute() {
-    return route;
-  }
-
-  public void setRoute(Route route) {
-    this.route = route;
+        + riderStar + ", journey=" + journey + ", journeys=" + journeys + ", driver=" + driver
+        + ", rider=" + rider + ", route=" + route + "]";
   }
 
   public int getJourneyRiderNo() {
@@ -33,14 +28,6 @@ public class JourneyRider {
 
   public void setJourneyRiderNo(int journeyRiderNo) {
     this.journeyRiderNo = journeyRiderNo;
-  }
-
-  public Journey getJourney() {
-    return journey;
-  }
-
-  public void setJourney(Journey journey) {
-    this.journey = journey;
   }
 
   public int getMachingStatus() {
@@ -75,6 +62,22 @@ public class JourneyRider {
     this.riderStar = riderStar;
   }
 
+  public Journey getJourney() {
+    return journey;
+  }
+
+  public void setJourney(Journey journey) {
+    this.journey = journey;
+  }
+
+  public List<Journey> getJourneys() {
+    return journeys;
+  }
+
+  public void setJourneys(List<Journey> journeys) {
+    this.journeys = journeys;
+  }
+
   public Member getDriver() {
     return driver;
   }
@@ -90,5 +93,14 @@ public class JourneyRider {
   public void setRider(Member rider) {
     this.rider = rider;
   }
+
+  public Route getRoute() {
+    return route;
+  }
+
+  public void setRoute(Route route) {
+    this.route = route;
+  }
+
 
 }

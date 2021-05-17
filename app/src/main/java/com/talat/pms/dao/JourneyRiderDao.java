@@ -2,6 +2,7 @@ package com.talat.pms.dao;
 
 import java.util.List;
 import java.util.Map;
+import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.JourneyRider;
 
 public interface JourneyRiderDao {
@@ -17,6 +18,12 @@ public interface JourneyRiderDao {
   int update(JourneyRider journeyRider) throws Exception;
 
   int delete(int no) throws Exception;
+
+  List<Journey> findJourneys(int journeyRiderNo) throws Exception;
+
+  int insertJourney(Map<String,Object> params) throws Exception;
+
+  int deleteJourney(int joureyRiderNo) throws Exception;
 }
 
 

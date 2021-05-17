@@ -3,6 +3,7 @@ package com.talat.pms.service;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
+import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.JourneyRider;
 
 public interface JourneyRiderService {
@@ -19,8 +20,8 @@ public interface JourneyRiderService {
 
   List<JourneyRider> search(String departure, String arrival, Date journeyDate, Time journeyTime) throws Exception;
 
+  List<Journey> getJourney(int journeyRiderNo) throws Exception;
 }
-
 
 
 
