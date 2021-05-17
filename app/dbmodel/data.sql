@@ -288,10 +288,16 @@ insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time)
     
 insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
     values(1,1,'-',5,5,11);
+insert into talat_journey_rider(jno,mstat,mcont,mno)
+    values(2,0,'-',12);
 insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
-    values(2,0,'-',5,5,13);
+    values(3,1,'-',4,3,13);
 insert into talat_journey_rider(jno,mstat,mcont,dstar,rstar,mno)
-    values(3,1,'-',4,3,12);
+    values(4,1,'-',5,2,14);
+insert into talat_journey_rider(jno,mstat,mcont,mno)
+    values(5,0,'-',15);
+insert into talat_journey_rider(jno,mstat,mcont,mno)
+    values(6,0,'인원초과',16);
     
     
     
@@ -307,15 +313,21 @@ insert into talat_qna(qno,qtitle)
 
     
 insert into talat_qna_rider(qno,qtitle,rjno,rqdate,answ_stat_r,rqcont,answ_cont_r,rfile) 
-    values(1,'분실물 문의',1,'2021-05-15',1,
+    values(1,'분실물 문의',1,'2021-05-15 15:30:00',1,
     '아ㅠ 출근 급해서 바빠서 급하게 내리다가 지갑을 두고 왔어요ㅠ',
     '문의주신 분실 건은 드라이버님께 전달드렸습니다. ','abcde.png');
 
-insert into talat_qna_rider(qno,qtitle,rjno,rqdate,answ_stat_r,rqcont,answ_cont_r) 
-    values(1,'분실물 문의',1,'2021-05-20',0,
-    '에어팟 분실','-');
-
+insert into talat_qna_rider(qno,qtitle,rjno,rqdate,rqcont) 
+    values(1,'분실물 문의',1,'2021-05-20 9:10:00','에어팟 분실');
     
+insert into talat_qna_rider(qno,qtitle,rjno,rqdate,rqcont,rfile) 
+    values(2,'안전문제보고',3,'2021-05-18 18:40:00','난폭운전 신고','zzzzz.jpeg');
+    
+insert into talat_qna_rider(qno,qtitle,rjno,rqdate,rqcont) 
+    values(3,'파트너의 의견 제공',3,'2021-05-18 18:45:00','욕설을 계속 합니다. ');
+
+insert into talat_qna_rider(qno,qtitle,rjno,rqdate,rqcont) 
+    values(3,'파트너의 의견 제공',4,'2021-05-23 12:05:00','마스크 안씀');
     
     
 

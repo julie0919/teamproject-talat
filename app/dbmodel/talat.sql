@@ -91,9 +91,9 @@ CREATE TABLE talat_qna_driver (
   qno         INTEGER      NOT NULL COMMENT '문의유형번호', -- 문의유형번호
   jno         INTEGER      NOT NULL COMMENT '여정번호', -- 여정번호
   dqdate      DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  answ_stat_d INTEGER      NOT NULL COMMENT '답변여부', -- 답변여부
+  answ_stat_d INTEGER      NOT NULL DEFAULT 0 COMMENT '답변여부', -- 답변여부
   dqcont      LONGTEXT     NOT NULL COMMENT '문의 내용', -- 문의 내용
-  answ_cont_d LONGTEXT     NOT NULL COMMENT '답변 내용', -- 답변 내용
+  answ_cont_d LONGTEXT     NOT NULL DEFAULT '' COMMENT '답변 내용', -- 답변 내용
   dfile       VARCHAR(255) NULL     COMMENT '첨부파일', -- 첨부파일
   qtitle      VARCHAR(100) NULL     COMMENT '문의유형제목' -- 문의유형제목
 )
@@ -297,9 +297,9 @@ CREATE TABLE talat_qna_rider (
   qno         INTEGER      NOT NULL COMMENT '문의유형번호', -- 문의유형번호
   rjno        INTEGER      NOT NULL COMMENT '라이더여정신청번호', -- 라이더여정신청번호
   rqdate      DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  answ_stat_r INTEGER      NOT NULL COMMENT '답변여부', -- 답변여부
+  answ_stat_r INTEGER      NOT NULL DEFAULT 0 COMMENT '답변여부', -- 답변여부
   rqcont      LONGTEXT     NOT NULL COMMENT '문의 내용', -- 문의 내용
-  answ_cont_r LONGTEXT     NOT NULL COMMENT '답변 내용', -- 답변 내용
+  answ_cont_r LONGTEXT     NOT NULL DEFAULT '' COMMENT '답변 내용', -- 답변 내용
   rfile       VARCHAR(255) NULL     COMMENT '첨부파일', -- 첨부파일
   qtitle      VARCHAR(100) NULL     COMMENT '문의유형제목' -- 문의유형제목
 )
