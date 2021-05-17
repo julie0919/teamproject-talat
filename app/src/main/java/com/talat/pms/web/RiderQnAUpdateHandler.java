@@ -6,12 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.talat.pms.domain.QnA;
 import com.talat.pms.domain.RiderQnA;
 import com.talat.pms.service.RiderQnAService;
 
 @SuppressWarnings("serial")
-@WebServlet("/qna/rider/manager/update")
-public class RiderQnAManagerUpdateHandler extends HttpServlet {
+@WebServlet("/qna/rider/update")
+public class RiderQnAUpdateHandler extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -30,16 +31,23 @@ public class RiderQnAManagerUpdateHandler extends HttpServlet {
 
       RiderQnA rq = new RiderQnA();
       rq.setNo(oldRiderQnA.getNo());
-      rq.setQtype(oldRiderQnA.getQtype());
-      rq.setWriter(oldRiderQnA.getWriter());
-      rq.setPartner(oldRiderQnA.getPartner());
-      rq.setRegisteredDate(oldRiderQnA.getRegisteredDate());
-      rq.setStatus(1);
-      rq.setqContent(oldRiderQnA.getqContent());
-      rq.setaContent(request.getParameter("aContent"));
-      rq.setFile(oldRiderQnA.getFile());
 
-      riderQnAService.managerUpdate(rq);
+      QnA q = new QnA();
+      q.setNo(Integer.parseInt(request.getParameter("qtype")));
+      if (Integer.parseInt(request.getParameter("qtype")) == 1) {
+        q.setTypeTitle("분실물 문의");
+      } else if (Integer.parseInt(request.getParameter("qtype")) == 2) {
+        q.setTypeTitle("안전문제보고");
+      } else if (Integer.parseInt(request.getParameter("qtype")) == 3) {
+        q.setTypeTitle("파트너의 의견 제공");
+      } else if (Integer.parseInt(request.getParameter("qtype")) == 4) {
+        q.setTypeTitle("여정 관련 고객지원");
+      }
+      rq.setQtype(q);
+      rq.setqContent(request.getParameter("qContent"));
+      rq.setFile(request.getParameter("file"));
+
+      riderQnAService.update(rq);
 
       response.sendRedirect("list");
 

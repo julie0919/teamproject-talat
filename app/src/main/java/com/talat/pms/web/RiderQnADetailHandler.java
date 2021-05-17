@@ -50,8 +50,16 @@ public class RiderQnADetailHandler extends HttpServlet {
       out.println("<tbody>");
       out.printf("<tr><th>번호</th>"
           + " <td><input type='text' name='no' value='%d' readonly></td></tr>\n", rq.getNo());
-      out.printf("<tr><th>문의 유형</th>"
-          + " <td><input name='typeTitle' type='text' value='%s'></td></tr>\n", rq.getQtype().getTypeTitle());
+
+      out.printf("<tr><th>문의 유형</th>");
+      out.println("<td><select name='qtype'>");
+      out.println("  <option value='0' disabled>-- 문의유형 --</option>");
+      out.printf("  <option value='1' %s>분실물 문의</option>\n", rq.getQtype().getNo() == 1 ? "selected" : "");
+      out.printf("  <option value='2' %s>안전문제보고</option>\n", rq.getQtype().getNo() == 2 ? "selected" : "");
+      out.printf("  <option value='3' %s>파트너의 의견 제공</option>\n", rq.getQtype().getNo() == 3 ? "selected" : "");
+      out.printf("  <option value='4' %s>여정 관련 고객지원</option>\n", rq.getQtype().getNo() == 4 ? "selected" : "");
+      out.println("</select></td></tr>");
+
       out.printf("<tr><th>작성자</th>"
           + " <td><input name='writer' type='text' value='%s'></td></tr>\n", rq.getWriter().getMname());
       out.printf("<tr><th>파트너</th>"
@@ -66,20 +74,26 @@ public class RiderQnADetailHandler extends HttpServlet {
       out.printf("<tr><th>문의 내용</th>"
           + " <td><textarea name='qContent' rows='10' cols='60'>%s</textarea></td></tr>\n", rq.getqContent());
       out.printf("<tr><th>문의 답변</th>"
-          + " <td><textarea name='aContent' rows='10' cols='60'>%s</textarea></td></tr>\n", rq.getaContent());
+          + " <td><textarea name='aContent' rows='10' cols='60' readonly>%s</textarea></td></tr>\n", rq.getaContent());
       out.printf("<tr><th>첨부파일</th>"
           + " <td><input name='file' type='text' value='%s'></td></tr>\n", rq.getFile());
 
       out.println("</tbody>");
-      out.println("</table>");
 
       //      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
       //      if ( loginUser.getMno() == 1) {
       //        out.println("<input type='submit' value='변경'> ");
       //      }
 
-      out.printf("<a href='delete?no=%d'>삭제</a>\n", rq.getNo());
-      out.println("</form>");
+      out.println("<tfoot>");
+      out.println("<tr><td colspan='2'>");
+      out.println("<input type='submit' value='변경'> "
+          + "<a href='delete?no=" + rq.getNo() + "'>삭제</a> ");
+      out.println("</td></tr>");
+
+      out.println("</tfoot>");
+      out.println("</table>");
+      out.println("</form");
 
     } catch (Exception e) {
       throw new ServletException(e);    

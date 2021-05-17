@@ -71,7 +71,7 @@
       rq.rqcont,
       rq.answ_cont_r,
       rq.rfile,
-   q.qno as qna_no,
+      q.qno as qna_no,
       q.qtitle as qna_title,
       rm.mno as writer_no,
       rm.mname as writer_name,
@@ -88,8 +88,17 @@
   
   <update id="update" parameterType="riderQnA">
     update talat_qna_rider set
+        qno = #{qtype.no},
+        qtitle = #{qtype.typeTitle},
+        rqcont = #{qContent},
+        rfile = #{file}
+    where rqno = #{no}
+  </update>
+  
+  <update id="managerUpdate" parameterType="riderQnA">
+    update talat_qna_rider set
         answ_cont_r = #{aContent},
-        answ_stat_r = 1
+        answ_stat_r = #{status}
     where rqno = #{no}
   </update>
   

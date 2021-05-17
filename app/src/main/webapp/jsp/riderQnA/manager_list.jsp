@@ -7,41 +7,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>라이더 문의 목록</title>
+<title>라이더 문의 목록_관리자</title>
 </head>
 <body>
-<h1>라이더 문의 목록</h1>
+<h1>라이더 문의 목록_관리자</h1>
 <table border='1'>
 <thead>
 <tr>
-<th>번호</th> <th>문의 유형</th> <th>등록일</th> <th>등록시간</th> <th>상태</th>
+<th>번호</th> <th>작성자</th> <th>파트너</th> <th>일자</th> <th>시간</th> <th>상태</th>
 </tr>
 </thead>
 <tbody>
-<jsp:useBean id="list" type="List<RiderQnA>" scope="request"/>
 <%
+List<RiderQnA> list = (List<RiderQnA>) request.getAttribute("list");
 SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
 SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
 for (RiderQnA rq : list) {
 %>
   <tr>
   <td><a href='detail?no=<%=rq.getNo()%>'><%=rq.getNo()%></a></td>
-  <td><%=rq.getQtype().getTypeTitle()%></td>
+  <td><%=rq.getWriter().getMname()%></td>
+  <td><%=rq.getPartner().getMname()%></td>
   <td><%=formatterDate.format(rq.getRegisteredDate())%></td>
   <td><%=formatterTime.format(rq.getRegisteredDate())%></td>
 <%
   if (rq.getStatus() == 0) {
 %>
-    <td>답변대기</td>
+  <td>답변대기</td>
 <%
   } else {
 %>
-    <td>답변완료</td>
+  <td>답변완료</td>
 <%
   }
 %>
   </tr>
-<%
+  <%
 }
 %>
 </tbody>

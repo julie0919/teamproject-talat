@@ -12,15 +12,18 @@ import com.talat.mybatis.SqlSessionFactoryProxy;
 import com.talat.mybatis.TransactionManager;
 import com.talat.pms.dao.JourneyDao;
 import com.talat.pms.dao.JourneyRiderDao;
+import com.talat.pms.dao.MemberDao;
 import com.talat.pms.dao.RiderQnADao;
 //github.com/julie0919/teamproject-talat.git
 import com.talat.pms.dao.RouteDao;
 import com.talat.pms.service.JourneyRiderService;
 import com.talat.pms.service.JourneyService;
+import com.talat.pms.service.MemberService;
 import com.talat.pms.service.RiderQnAService;
 import com.talat.pms.service.RouteService;
 import com.talat.pms.service.impl.DefaultJourneyRiderService;
 import com.talat.pms.service.impl.DefaultJourneyService;
+import com.talat.pms.service.impl.DefaultMemberService;
 import com.talat.pms.service.impl.DefaultRiderQnAService;
 import com.talat.pms.service.impl.DefaultRouteService;
 
@@ -42,7 +45,7 @@ public class ContextLoaderListener implements ServletContextListener {
       // 2) DAO 관련 객체 준비
       MybatisDaoFactory daoFactory = new MybatisDaoFactory(sqlSessionFactoryProxy);
       //      BoardDao boardDao = daoFactory.createDao(BoardDao.class);
-      //      MemberDao memberDao = daoFactory.createDao(MemberDao.class);
+      MemberDao memberDao = daoFactory.createDao(MemberDao.class);
       JourneyDao journeyDao = daoFactory.createDao(JourneyDao.class);
       JourneyRiderDao journeyRiderDao = daoFactory.createDao(JourneyRiderDao.class);
       RiderQnADao riderQnADao = daoFactory.createDao(RiderQnADao.class);
@@ -52,7 +55,7 @@ public class ContextLoaderListener implements ServletContextListener {
       TransactionManager txManager = new TransactionManager(sqlSessionFactoryProxy);
 
       //      BoardService boardService = new DefaultBoardService(boardDao);
-      //      MemberService memberService = new DefaultMemberService(memberDao);
+      MemberService memberService = new DefaultMemberService(memberDao);
       JourneyService journeyService = new DefaultJourneyService(txManager,journeyDao,routeDao);
       JourneyRiderService journeyRiderService = new DefaultJourneyRiderService(txManager,journeyRiderDao);
       RouteService routeService = new DefaultRouteService(routeDao);
@@ -60,7 +63,7 @@ public class ContextLoaderListener implements ServletContextListener {
 
       // 4) 서비스 객체를 ServletContext 보관소에 저장한다.
       //      servletContext.setAttribute("boardService", boardService);
-      //      servletContext.setAttribute("memberService", memberService);
+      servletContext.setAttribute("memberService", memberService);
       servletContext.setAttribute("journeyService", journeyService);
       servletContext.setAttribute("journeyRiderService", journeyRiderService);
       servletContext.setAttribute("routeService", routeService);

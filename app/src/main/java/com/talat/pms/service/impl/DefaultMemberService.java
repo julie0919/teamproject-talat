@@ -17,8 +17,13 @@ public class DefaultMemberService implements MemberService {
 
   // 등록 업무
   @Override
-  public int add(Member member) throws Exception {
-    return memberDao.insert(member);
+  public int add1(Member member) throws Exception {
+    return memberDao.insert1(member);
+  }
+
+  @Override
+  public int add2(Member member) throws Exception {
+    return memberDao.insert2(member);
   }
 
   // 조회 업무
