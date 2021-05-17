@@ -5,7 +5,9 @@ import com.talat.pms.domain.Member;
 
 public interface MemberService {
 
-  int add(Member member) throws Exception;
+  int add1(Member member) throws Exception;
+
+  int add2(Member member) throws Exception;
 
   List<Member> list() throws Exception;
 

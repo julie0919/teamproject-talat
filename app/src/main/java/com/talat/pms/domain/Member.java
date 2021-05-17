@@ -3,14 +3,13 @@ package com.talat.pms.domain;
 import java.sql.Date;
 
 public class Member {
-  private int mno;
   private String mname;
   private String email;
   private String password;
   private String tel;
   private Date birth;
   private int mType;
-
+  private int mno;
   private String nicName;
   private int gender;
   private String postNo;

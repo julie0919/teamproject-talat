@@ -25,7 +25,6 @@
   <mappers>
     <mapper resource="com/talat/pms/mapper/BoardMapper.xml"/>
     <mapper resource="com/talat/pms/mapper/MemberMapper.xml"/>
-    <mapper resource="com/talat/pms/mapper/MemberMapper2.xml"/>
     <mapper resource="com/talat/pms/mapper/JourneyMapper.xml"/>
     <mapper resource="com/talat/pms/mapper/JourneyRiderMapper.xml"/>
     <mapper resource="com/talat/pms/mapper/RouteMapper.xml"/>
