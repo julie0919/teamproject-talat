@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>여정 목록</title>
+<title>여정 목록1</title>
 </head>
 <body>
 <h1>여정 목록</h1>

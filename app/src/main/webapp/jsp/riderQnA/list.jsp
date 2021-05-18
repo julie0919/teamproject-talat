@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>라이더 문의 목록</title>
+<title>라이더 문의 목록1</title>
 </head>
 <body>
 <h1>라이더 문의 목록</h1>

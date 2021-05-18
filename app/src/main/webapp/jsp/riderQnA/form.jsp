@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>새 라이더 문의</title>
+<title>새 라이더 문의1</title>
 </head>
 <body>
 <h1>새 라이더 문의</h1>

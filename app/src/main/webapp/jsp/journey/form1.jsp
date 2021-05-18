@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>여정 등록</title>
+<title>여정 등록1</title>
 </head>
 <body>
 <h1>여정 등록: 1단계</h1>

@@ -7,7 +7,7 @@
 <title>라이더 문의 상세</title>
 </head>
 <body>
-<h1>22라이더 문의 상세보기</h1>
+<h1>라이더 문의 상세보기</h1>
 <%!
 SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
 SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");

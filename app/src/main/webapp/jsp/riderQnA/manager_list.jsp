@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>라이더 문의 목록_관리자</title>
+<title>라이더 문의 목록_관리자1</title>
 </head>
 <body>
 <h1>라이더 문의 목록_관리자</h1>
