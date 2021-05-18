@@ -1,12 +1,13 @@
 package com.talat.pms.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.JourneyRider;
 import com.talat.pms.service.JourneyRiderService;
 
@@ -21,12 +22,19 @@ public class JourneyRiderAddHandler extends HttpServlet {
 
     JourneyRiderService journeyRiderService = (JourneyRiderService) request.getServletContext().getAttribute("journeyRiderService");
 
-    HttpSession session = request.getSession();
-
     try {
       JourneyRider jr = new JourneyRider();
 
-      jr.getJourney().setJno(Integer.parseInt((String) session.getAttribute("jno")));
+      String[] values = request.getParameterValues("journey");
+      ArrayList<Journey> journeyList = new ArrayList<>();
+      if (values != null) {
+        for (String value : values) {
+          Journey journey = new Journey();
+          journey.setJno(Integer.parseInt(value));
+          journeyList.add(journey);
+        }
+      }
+      jr.setJourneys(journeyList);
 
       journeyRiderService.add(jr);
 
