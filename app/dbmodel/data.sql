@@ -163,6 +163,9 @@ insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,p
 
 
 
+
+
+
 insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(1,1,37.50326795334012,127.02430725467384,'비트캠프','7:50:00');
 
@@ -285,6 +288,109 @@ insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time)
 
 
   
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(2,'a','f','2021-5-12','8:50:00',1,0,1,5000,'');
+    
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(10,1,37.621930705941516, 127.07873319407591,'a','7:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(10,2,37.621930705941516, 127.07873319407591,'b','8:10:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(10,3,37.621930705941516, 127.07873319407591,'d','8:30:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(10,4,37.621930705941516, 127.07873319407591,'e','8:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(10,5,37.621930705941516, 127.07873319407591,'f','9:00:00');
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(3,'a','c','2021-5-12','8:50:00',1,0,1,5000,'');
+    
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(11,1,37.621930705941516, 127.07873319407591,'a','7:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(11,2,37.621930705941516, 127.07873319407591,'b','8:10:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(11,3,37.621930705941516, 127.07873319407591,'c','8:30:00');
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(4,'b','e','2021-5-12','8:50:00',1,0,1,5000,'');
+    
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(12,1,37.621930705941516, 127.07873319407591,'b','7:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(12,2,37.621930705941516, 127.07873319407591,'d','8:10:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(12,3,37.621930705941516, 127.07873319407591,'e','8:30:00');
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(5,'a','d','2021-5-12','8:50:00',1,0,1,5000,'');
+    
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(13,1,37.621930705941516, 127.07873319407591,'a','7:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(13,2,37.621930705941516, 127.07873319407591,'b','8:10:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(13,3,37.621930705941516, 127.07873319407591,'c','8:30:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(13,4,37.621930705941516, 127.07873319407591,'d','8:50:00');
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(6,'c','a','2021-5-12','8:50:00',1,0,1,5000,'');
+    
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(14,1,37.621930705941516, 127.07873319407591,'c','7:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(14,2,37.621930705941516, 127.07873319407591,'b','8:10:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(14,3,37.621930705941516, 127.07873319407591,'a','8:30:00');
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(7,'b','a','2021-5-12','8:50:00',1,0,1,5000,'');
+    
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(15,1,37.621930705941516, 127.07873319407591,'b','7:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(15,2,37.621930705941516, 127.07873319407591,'a','8:10:00');
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(8,'e','b','2021-5-12','8:50:00',1,0,0,5000,'');
+    
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(16,1,37.621930705941516, 127.07873319407591,'e','7:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(16,2,37.621930705941516, 127.07873319407591,'d','8:10:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(16,3,37.621930705941516, 127.07873319407591,'c','8:30:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(16,4,37.621930705941516, 127.07873319407591,'b','8:50:00');
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(9,'c','f','2021-5-12','8:50:00',1,0,0,5000,'');
+    
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(17,1,37.621930705941516, 127.07873319407591,'c','7:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(17,2,37.621930705941516, 127.07873319407591,'e','8:10:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(17,3,37.621930705941516, 127.07873319407591,'f','8:30:00');
+    
+insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(10,'d','a','2021-5-12','8:50:00',1,0,0,5000,'');
+    
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(18,1,37.621930705941516, 127.07873319407591,'d','7:50:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(18,2,37.621930705941516, 127.07873319407591,'c','8:10:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(18,3,37.621930705941516, 127.07873319407591,'b','8:30:00');
+    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
+    values(18,4,37.621930705941516, 127.07873319407591,'a','8:50:00');
+    
+    
+    
+    
+    
     
 insert into talat_journey_rider(jno,mstat,dstar,rstar,mno)
     values(1,1,5,5,11);

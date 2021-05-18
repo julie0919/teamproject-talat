@@ -14,7 +14,7 @@
 <input type='text' name='nicName'><br>
 성별<br>
 <input type='radio' name='gender' value='1'>남자 
-<input type='radio' name='gender' value='2'>여자<br>
+<input type='radio' name='gender' value='0'>여자<br>
 우편번호<br>
 <input type='text' name='postNo'><br>
 기본주소<br>
@@ -25,7 +25,7 @@
 <input type='file' name='profile' accept='image/*'><p style='color:red;'>주의_얼굴이 나온 사진첨부</p><br>
 선호성별<br>
 <input type='radio' name='preferenceGender' value='1'>남자  
-<input type='radio' name='preferenceGender' value='1'>여자<br>
+<input type='radio' name='preferenceGender' value='0'>여자<br>
 별점<br>
 <input type='text' name='starAverage' value='5.0' readonly><br>
 <input type='submit' value='등록'> <a href='list'>취소</a>
