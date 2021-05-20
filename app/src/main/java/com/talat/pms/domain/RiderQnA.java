@@ -5,7 +5,7 @@ import java.sql.Date;
 public class RiderQnA {
   private int no;
   private QnA qtype;
-  // 여정신청번호
+  private int rjno;
   private Member writer;
   private Member partner;
   private Date registeredDate;
@@ -14,14 +14,12 @@ public class RiderQnA {
   private String aContent;
   private String file;
 
-
   @Override
   public String toString() {
-    return "RiderQnA [no=" + no + ", qtype=" + qtype + ", writer=" + writer + ", partner=" + partner
-        + ", registeredDate=" + registeredDate + ", status=" + status + ", qContent=" + qContent
-        + ", aContent=" + aContent + ", file=" + file + "]";
+    return "RiderQnA [no=" + no + ", qtype=" + qtype + ", rjno=" + rjno + ", writer=" + writer
+        + ", partner=" + partner + ", registeredDate=" + registeredDate + ", status=" + status
+        + ", qContent=" + qContent + ", aContent=" + aContent + ", file=" + file + "]";
   }
-
 
   public int getNo() {
     return no;
@@ -34,6 +32,12 @@ public class RiderQnA {
   }
   public void setQtype(QnA qtype) {
     this.qtype = qtype;
+  }
+  public int getRjno() {
+    return rjno;
+  }
+  public void setRjno(int rjno) {
+    this.rjno = rjno;
   }
   public Member getWriter() {
     return writer;
@@ -78,7 +82,6 @@ public class RiderQnA {
     this.file = file;
   }
 
-
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -90,11 +93,11 @@ public class RiderQnA {
     result = prime * result + ((qContent == null) ? 0 : qContent.hashCode());
     result = prime * result + ((qtype == null) ? 0 : qtype.hashCode());
     result = prime * result + ((registeredDate == null) ? 0 : registeredDate.hashCode());
+    result = prime * result + rjno;
     result = prime * result + status;
     result = prime * result + ((writer == null) ? 0 : writer.hashCode());
     return result;
   }
-
 
   @Override
   public boolean equals(Object obj) {
@@ -136,6 +139,8 @@ public class RiderQnA {
       if (other.registeredDate != null)
         return false;
     } else if (!registeredDate.equals(other.registeredDate))
+      return false;
+    if (rjno != other.rjno)
       return false;
     if (status != other.status)
       return false;

@@ -1,6 +1,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +10,6 @@
 </head>
 <body>
 <h1>라이더 문의 상세보기</h1>
-<%!
-SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
-SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
-%>
 <form action='update' method='post'>
 <table border='1'>
 <tbody>
@@ -25,20 +23,15 @@ SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
 </select></td></tr>
 <tr><th>작성자</th> <td><input type='text' name='writer' value='${riderQnA.writer.mname}' readonly></td></tr>
 <tr><th>파트너</th> <td><input type='text' name='partner' value='${riderQnA.partner.mname}' readonly></td></tr>
-<tr><th>등록일</th> <td>${riderQnA.registeredDate}</td></tr>
+<tr><th>등록일</th> <td><fmt:formatDate value="${riderQnA.registeredDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td></tr>
 <tr><th>답변상태</th>
 <jsp:useBean id="riderQnA" type="com.talat.pms.domain.RiderQnA" scope="request"/>
-<%
-if (riderQnA.getStatus() == 0) {
-%>
-<td>답변대기</td>
-<%
-} else if (riderQnA.getStatus() == 1) {
-%>
-<td>답변완료</td>
-<%
-}
-%>
+<c:if test="${riderQnA.status == 0}">
+  <td>답변대기</td>
+</c:if>
+<c:if test="${riderQnA.status == 1}">
+  <td>답변완료</td>
+</c:if>
 </tr>
 <tr><th>문의 내용</th> <td><textarea name='qContent' rows='10' cols='60'>${riderQnA.qContent}</textarea></td></tr>
 <tr><th>문의 답변</th> <td><textarea name='aContent' rows='10' cols='60' readonly>${riderQnA.aContent}</textarea></td></tr>
