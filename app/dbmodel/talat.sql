@@ -89,13 +89,13 @@ CREATE UNIQUE INDEX UIX_talat_driver2
 CREATE TABLE talat_qna_driver (
   dqno        INTEGER      NOT NULL COMMENT '드라이버문의번호', -- 드라이버문의번호
   qno         INTEGER      NOT NULL COMMENT '문의유형번호', -- 문의유형번호
+  qtitle      VARCHAR(100) NULL     COMMENT '문의유형제목', -- 문의유형제목
   jno         INTEGER      NOT NULL COMMENT '여정번호', -- 여정번호
   dqdate      DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
   answ_stat_d INTEGER      NOT NULL DEFAULT 0 COMMENT '답변여부', -- 답변여부
   dqcont      LONGTEXT     NOT NULL COMMENT '문의 내용', -- 문의 내용
   answ_cont_d LONGTEXT     NOT NULL DEFAULT '' COMMENT '답변 내용', -- 답변 내용
-  dfile       VARCHAR(255) NULL     COMMENT '첨부파일', -- 첨부파일
-  qtitle      VARCHAR(100) NULL     COMMENT '문의유형제목' -- 문의유형제목
+  dfile       VARCHAR(255) NULL     COMMENT '첨부파일' -- 첨부파일
 )
 COMMENT '드라이버문의';
 
@@ -117,8 +117,8 @@ ALTER TABLE talat_qna_driver
 -- 회원
 CREATE TABLE talat_memb (
   mno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  mname VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
   email VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
+  mname VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
   pwd   VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
   tel   VARCHAR(30)  NOT NULL COMMENT '휴대폰번호', -- 휴대폰번호
   birth DATE         NOT NULL COMMENT '생년월일', -- 생년월일
@@ -155,17 +155,15 @@ ALTER TABLE talat_memb
 
 -- 카풀여정
 CREATE TABLE talat_journey (
-  jno           INTEGER      NOT NULL COMMENT '여정번호', -- 여정번호
-  dept          VARCHAR(255) NOT NULL COMMENT '출발지', -- 출발지
-  arr           VARCHAR(255) NOT NULL COMMENT '도착지', -- 도착지
-  jdate         DATE         NOT NULL COMMENT '날짜', -- 날짜
-  jtime         TIME         NOT NULL COMMENT '도착시각', -- 도착시각
-  seat_psgr_cap INTEGER      NOT NULL COMMENT '보조석 인원', -- 보조석 인원
-  seat_rear_cap INTEGER      NOT NULL COMMENT '뒷자석 인원', -- 뒷자석 인원
-  pet           INTEGER      NOT NULL COMMENT '반려동물 탑승', -- 반려동물 탑승
-  jfee          INTEGER      NOT NULL COMMENT '운임요금', -- 운임요금
-  jcont         LONGTEXT     NULL     COMMENT '여정설명', -- 여정설명
-  mno           INTEGER      NULL     COMMENT '회원번호' -- 회원번호
+  jno           INTEGER  NOT NULL COMMENT '여정번호', -- 여정번호
+  mno           INTEGER  NULL     COMMENT '회원번호', -- 회원번호
+  jdate         DATE     NOT NULL COMMENT '날짜', -- 날짜
+  jtime         TIME     NOT NULL COMMENT '도착시각', -- 도착시각
+  seat_psgr_cap INTEGER  NOT NULL COMMENT '보조석 인원', -- 보조석 인원
+  seat_rear_cap INTEGER  NOT NULL COMMENT '뒷자석 인원', -- 뒷자석 인원
+  pet           INTEGER  NOT NULL COMMENT '반려동물 탑승', -- 반려동물 탑승
+  jfee          INTEGER  NOT NULL COMMENT '운임요금', -- 운임요금
+  jcont         LONGTEXT NULL     COMMENT '여정설명' -- 여정설명
 )
 COMMENT '카풀여정';
 
@@ -195,7 +193,8 @@ CREATE TABLE talat_join (
   prof        VARCHAR(255) NOT NULL COMMENT '프로필사진', -- 프로필사진
   pref_gender INTEGER      NOT NULL COMMENT '선호성별', -- 선호성별
   mrdt        DATETIME     NOT NULL DEFAULT now() COMMENT '등록날짜', -- 등록날짜
-  star_avg    FLOAT        NOT NULL DEFAULT 5.0 COMMENT '별점통계' -- 별점통계
+  star_avg    FLOAT        NOT NULL DEFAULT 5.0 COMMENT '별점통계', -- 별점통계
+  rev_avg     INTEGER      NOT NULL COMMENT '리뷰통계' -- 리뷰통계
 )
 COMMENT '회원가입 기본정보';
 
@@ -220,11 +219,11 @@ ALTER TABLE talat_join
 CREATE TABLE talat_journey_rider (
   rjno  INTEGER  NOT NULL COMMENT '라이더여정신청번호', -- 라이더여정신청번호
   jno   INTEGER  NOT NULL COMMENT '여정번호', -- 여정번호
+  mno   INTEGER  NULL     COMMENT '회원번호', -- 회원번호
   mstat INTEGER  NOT NULL COMMENT '매칭상태', -- 매칭상태
   mcont LONGTEXT NULL     COMMENT '비고', -- 비고
   dstar FLOAT    NULL     COMMENT '드라이버별점', -- 드라이버별점
-  rstar FLOAT    NULL     COMMENT '라이더별점', -- 라이더별점
-  mno   INTEGER  NULL     COMMENT '회원번호' -- 회원번호
+  rstar FLOAT    NULL     COMMENT '라이더별점' -- 라이더별점
 )
 COMMENT '라이더 여정 신청';
 
@@ -295,13 +294,13 @@ ALTER TABLE talat_qna
 CREATE TABLE talat_qna_rider (
   rqno        INTEGER      NOT NULL COMMENT '라이더문의번호', -- 라이더문의번호
   qno         INTEGER      NOT NULL COMMENT '문의유형번호', -- 문의유형번호
+  qtitle      VARCHAR(100) NULL     COMMENT '문의유형제목', -- 문의유형제목
   rjno        INTEGER      NOT NULL COMMENT '라이더여정신청번호', -- 라이더여정신청번호
   rqdate      DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
   answ_stat_r INTEGER      NOT NULL DEFAULT 0 COMMENT '답변여부', -- 답변여부
   rqcont      LONGTEXT     NOT NULL COMMENT '문의 내용', -- 문의 내용
   answ_cont_r LONGTEXT     NOT NULL DEFAULT '' COMMENT '답변 내용', -- 답변 내용
-  rfile       VARCHAR(255) NULL     COMMENT '첨부파일', -- 첨부파일
-  qtitle      VARCHAR(100) NULL     COMMENT '문의유형제목' -- 문의유형제목
+  rfile       VARCHAR(255) NULL     COMMENT '첨부파일' -- 첨부파일
 )
 COMMENT '라이더문의';
 

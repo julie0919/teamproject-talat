@@ -67,95 +67,95 @@ insert into talat_memb(mname,email,pwd,tel,birth,mtype)
 
 
 
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(2,'bbbbb',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','bbb.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(2,'bbbbb',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','bbb.jpg',1,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(3,'ccccc',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ccc.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(3,'ccccc',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ccc.jpg',1,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(4,'ddddd',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ddd.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(4,'ddddd',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ddd.jpg',1,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(5,'eeeee',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','eee.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(5,'eeeee',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','eee.jpg',1,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(6,'fffff',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','fff.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(6,'fffff',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','fff.jpg',0,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(7,'ggggg',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','ggg.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(7,'ggggg',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','ggg.jpg',0,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(8,'hhhhh',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','hhh.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(8,'hhhhh',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','hhh.jpg',0,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(9,'iiiii',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','iii.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(9,'iiiii',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','iii.jpg',0,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(10,'jjjjj',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','jjj.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(10,'jjjjj',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','jjj.jpg',0,5.0,0);
 
     
     
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(11,'가',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','bbbbb.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(11,'가',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','bbbbb.jpg',1,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(12,'나',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ccccc.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(12,'나',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ccccc.jpg',1,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(13,'다',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ddddd.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(13,'다',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','ddddd.jpg',1,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(14,'라',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','eeeee.jpg',1,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(14,'라',1,12345,'서울특별시 비트구 비트로','비트캠프 3층','eeeee.jpg',1,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(15,'마',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','fffff.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(15,'마',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','fffff.jpg',0,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(16,'바',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','ggggg.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(16,'바',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','ggggg.jpg',0,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(17,'사',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','hhhhh.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(17,'사',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','hhhhh.jpg',0,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(18,'아',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','iiiii.jpg',0,5.0);
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(18,'아',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','iiiii.jpg',0,5.0,0);
     
-insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg)
-    values(19,'자',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','jjjjj.jpg',0,5.0);
-
-
+insert into talat_join(mno,nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(19,'자',0,12345,'서울특별시 비트구 비트로','비트캠프 3층','jjjjj.jpg',0,5.0,0);
 
 
 
 
 
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(2,'비트캠프','광화문','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 여성 1명 있습니다. 괜찮으시면 연락주세요. ');
 
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(3,'광화문','비트캠프','2021-5-12','8:50:00',1,0,1,5000,'소소한 대화하는 거 좋아합니다. ');
 
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(4,'광화문','비트캠프','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 여성 1명, 남성 1명 있어요. ');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(2,'2021-5-12','8:50:00',1,0,1,5000,'장기이용자 여성 1명 있습니다. 괜찮으시면 연락주세요. ');
 
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(5,'신사역','구로디지털단지역','2021-5-12','8:50:00',1,0,1,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(3,'2021-5-12','8:50:00',1,0,1,5000,'소소한 대화하는 거 좋아합니다. ');
 
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(6,'강남역','구로디지털단지역','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 없음');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(4,'2021-5-12','8:50:00',1,0,1,5000,'장기이용자 여성 1명, 남성 1명 있어요. ');
 
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(7,'홍대입구역','강남역','2021-5-12','8:50:00',1,0,1,5000,'장기이용자 없어요. ');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(5,'2021-5-12','8:50:00',1,0,1,5000,'');
 
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(8,'서울광장 분수대','강남역','2021-5-12','8:50:00',1,0,1,5000,'반려동물 환영입니다!');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(6,'2021-5-12','8:50:00',1,0,1,5000,'장기이용자 없음');
 
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(9,'고속터미널역','교보문고 강남점','2021-5-12','8:50:00',1,0,1,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(7,'2021-5-12','8:50:00',1,0,1,5000,'장기이용자 없어요. ');
+
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(8,'2021-5-12','8:50:00',1,0,1,5000,'반려동물 환영입니다!');
+
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(9,'2021-5-12','8:50:00',1,0,1,5000,'');
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(10,'묵동자이 1단지','종각역','2021-5-12','8:50:00',1,0,1,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(10,'2021-5-12','8:50:00',1,0,1,5000,'');
 
 
 
@@ -289,8 +289,8 @@ insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time)
 
   
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(2,'a','f','2021-5-12','8:50:00',1,0,1,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(2,'2021-5-12','8:50:00',1,0,1,5000,'');
     
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(10,1,37.621930705941516, 127.07873319407591,'a','7:50:00');
@@ -299,12 +299,10 @@ insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,p
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(10,3,37.621930705941516, 127.07873319407591,'d','8:30:00');
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
-    values(10,4,37.621930705941516, 127.07873319407591,'e','8:50:00');
-    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
-    values(10,5,37.621930705941516, 127.07873319407591,'f','9:00:00');
+    values(10,4,37.621930705941516, 127.07873319407591,'f','9:00:00');
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(3,'a','c','2021-5-12','8:50:00',1,0,1,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(3,'2021-5-12','8:50:00',1,0,1,5000,'');
     
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(11,1,37.621930705941516, 127.07873319407591,'a','7:50:00');
@@ -313,8 +311,8 @@ insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,p
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(11,3,37.621930705941516, 127.07873319407591,'c','8:30:00');
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(4,'b','e','2021-5-12','8:50:00',1,0,1,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(4,'2021-5-12','8:50:00',1,0,1,5000,'');
     
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(12,1,37.621930705941516, 127.07873319407591,'b','7:50:00');
@@ -323,8 +321,8 @@ insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,p
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(12,3,37.621930705941516, 127.07873319407591,'e','8:30:00');
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(5,'a','d','2021-5-12','8:50:00',1,0,1,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(5,'2021-5-12','8:50:00',1,0,1,5000,'');
     
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(13,1,37.621930705941516, 127.07873319407591,'a','7:50:00');
@@ -335,8 +333,8 @@ insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,p
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(13,4,37.621930705941516, 127.07873319407591,'d','8:50:00');
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(6,'c','a','2021-5-12','8:50:00',1,0,1,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(6,'2021-5-12','8:50:00',1,0,1,5000,'');
     
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(14,1,37.621930705941516, 127.07873319407591,'c','7:50:00');
@@ -345,16 +343,16 @@ insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,p
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(14,3,37.621930705941516, 127.07873319407591,'a','8:30:00');
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(7,'b','a','2021-5-12','8:50:00',1,0,1,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(7,'2021-5-12','8:50:00',1,0,1,5000,'');
     
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(15,1,37.621930705941516, 127.07873319407591,'b','7:50:00');
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(15,2,37.621930705941516, 127.07873319407591,'a','8:10:00');
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(8,'e','b','2021-5-12','8:50:00',1,0,0,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(8,'2021-5-12','8:50:00',1,0,0,5000,'');
     
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(16,1,37.621930705941516, 127.07873319407591,'e','7:50:00');
@@ -362,11 +360,9 @@ insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,p
     values(16,2,37.621930705941516, 127.07873319407591,'d','8:10:00');
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(16,3,37.621930705941516, 127.07873319407591,'c','8:30:00');
-    insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
-    values(16,4,37.621930705941516, 127.07873319407591,'b','8:50:00');
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(9,'c','f','2021-5-12','8:50:00',1,0,0,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(9,'2021-5-12','8:50:00',1,0,0,5000,'');
     
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(17,1,37.621930705941516, 127.07873319407591,'c','7:50:00');
@@ -375,8 +371,8 @@ insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,p
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(17,3,37.621930705941516, 127.07873319407591,'f','8:30:00');
     
-insert into talat_journey(mno,dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
-    values(10,'d','a','2021-5-12','8:50:00',1,0,0,5000,'');
+insert into talat_journey(mno,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont) 
+    values(10,'2021-5-12','8:50:00',1,0,0,5000,'');
     
     insert into talat_journey_route(jno,spot_order,lat,lng,spot_name,spot_time) 
     values(18,1,37.621930705941516, 127.07873319407591,'d','7:50:00');
@@ -405,6 +401,12 @@ insert into talat_journey_rider(jno,mstat,mno)
 insert into talat_journey_rider(jno,mstat,mcont,mno)
     values(6,0,'인원초과',16);
     
+insert into talat_journey_rider(jno,mstat,mno)
+    values(16,0,12);
+insert into talat_journey_rider(jno,mstat,dstar,rstar,mno)
+    values(17,1,4,3,12);
+insert into talat_journey_rider(jno,mstat,dstar,rstar,mno)
+    values(18,1,5,5,12);
     
     
 insert into talat_qna(qno,qtitle)
@@ -432,6 +434,9 @@ insert into talat_qna_rider(qno,qtitle,rjno,rqdate,rqcont,rfile)
 insert into talat_qna_rider(qno,qtitle,rjno,rqdate,rqcont) 
     values(3,'파트너의 의견 제공',3,'2021-05-18 18:45:00','욕설을 계속 합니다. ');
 
+insert into talat_qna_rider(qno,qtitle,rjno,rqdate,rqcont) 
+    values(3,'파트너의 의견 제공',4,'2021-05-23 12:05:00','마스크 안씀');
+    
 insert into talat_qna_rider(qno,qtitle,rjno,rqdate,rqcont) 
     values(3,'파트너의 의견 제공',4,'2021-05-23 12:05:00','마스크 안씀');
     
