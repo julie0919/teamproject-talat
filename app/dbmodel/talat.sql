@@ -194,7 +194,7 @@ CREATE TABLE talat_join (
   pref_gender INTEGER      NOT NULL COMMENT '선호성별', -- 선호성별
   mrdt        DATETIME     NOT NULL DEFAULT now() COMMENT '등록날짜', -- 등록날짜
   star_avg    FLOAT        NOT NULL DEFAULT 5.0 COMMENT '별점통계', -- 별점통계
-  rev_avg     INTEGER      NOT NULL COMMENT '리뷰통계' -- 리뷰통계
+  rev_avg     INTEGER      NOT NULL DEFAULT 0 COMMENT '리뷰통계' -- 리뷰통계
 )
 COMMENT '회원가입 기본정보';
 
