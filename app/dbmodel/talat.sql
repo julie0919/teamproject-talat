@@ -213,7 +213,7 @@ ALTER TABLE talat_join
 -- 회원가입 기본정보
 ALTER TABLE talat_join
   ADD CONSTRAINT CK_talat_join2 -- 회원가입 기본정보 체크 제약2
-    CHECK (pref_gender = 1 or pref_gender = 0);
+    CHECK (pref_gender = 1 or pref_gender = 0 or pref_gender = 2);
 
 -- 라이더 여정 신청
 CREATE TABLE talat_journey_rider (
