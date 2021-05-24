@@ -252,11 +252,10 @@ ALTER TABLE talat_journey_rider
 CREATE TABLE talat_journey_route (
   rno        INTEGER        NOT NULL COMMENT '경로번호', -- 경로번호
   jno        INTEGER        NOT NULL COMMENT '여정번호', -- 여정번호
-  spot_order INTEGER        NOT NULL COMMENT '경로순서', -- 경로순서
   lat        DECIMAL(18,15) NOT NULL COMMENT '위도', -- 위도
   lng        DECIMAL(18,15) NOT NULL COMMENT '경도', -- 경도
-  spot_name  VARCHAR(50)    NOT NULL COMMENT '장소명', -- 장소명
-  spot_time  TIME           NULL     COMMENT '정차예상시각' -- 정차예상시각
+  spot_order INTEGER        NOT NULL COMMENT '경로순서', -- 경로순서
+  spot_name  VARCHAR(50)    NOT NULL COMMENT '장소명' -- 장소명
 )
 COMMENT '카풀경로';
 
