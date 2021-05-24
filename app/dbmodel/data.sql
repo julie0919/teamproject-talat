@@ -176,7 +176,7 @@ insert into talat_journey_route(jno,spot_order,lat,lng,spot_name)
     values(1,3,37.556133097848345, 126.97240282768777,'서울역');
 
 insert into talat_journey_route(jno,spot_order,lat,lng,spot_name) 
-    values(1,4,37.57724467792968, 126.97691877294753, '광화문');
+    values(1,100,37.57724467792968, 126.97691877294753, '광화문');
 
 
     
