@@ -7,6 +7,7 @@ import com.talat.mybatis.TransactionCallback;
 import com.talat.mybatis.TransactionManager;
 import com.talat.mybatis.TransactionTemplate;
 import com.talat.pms.dao.JourneyRiderDao;
+import com.talat.pms.dao.RiderQnADao;
 import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.JourneyRider;
 import com.talat.pms.service.JourneyRiderService;
@@ -15,10 +16,12 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
 
   TransactionTemplate transactionTemplate;
   JourneyRiderDao journeyRiderDao; 
+  RiderQnADao riderQnADao;
 
-  public DefaultJourneyRiderService(TransactionManager txManager, JourneyRiderDao journeyRiderDao) {
+  public DefaultJourneyRiderService(TransactionManager txManager, JourneyRiderDao journeyRiderDao,  RiderQnADao riderQnADao) {
     this.transactionTemplate = new TransactionTemplate(txManager);
     this.journeyRiderDao = journeyRiderDao;
+    this.riderQnADao = riderQnADao;
   }
 
   // 등록 업무
@@ -67,6 +70,7 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
     return (int) transactionTemplate.execute(new TransactionCallback() {
       @Override
       public Object doInTransaction() throws Exception {
+        riderQnADao.delete(no);
         journeyRiderDao.deleteJourney(no);
         return journeyRiderDao.delete(no);
       }

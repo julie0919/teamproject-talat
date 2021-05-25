@@ -57,7 +57,7 @@ public class ContextLoaderListener implements ServletContextListener {
       //      BoardService boardService = new DefaultBoardService(boardDao);
       MemberService memberService = new DefaultMemberService(memberDao);
       JourneyService journeyService = new DefaultJourneyService(txManager,journeyDao,routeDao);
-      JourneyRiderService journeyRiderService = new DefaultJourneyRiderService(txManager,journeyRiderDao);
+      JourneyRiderService journeyRiderService = new DefaultJourneyRiderService(txManager,journeyRiderDao,riderQnADao);
       RouteService routeService = new DefaultRouteService(routeDao);
       RiderQnAService riderQnAService = new DefaultRiderQnAService(riderQnADao);
 
