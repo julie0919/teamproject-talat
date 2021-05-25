@@ -10,7 +10,7 @@ public class Member {
   private Date birth;
   private int mType;
   private int mno;
-  private String nicName;
+  private String nickName;
   private int gender;
   private String postNo;
   private String basicAddress;
@@ -19,15 +19,23 @@ public class Member {
   private int preferenceGender;
   private Date registeredDate;
   private double starAverage;
+  private int reviewAverage;
+
+  public int getReviewAverage() {
+    return reviewAverage;
+  }
+  public void setReviewAverage(int reviewAverage) {
+    this.reviewAverage = reviewAverage;
+  }
 
   @Override
   public String toString() {
-    return "Member [mno=" + mno + ", mname=" + mname + ", email=" + email + ", password=" + password
-        + ", tel=" + tel + ", birth=" + birth + ", mType=" + mType + ", nicName=" + nicName
+    return "Member [mname=" + mname + ", email=" + email + ", password=" + password + ", tel=" + tel
+        + ", birth=" + birth + ", mType=" + mType + ", mno=" + mno + ", nicName=" + nickName
         + ", gender=" + gender + ", postNo=" + postNo + ", basicAddress=" + basicAddress
         + ", detailAddress=" + detailAddress + ", profile=" + profile + ", preferenceGender="
         + preferenceGender + ", registeredDate=" + registeredDate + ", starAverage=" + starAverage
-        + "]";
+        + ", reviewAverage=" + reviewAverage + "]";
   }
 
   public int getMno() {
@@ -86,12 +94,12 @@ public class Member {
     this.mType = mType;
   }
 
-  public String getNicName() {
-    return nicName;
+  public String getNickName() {
+    return nickName;
   }
 
-  public void setNicName(String nicName) {
-    this.nicName = nicName;
+  public void setNickName(String nickName) {
+    this.nickName = nickName;
   }
 
   public int getGender() {
@@ -170,7 +178,7 @@ public class Member {
     result = prime * result + mType;
     result = prime * result + ((mname == null) ? 0 : mname.hashCode());
     result = prime * result + mno;
-    result = prime * result + ((nicName == null) ? 0 : nicName.hashCode());
+    result = prime * result + ((nickName == null) ? 0 : nickName.hashCode());
     result = prime * result + ((password == null) ? 0 : password.hashCode());
     result = prime * result + ((postNo == null) ? 0 : postNo.hashCode());
     result = prime * result + preferenceGender;
@@ -223,10 +231,10 @@ public class Member {
       return false;
     if (mno != other.mno)
       return false;
-    if (nicName == null) {
-      if (other.nicName != null)
+    if (nickName == null) {
+      if (other.nickName != null)
         return false;
-    } else if (!nicName.equals(other.nicName))
+    } else if (!nickName.equals(other.nickName))
       return false;
     if (password == null) {
       if (other.password != null)
