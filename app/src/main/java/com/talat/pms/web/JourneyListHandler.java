@@ -22,9 +22,10 @@ public class JourneyListHandler extends HttpServlet {
     JourneyService journeyService = (JourneyService) request.getServletContext().getAttribute("journeyService");
 
     try {
-      List<Journey> journeys = journeyService.list();;
+      List<Journey> journeys = journeyService.list();
 
       request.setAttribute("list", journeys);
+
 
       response.setContentType("text/html;charset=UTF-8");
       request.getRequestDispatcher("/jsp/journey/list.jsp").include(request, response);

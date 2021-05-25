@@ -7,9 +7,10 @@ import java.util.List;
 public class Journey{
   private int jno;
   private Member driver;
-  private String departure;
   private List<Route> routes;
-  private String arrival;
+  private Route departure;
+  private Route route;
+  private Route arrival;
   private Date journeyDate;
   private Time journeyTime;
   private int seatPassenger;
@@ -20,83 +21,116 @@ public class Journey{
 
   @Override
   public String toString() {
-    return "Journey [jno=" + jno + ", driver=" + driver + ", departure=" + departure + ", routes="
-        + routes + ", arrival=" + arrival + ", journeyDate=" + journeyDate + ", journeyTime="
-        + journeyTime + ", seatPassenger=" + seatPassenger + ", seatRear=" + seatRear + ", pet="
-        + pet + ", fee=" + fee + ", content=" + content + "]";
+    return "Journey [jno=" + jno + ", driver=" + driver + ", routes=" + routes + ", departure="
+        + departure + ", route=" + route + ", arrival=" + arrival + ", journeyDate=" + journeyDate
+        + ", journeyTime=" + journeyTime + ", seatPassenger=" + seatPassenger + ", seatRear="
+        + seatRear + ", pet=" + pet + ", fee=" + fee + ", content=" + content + "]";
   }
+
   public int getJno() {
     return jno;
   }
+
   public void setJno(int jno) {
     this.jno = jno;
   }
+
   public Member getDriver() {
     return driver;
   }
+
   public void setDriver(Member driver) {
     this.driver = driver;
   }
-  public String getDeparture() {
-    return departure;
-  }
-  public void setDeparture(String departure) {
-    this.departure = departure;
-  }
+
   public List<Route> getRoutes() {
     return routes;
   }
+
   public void setRoutes(List<Route> routes) {
     this.routes = routes;
   }
-  public String getArrival() {
+
+  public Route getDeparture() {
+    return departure;
+  }
+
+  public void setDeparture(Route departure) {
+    this.departure = departure;
+  }
+
+  public Route getRoute() {
+    return route;
+  }
+
+  public void setRoute(Route route) {
+    this.route = route;
+  }
+
+  public Route getArrival() {
     return arrival;
   }
-  public void setArrival(String arrival) {
+
+  public void setArrival(Route arrival) {
     this.arrival = arrival;
   }
+
   public Date getJourneyDate() {
     return journeyDate;
   }
+
   public void setJourneyDate(Date journeyDate) {
     this.journeyDate = journeyDate;
   }
+
   public Time getJourneyTime() {
     return journeyTime;
   }
+
   public void setJourneyTime(Time journeyTime) {
     this.journeyTime = journeyTime;
   }
+
   public int getSeatPassenger() {
     return seatPassenger;
   }
+
   public void setSeatPassenger(int seatPassenger) {
     this.seatPassenger = seatPassenger;
   }
+
   public int getSeatRear() {
     return seatRear;
   }
+
   public void setSeatRear(int seatRear) {
     this.seatRear = seatRear;
   }
+
   public int getPet() {
     return pet;
   }
+
   public void setPet(int pet) {
     this.pet = pet;
   }
+
   public int getFee() {
     return fee;
   }
+
   public void setFee(int fee) {
     this.fee = fee;
   }
+
   public String getContent() {
     return content;
   }
+
   public void setContent(String content) {
     this.content = content;
   }
+
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -110,11 +144,13 @@ public class Journey{
     result = prime * result + ((journeyDate == null) ? 0 : journeyDate.hashCode());
     result = prime * result + ((journeyTime == null) ? 0 : journeyTime.hashCode());
     result = prime * result + pet;
+    result = prime * result + ((route == null) ? 0 : route.hashCode());
     result = prime * result + ((routes == null) ? 0 : routes.hashCode());
     result = prime * result + seatPassenger;
     result = prime * result + seatRear;
     return result;
   }
+
   @Override
   public boolean equals(Object obj) {
     if (this == obj)
@@ -160,6 +196,11 @@ public class Journey{
       return false;
     if (pet != other.pet)
       return false;
+    if (route == null) {
+      if (other.route != null)
+        return false;
+    } else if (!route.equals(other.route))
+      return false;
     if (routes == null) {
       if (other.routes != null)
         return false;
@@ -171,7 +212,4 @@ public class Journey{
       return false;
     return true;
   }
-
-
-
 }

@@ -12,6 +12,8 @@ public interface JourneyDao {
 
   List<Journey> findAll() throws Exception;
 
+  List<Journey> findAll2() throws Exception;
+
   //  List<Journey> findByKeyword(String departure, String arrival) throws Exception;
 
   Journey findByNo(int no) throws Exception;

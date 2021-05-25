@@ -7,8 +7,6 @@
   
   <resultMap id="journeyMap" type="journey">
     <id column="jno" property="jno"/>
-    <result column="dept" property="departure"/>
-    <result column="arr" property="arrival"/>
     <result column="jdate" property="journeyDate"/>
     <result column="jtime" property="journeyTime"/>
     <result column="seat_psgr_cap" property="seatPassenger"/>
@@ -16,38 +14,84 @@
     <result column="pet" property="pet"/>
     <result column="jfee" property="fee"/>
     <result column="jcont" property="content"/>
-    
+  
     <association property="driver" javaType="member">
 	    <id column="driver_no" property="mno"/>
 	    <result column="driver_name" property="mname"/>
     </association>
+  
+    <association property="departure" javaType="route">
+      <id column="route1_no" property="rno"/>
+      <result column="route1_order" property="spotOrder"/>
+      <result column="route1_name" property="spotName"/>
+      <result column="route1_lat" property="latitude"/>
+      <result column="route1_lng" property="longitude"/>
+    </association>
     
+    <association property="arrival" javaType="route">
+      <id column="route2_no" property="rno"/>
+      <result column="route2_order" property="spotOrder"/>
+      <result column="route2_name" property="spotName"/>
+      <result column="route2_lat" property="latitude"/>
+      <result column="route2_lng" property="longitude"/>
+    </association>
+    
+    <collection property="routes" ofType="route">
+      <id column="route_no" property="rno"/>
+      <result column="route_jno" property="jno"/>
+      <result column="route_order" property="spotOrder"/>
+      <result column="route_name" property="spotName"/>
+      <result column="route_lat" property="latitude"/>
+      <result column="route_lng" property="longitude"/>
+    </collection>
   </resultMap>
   
   <insert id="insert" parameterType="journey">
-    insert into talat_journey(dept,arr,jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont,mno) 
-    values(#{departure},#{arrival},#{journeyDate},#{journeyTime},#{seatPassenger},#{seatRear},#{pet},#{fee},#{content},#{driver.no})
+    insert into talat_journey(jdate,jtime,seat_psgr_cap,seat_rear_cap,pet,jfee,jcont,mno) 
+    values(#{journeyDate},#{journeyTime},#{seatPassenger},#{seatRear},#{pet},#{fee},#{content},#{driver.no})
   </insert>
 
 <select id="findAll" resultMap="journeyMap">
     select
       j.jno,
-      j.dept,
-      j.arr,
       j.jdate,
       j.jtime,
       m.mno as driver_no,
-      m.mname as driver_name
+      m.mname as driver_name,
+      r.rno as route_no,
+      r.spot_order as route_order,
+      r.spot_name as route_name
     from talat_journey j
       inner join talat_memb m on j.mno=m.mno
-    order by j.jno desc
+      inner join talat_journey_route r on j.jno=r.jno
+    where r.spot_order = 1 or r.spot_order = 100
+    order by j.jno asc
   </select>
-  
+
+<select id="findAll2" resultMap="journeyMap">
+    select
+      j.jno,
+      j.jdate,
+      j.jtime,
+      m.mno as driver_no,
+      m.mname as driver_name,
+      r1.rno as route1_no,
+      r1.spot_order as route1_order,
+      r1.spot_name as route1_name,
+      r2.rno as route2_no,
+      r2.spot_order as route2_order,
+      r2.spot_name as route2_name
+    from talat_journey j
+      inner join talat_memb m on j.mno=m.mno
+      inner join talat_journey_route r1 on j.jno=r1.jno
+      inner join talat_journey_route r2 on j.jno=r2.jno
+    where r1.spot_order = 1 and r2.spot_order = 100
+    order by j.jno asc
+  </select>
+    
   <select id="findByKeyword" resultMap="journeyMap" parameterType="string">
     select
       j.jno,
-      j.dept,
-      j.arr,
       j.jdate,
       j.jtime,
       m.mno as driver_no,
@@ -68,8 +112,6 @@
   <select id="findByNo" resultMap="journeyMap" parameterType="int">
     select
       j.jno,
-      j.dept,
-      j.arr,
       j.jdate,
       j.jtime,
       j.seat_psgr_cap,
@@ -78,16 +120,40 @@
       j.jfee,
       j.jcont,
       m.mno as driver_no,
-      m.mname as driver_name
+      m.mname as driver_name,
+      r1.rno as route1_no,
+      r1.spot_order as route1_order,
+      r1.spot_name as route1_name,
+      r1.lat as route1_lat,
+      r1.lng as route1_lng,
+      r2.rno as route2_no,
+      r2.spot_order as route2_order,
+      r2.spot_name as route2_name,
+      r2.lat as route2_lat,
+      r2.lng as route2_lng
     from talat_journey j
       inner join talat_memb m on j.mno=m.mno
-    where j.jno = #{value}
+      inner join talat_journey_route r1 on j.jno=r1.jno
+      inner join talat_journey_route r2 on j.jno=r2.jno
+    where r1.spot_order = 1 and r2.spot_order = 100
+          and j.jno = #{value}
+  </select>
+  
+  <select id="findRoutes" resultMap="journeyMap" parameterType="int">
+    select 
+      r.rno as route_no,
+      r.jno as route_jno,
+      r.spot_order as route_order,
+      r.spot_name as route_name,
+      r.lat as route_lat,
+      r.lng as route_lng
+    from talat_journey j
+      inner join talat_journey_route r on j.jno=r.jno 
+    where j.jno=#{value}
   </select>
   
   <update id="update" parameterType="journey">
     update talat_journey set
-        dept = #{departure}, 
-        arr = #{arrival}, 
         jdate = #{journeyDate}, 
         jtime = #{journeyTime}, 
         seat_psgr_cap = #{seatPassenger},

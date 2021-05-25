@@ -1,12 +1,11 @@
-<%@page import="com.talat.pms.domain.Journey"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>여정 목록1</title>
+<title>여정 목록</title>
 </head>
 <body>
 <h1>여정 목록</h1>
@@ -17,19 +16,19 @@
 </tr>
 </thead>
 <tbody>
-<%
-List<Journey> list = (List<Journey>) request.getAttribute("list");
-for (Journey j : list) {
-  out.println("<tr>");
-  out.println("<td><a href='detail?jno=" + j.getJno() + "'>" + j.getJno() + "</a></td>");
-  out.println("<td>" + j.getDriver().getMname() + "</td>");
-  out.println("<td>" + j.getDeparture() + "</td>");
-  out.println("<td>" + j.getArrival() + "</td>");
-  out.println("<td>" + j.getJourneyTime() + "</td>");
-  out.println("<td>" + j.getJourneyDate() + "</td>");
-  out.println("</tr>");
-}
-%>
+
+
+<c:forEach items="${list}" var="j">
+ <tr>
+  <td><a href='detail?jno=${j.jno}'>${j.jno}</a></td>
+  <td>${j.driver.mname}</td>
+  <td>${j.departure.spotName}</td>
+  <td>${j.arrival.spotName}</td>
+  <td><fmt:formatDate value="${j.journeyTime}" pattern="HH:mm:ss"/></td>
+  <td><fmt:formatDate value="${j.journeyDate}" pattern="yyyy-MM-dd"/></td>
+  </tr>
+</c:forEach>
+
 </tbody>
 </table>
 <form action='search' method='get'>

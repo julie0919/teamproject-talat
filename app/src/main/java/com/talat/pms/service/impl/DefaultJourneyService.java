@@ -48,7 +48,7 @@ public class DefaultJourneyService implements JourneyService {
   // 목록 조회 업무
   @Override
   public List<Journey> list() throws Exception {
-    return journeyDao.findAll();
+    return journeyDao.findAll2();
   }
 
   // 상세 조회 업무
