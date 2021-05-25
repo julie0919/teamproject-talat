@@ -1,9 +1,8 @@
 package com.talat.pms.service.impl;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
+import org.apache.ibatis.session.SqlSession;
 import com.talat.mybatis.TransactionCallback;
 import com.talat.mybatis.TransactionManager;
 import com.talat.mybatis.TransactionTemplate;
@@ -28,7 +27,7 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
     return (int) transactionTemplate.execute(new TransactionCallback() {
       @Override
       public Object doInTransaction() throws Exception {
-        int count = journeyRiderDao.insert(journeyRider);
+        int count = journeyRiderDao.insert(journeyRider); 
 
         if (journeyRider.getJourneys().size() > 0) {
           HashMap<String,Object> params = new HashMap<>();
@@ -76,20 +75,41 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
 
   // 검색 업무
   @Override
-  public List<JourneyRider> search(String departure, String arrival, Date journeyDate, Time journeyTime) throws Exception {
+  public List<JourneyRider> search(String keyword1, String keyword2, String keyword3, String keyword4) throws Exception {
     HashMap<String, Object> params = new HashMap<>();
-    params.put("departure", departure);
-    params.put("arrival", arrival);
-    params.put("journeyDate", journeyDate);
-    params.put("journeyTime", journeyTime);
+    params.put("keyword1", keyword1);
+    params.put("keyword2", keyword2);
+    params.put("keyword3", keyword3);
+    params.put("keyword4", keyword4);
 
-    return journeyRiderDao.findByKeyword(params);
+    return journeyRiderDao.findByKeywords(params);
   }
 
   @Override
-  public List<Journey> getJourney(int journeyRiderNo) throws Exception {
+  public List<JourneyRider> selectList(SqlSession session) throws Exception {
+    List<JourneyRider> list = session.selectList("journeyRider.findBykeywords");
+    return list;
+  }
+  //  @Override
+  //  public List<Map<String, String>> selectMap(SqlSession session) throws Exception {
+  //    return list;
+  //  }
+
+  @Override
+  public List<JourneyRider> listOfJourney(int journeyNo) throws Exception {
+    return journeyRiderDao.findByJourneyNo(journeyNo);
+  }
+
+  @Override
+  public List<Journey> getJourneys(int journeyRiderNo) throws Exception {
     return journeyRiderDao.findJourneys(journeyRiderNo);
   }
+
+  @Override
+  public int deleteJourney(int journeyRiderNo) throws Exception {
+    return journeyRiderDao.deleteJourney(journeyRiderNo);
+  }
+
 }
 
 

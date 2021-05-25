@@ -4,8 +4,8 @@ import java.util.List;
 
 public class JourneyRider {
   private int journeyRiderNo;
-  private int machingStatus;
-  private String machingContent;
+  private int matchingStatus;
+  private String matchingContent;
   private double driverStar;
   private double riderStar;
   private Journey journey;
@@ -14,12 +14,29 @@ public class JourneyRider {
   private Member rider;
   private Route route;
 
+
   @Override
   public String toString() {
-    return "JourneyRider [journeyRiderNo=" + journeyRiderNo + ", machingStatus=" + machingStatus
-        + ", machingContent=" + machingContent + ", driverStar=" + driverStar + ", riderStar="
+    return "JourneyRider [journeyRiderNo=" + journeyRiderNo + ", matchingStatus=" + matchingStatus
+        + ", matchingContent=" + matchingContent + ", driverStar=" + driverStar + ", riderStar="
         + riderStar + ", journey=" + journey + ", journeys=" + journeys + ", driver=" + driver
         + ", rider=" + rider + ", route=" + route + "]";
+  }
+
+  public int getMatchingStatus() {
+    return matchingStatus;
+  }
+
+  public void setMatchingStatus(int matchingStatus) {
+    this.matchingStatus = matchingStatus;
+  }
+
+  public String getMatchingContent() {
+    return matchingContent;
+  }
+
+  public void setMatchingContent(String matchingContent) {
+    this.matchingContent = matchingContent;
   }
 
   public int getJourneyRiderNo() {
@@ -28,22 +45,6 @@ public class JourneyRider {
 
   public void setJourneyRiderNo(int journeyRiderNo) {
     this.journeyRiderNo = journeyRiderNo;
-  }
-
-  public int getMachingStatus() {
-    return machingStatus;
-  }
-
-  public void setMachingStatus(int machingStatus) {
-    this.machingStatus = machingStatus;
-  }
-
-  public String getMachingContent() {
-    return machingContent;
-  }
-
-  public void setMachingContent(String machingContent) {
-    this.machingContent = machingContent;
   }
 
   public double getDriverStar() {

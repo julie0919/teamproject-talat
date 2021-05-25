@@ -16,26 +16,21 @@
 <table border='1'>
 <thead>
 <tr>
-<th>번호</th> <th>날짜</th> <th>시간</th> <th>운임요금</th> <th>드라이버</th> <th>출발지</th> <th>도착지</th>
+<th>여정신청번호</th> <th>날짜</th> <th>시간</th> <th>운임요금</th> <th>드라이버</th> <th>출발지 - 도착지</th>
 </tr>
 </thead>
 <tbody>
-<%
-List<JourneyRider> journeyRiders = (List<JourneyRider>) request.getAttribute("list");
-for (JourneyRider jr : journeyRiders) {
-%>
+
+<c:forEach items="${journeyRiders}" var="jr">
 <tr>
-  <td><a href='detail2?no=<%=jr.getJourneyRiderNo()%>'><%=jr.getJourneyRiderNo()%></a></td>
-  <td><%=jr.getJourney().getJourneyDate()%></td>
-  <td><%=jr.getJourney().getJourneyTime()%></td>
-  <td><%=jr.getJourney().getFee()%></td>
-  <td><%=jr.getDriver().getMname()%></td>
-  <td><%=jr.getJourney().getDeparture()%></td>
-  <td><%=jr.getJourney().getArrival()%></td> 
+  <td>${jr.journeyRiderNo}</td>
+  <td>${jr.journey.journeyDate}</td>
+  <td>${jr.journey.journeyTime}</td>
+  <td>운임요금</td>
+  <td>드라이버 이름</td>
+  <td>출발지 - 도착지</td>
   </tr>
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
 </body>

@@ -5,91 +5,115 @@
 
 <mapper namespace="com.talat.pms.dao.JourneyRiderDao">
   
-  <resultMap id="journeyRiderMap" type="journeyRider">
+  <resultMap type="journeyRider" id="journeyRiderMap" >
     <id column="rjno" property="journeyRiderNo"/>
-    <result column="mstat" property="machingStatus"/>
-    <result column="mcont" property="machingContent"/>
+    <result column="mstat" property="matchingStatus"/>
+    <result column="mcont" property="matchingContent"/>
     <result column="dstar" property="driverStar"/>
     <result column="rstar" property="riderStar"/>
+    <collection property="journey" resultMap="journeyMap"/>
+    <collection property="route" resultMap="routeMap"/>
+    <collection property="driver" resultMap="driverMap"/>
+  </resultMap>
     
-    <association property="journey" javaType="journey">
+  <resultMap type="journey" id="journeyMap">
       <id column="jno" property="jno"/>
-      <result column="jno_dept" property="departure"/>
-      <result column="jno_arr" property="arrival"/>
       <result column="jno_jfee" property="fee"/>
       <result column="jno_jdate" property="journeyDate"/>
       <result column="jno_jtime" property="journeyTime"/>
-    </association>
-    
-    <association property="driver" javaType="member">
+  </resultMap>    
+  
+  <resultMap type="member" id="driverMap">
       <id column="driver_mno" property="mno"/>
       <result column="driver_mname" property="mname"/>
-    </association>
-    
-    <association property="route" javaType="route">
-      <id column="rno" property="rno"/>
-      <result column="route_spot" property="spotName"/>
-    </association>
-    
+      <result column="driver_star" property="starAverage"/>
   </resultMap>
-  
+    
+  <resultMap type="route" id="routeMap">
+      <id column="rno" property="rno"/>
+      <result column="route_name" property="spotName"/>
+      <result column="route_order" property="spotOrder"/>
+  </resultMap>
+    
   <!-- 카풀신청 -->
-  <insert id="insert" parameterType="journeyRider">
-    insert into talat_journey_rider(jno,mno,mstat,mcont,dstar,rstar) 
-    values(#{jno},#{mno},#{machingStatus},#{machingContent},#{driverStar},#{riderStar})
+  <insert id="insert" parameterType="journeyRider"
+          useGeneratedKeys="true" keyColumn="rjno" keyProperty="journeyRiderNo">
+    insert into talat_journey_rider(journey,driver,mstat,mcont,dstar,rstar) 
+    values(#{journey.jno},#{driver.mno},#{machingStatus},#{machingContent},#{driverStar},#{riderStar})
   </insert>
 
   <!-- 나의 여정 내역(list) -->
   <select id="findAll" resultMap="journeyRiderMap">
     select
-      jr.rjno,
+      distinct jr.rjno,
+      jr.mstat,
+      r.rno,
+      r.spot_name as route_name,
+      r.spot_order as route_order,
       j.jno,
-      j.dept as jno_dept,
-      j.arr as jno_arr,
       j.jfee as jno_jfee,
       j.jdate as jno_jdate,
       j.jtime as jno_jtime,
       m.mno as driver_mno,
       m.mname as driver_mname
     from talat_journey_rider jr
-      inner join talat_journey j on jr.jno=j.jno
-      inner join talat_memb m on jr.mno=m.mno
-    order by jr.rjno desc 
-  </select>
-  
-  <!-- 여정 신청(search) -->
-  <select id="findByKeyword" resultMap="journeyRiderMap" parameterType="map">
-    select
-      m.mno as driver_mno,
-      m.mname as driver_mname, 
-      j.jno,
-      j.dept as jno_dept, 
-      j.arr as jno_arr, 
-      j.jtime as jno_jtime, 
-      j.jdate as jno_jdate, 
-      r.rno,
-      r.spot_name as route_spot 
-    from talat_journey_rider jr
-      inner join talat_memb m on m.mno=jr.mno
       inner join talat_journey j on j.jno=jr.jno
-      inner join talat_journey_route r on jr.jno=r.jno
-    <where>
-      <if test="spot_order == 1">
-        r.spot_name like concat('%', #{keyword1}, '%')
-      </if>
-      <if test="spot_order == 2">
-        r.spot_name like concat('%', #{keyword1}, '%')   
-        r.spot_name like concat('%', #{keyword2}, '%')
-      </if>
-      <if test="spot_order == 3">
-        r.spot_name like concat('%', #{keyword1}, '%')   
-        r.spot_name like concat('%', #{keyword2}, '%')
-      </if>
-      <if test="spot_order == 4">
-        r.spot_name like concat('%', #{keyword2}, '%')
-      </if>
-    </where>
-    order by departure desc
+      inner join talat_memb m on m.mno=jr.mno
+      inner join talat_journey_route r on r.jno=j.jno
+    where jr.mstat = 1
+  </select>
+   
+   
+  <!-- 여정 신청(search) -->
+  <select id="findByKeywords" resultMap="journeyRiderMap" parameterType="map">
+  <![CDATA[
+    select 
+      m.mname driver_name,
+      t1.jno t1_jno,
+      t2.jno t2_jno,
+      t1.rno t1_rno,
+      t1.spot_name t1_spot_name,
+      t2.rno t2_rno,
+      t2.spot_name t2_spot_name,
+      j.jdate jno_jdate,
+      j.jtime jno_jtime
+    from 
+	    (
+	    select  
+	      rno,
+	      jno,
+	      spot_order,
+	      lat,
+	      lng,
+	      spot_name
+	    from talat_journey_route
+	    where spot_order=1
+	    ) as t1
+	    ,
+	    (
+	    select  
+	      rno,
+	      jno,
+	      spot_order,
+	      lat,
+	      lng,
+	      spot_name
+	    from talat_journey_route
+	    where spot_order > 1
+	    ) as t2
+	    ,
+	    talat_memb m
+	    ,
+	    talat_journey j
+	  where t1.jno = t2.jno 
+	      and j.jno=t1.jno
+	      and j.mno=m.mno
+	      and t1.spot_name like concat('%', #{keyword1}, '%')
+	      and t2.spot_name like concat('%', #{keyword2}, '%') 
+	      and j.jdate = #{keyword3}
+        and j.jtime  <=  #{keyword4}
+        ]]>
+        
   </select>
 
   <select id="findByNo" resultMap="journeyRiderMap" parameterType="int">
@@ -101,8 +125,6 @@
       j.jdate as jno_jdate,
       j.jtime as jno_jtime,
       j.jfee as jno_jfee,
-      j.dept as jno_dept,
-      j.arr as jno_arr,
       r.rno,
       r.spot_name as route_spot
      from talat_journey_rider jr
@@ -111,7 +133,6 @@
       inner join talat_journey_route r on jr.jno=r.jno
      where jr.rjno = #{value}
   </select>
-
   <!-- 여정 변경 -->
   <!-- 
   <update id="update" parameterType="journeyRider">
@@ -132,10 +153,15 @@
     where rjno = #{value}
   </delete>
   
-  <insert id="insertJourney" parameterType="map">
+  <insert id="insertJourneys" parameterType="map">
     insert into talat_journey_rider(rjno, jno)
     values(#{journeyRiderNo}, #{journeyNo})
   </insert>
+  
+  <delete id="deleteJourney" parameterType="int">
+    delete from talat_journey_rider 
+    where jno = #{value}
+  </delete>
 </mapper>
 
 

@@ -34,9 +34,3 @@ public class JourneyRiderAdd1Handler extends HttpServlet {
     }
   }
 }
-
-
-
-
-
-

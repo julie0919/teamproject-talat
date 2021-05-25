@@ -30,7 +30,7 @@ public class JourneyRiderDeleteHandler extends HttpServlet {
       }
 
       journeyRiderService.delete(no);
-
+      response.sendRedirect("list");
     } catch (Exception e) {
       throw new ServletException(e);
     }

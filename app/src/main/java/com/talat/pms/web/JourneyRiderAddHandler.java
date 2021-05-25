@@ -15,7 +15,6 @@ import com.talat.pms.service.JourneyRiderService;
 @SuppressWarnings("serial")
 @WebServlet("/journey/rider/add")
 public class JourneyRiderAddHandler extends HttpServlet {
-
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -38,16 +37,8 @@ public class JourneyRiderAddHandler extends HttpServlet {
 
       journeyRiderService.add(jr);
 
-
     } catch (Exception e) {
       throw new ServletException(e);
-
     }
   }
 }
-
-
-
-
-
-

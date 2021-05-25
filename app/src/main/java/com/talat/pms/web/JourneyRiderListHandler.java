@@ -24,7 +24,7 @@ public class JourneyRiderListHandler extends HttpServlet {
     try {
       List<JourneyRider> journeyRiders = journeyRiderService.list();
 
-      request.setAttribute("list", journeyRiders);
+      request.setAttribute("journeyRiders", journeyRiders);
 
       response.setContentType("text/html;charset=UTF-8");
       request.getRequestDispatcher("/jsp/journeyRider/list.jsp").include(request, response);

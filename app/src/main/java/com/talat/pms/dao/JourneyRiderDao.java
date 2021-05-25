@@ -11,7 +11,9 @@ public interface JourneyRiderDao {
 
   List<JourneyRider> findAll() throws Exception;
 
-  List<JourneyRider> findByKeyword(Map<String, Object> params) throws Exception;
+  List<JourneyRider> findByKeywords(Map<String, Object> params) throws Exception;
+
+  List<JourneyRider> findByJourneyNo(int journeyNo) throws Exception;
 
   JourneyRider findByNo(int no) throws Exception;
 
