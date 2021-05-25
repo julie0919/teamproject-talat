@@ -47,7 +47,7 @@
       </c:if></td></tr>
   <tr>
     <th>닉네임</th> 
-    <td><input name='nicName' type='text' value='${member.nicName}'></td></tr>
+    <td><input name='nicName' type='text' value='${member.nickName}'></td></tr>
   <tr>
     <th>전화</th> 
     <td><input name='tel' type='text' value='${member.tel}'><a style="color:#74E19D;"><b> 인증됨</b></a></td></tr>
