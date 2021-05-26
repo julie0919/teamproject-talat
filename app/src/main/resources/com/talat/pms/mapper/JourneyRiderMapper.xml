@@ -22,19 +22,25 @@
       <result column="jno_jcontent" property="content"/>
     </association>
     
-    <association property="departure" javaType="route">
+    <association property="departure" javaType="route"> <!-- 출발지 -->
       <id column="t1_rno" property="rno"/>
       <result column="t1_spot_name" property="spotName"/>
       <result column="t1_spot_order" property="spotOrder"/>
     </association>
     
-    <association property="arrival" javaType="route">
+    <association property="spot" javaType="route"> <!-- 경유지 -->
       <id column="t2_rno" property="rno"/>
       <result column="t2_spot_name" property="spotName"/>
       <result column="t2_spot_order" property="spotOrder"/>
     </association>
-  </resultMap>
+
+    <association property="arrival" javaType="route"> <!-- 도착지 -->
+      <id column="t3_rno" property="rno"/>
+      <result column="t3_spot_name" property="spotName"/>
+      <result column="t3_spot_order" property="spotOrder"/>
+    </association>
     
+  </resultMap>
     
   <resultMap type="member" id="memberMap">
       <id column="driver_mno" property="mno"/>
@@ -90,15 +96,15 @@
   <select id="findByKeywords" resultMap="journeyRiderMap" parameterType="map">
   <![CDATA[
     select 
-      distinct j.jno,
+      j.jno,
       j.jdate jno_jdate,
       j.jtime jno_jtime,
-      t1.jno t1_jno,
-      t2.jno t2_jno,
       t1.rno t1_rno,
       t1.spot_name t1_spot_name,
       t2.rno t2_rno,
       t2.spot_name t2_spot_name,
+      t3.rno t3_rno,
+      t3.spot_name t3_spot_name,
       m.mno driver_mno,
       m.mname driver_mname
     from 
@@ -123,19 +129,33 @@
 	      lng,
 	      spot_name
 	    from talat_journey_route
-	    where spot_order > 1
+	    where spot_order > 1 and spot_order < 100
 	    ) as t2
 	    ,
+	    (
+      select  
+        rno,
+        jno,
+        spot_order,
+        lat,
+        lng,
+        spot_name
+      from talat_journey_route
+      where spot_order = 100
+      ) as t3
+      ,
 	    talat_memb m
 	    ,
 	    talat_journey j
 	  where t1.jno = t2.jno 
+	      and t2.jno = t3.jno
 	      and j.jno=t1.jno
 	      and j.mno=m.mno
 	      and t1.spot_name like concat('%', #{keyword1}, '%')
-	      and t2.spot_name like concat('%', #{keyword2}, '%') 
+	      and (t2.spot_name like concat('%', #{keyword2}, '%') or t3.spot_name like concat('%', #{keyword2}, '%')) 
 	      and j.jdate = #{keyword3}
         and j.jtime  <=  #{keyword4}
+    group by j.jno, t1.spot_name, t3.spot_name 
         ]]>
         
   </select>

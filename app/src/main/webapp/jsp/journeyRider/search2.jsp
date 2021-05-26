@@ -26,7 +26,7 @@
 </tr>
 </thead>
 <tbody>
-<c:forEach items="${requestScope.journeyRiders}" var="jr">
+<c:forEach items="${journeyRiders}" var="jr">
 <tr>
   <td><a href='detail1?no=${jr.journey.jno}'>${jr.journey.jno}</a></td>
   <td>${jr.driver.mname}</td>

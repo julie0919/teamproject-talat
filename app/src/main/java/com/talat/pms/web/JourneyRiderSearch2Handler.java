@@ -30,7 +30,7 @@ public class JourneyRiderSearch2Handler extends HttpServlet {
 
       List<JourneyRider> journeyRiders = journeyRiderService.search(keyword1, keyword2, keyword3, keyword4);
       request.setAttribute("journeyRiders", journeyRiders);
-      System.out.println(journeyRiders);
+
       response.setContentType("text/html;charset=UTF-8");
       RequestDispatcher rd = request.getRequestDispatcher("/jsp/journeyRider/search2.jsp");
       rd.forward(request, response);
