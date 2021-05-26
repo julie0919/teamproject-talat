@@ -2,7 +2,6 @@ package com.talat.pms.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
-import org.apache.ibatis.session.SqlSession;
 import com.talat.mybatis.TransactionCallback;
 import com.talat.mybatis.TransactionManager;
 import com.talat.mybatis.TransactionTemplate;
@@ -88,12 +87,12 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
 
     return journeyRiderDao.findByKeywords(params);
   }
-
-  @Override
-  public List<JourneyRider> selectList(SqlSession session) throws Exception {
-    List<JourneyRider> list = session.selectList("journeyRider.findBykeywords");
-    return list;
-  }
+  //
+  //  @Override
+  //  public List<JourneyRider> selectList(SqlSession session) throws Exception {
+  //    List<JourneyRider> list = session.selectList("journeyRider.findBykeywords");
+  //    return list;
+  //  }
   //  @Override
   //  public List<Map<String, String>> selectMap(SqlSession session) throws Exception {
   //    return list;

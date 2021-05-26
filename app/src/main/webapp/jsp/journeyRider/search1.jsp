@@ -11,8 +11,8 @@
 <body>
 <h1>함께 할 드라이버를 찾아볼까요!</h1>
 <form action="search2" method='get'>
-<input type='text' name='keyword1'>
-<input type='text' name='keyword2'><br>
+<input type='search' name='keyword1'>
+<input type='search' name='keyword2'><br>
 <input type='date' name='keyword3'>
 <input type='time' name='keyword4'>
 <p><input type='submit' value='카풀 검색하기'></p>
