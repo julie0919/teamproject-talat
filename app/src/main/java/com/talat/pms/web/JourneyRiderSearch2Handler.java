@@ -2,6 +2,7 @@ package com.talat.pms.web;
 
 import java.io.IOException;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,12 +32,13 @@ public class JourneyRiderSearch2Handler extends HttpServlet {
       request.setAttribute("journeyRiders", journeyRiders);
       System.out.println(journeyRiders);
       response.setContentType("text/html;charset=UTF-8");
-      request.getRequestDispatcher("/jsp/journeyRider/search2.jsp").include(request, response);
+      RequestDispatcher rd = request.getRequestDispatcher("/jsp/journeyRider/search2.jsp");
+      rd.forward(request, response);
     } catch (Exception e) {
       throw new ServletException(e);
     }
 
-
-
   }
+
+
 }

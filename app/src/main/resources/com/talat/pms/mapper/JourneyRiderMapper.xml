@@ -11,35 +11,57 @@
     <result column="mcont" property="matchingContent"/>
     <result column="dstar" property="driverStar"/>
     <result column="rstar" property="riderStar"/>
-    <collection property="journey" resultMap="journeyMap"/>
-    <collection property="route" resultMap="routeMap"/>
-    <collection property="driver" resultMap="driverMap"/>
+
+    <association property="driver" javaType="member" resultMap="memberMap"/>
+    
+    <association property="journey" javaType="journey">
+      <id column="jno" property="jno"/>
+      <result column="jno_jfee" property="fee"/>
+      <result column="jno_jdate" property="journeyDate"/>
+      <result column="jno_jtime" property="journeyTime"/>
+      <result column="jno_jcontent" property="content"/>
+    </association>
+    
+    <association property="departure" javaType="route">
+      <id column="t1_rno" property="rno"/>
+      <result column="t1_spot_name" property="spotName"/>
+      <result column="t1_spot_order" property="spotOrder"/>
+    </association>
+    
+    <association property="arrival" javaType="route">
+      <id column="t2_rno" property="rno"/>
+      <result column="t2_spot_name" property="spotName"/>
+      <result column="t2_spot_order" property="spotOrder"/>
+    </association>
   </resultMap>
     
+    
+  <resultMap type="member" id="memberMap">
+      <id column="driver_mno" property="mno"/>
+      <result column="driver_mname" property="mname"/>
+  </resultMap>
+    <!-- 
   <resultMap type="journey" id="journeyMap">
       <id column="jno" property="jno"/>
       <result column="jno_jfee" property="fee"/>
       <result column="jno_jdate" property="journeyDate"/>
       <result column="jno_jtime" property="journeyTime"/>
+      <result column="jno_jcontent" property="content"/>
   </resultMap>    
   
-  <resultMap type="member" id="driverMap">
-      <id column="driver_mno" property="mno"/>
-      <result column="driver_mname" property="mname"/>
-      <result column="driver_star" property="starAverage"/>
-  </resultMap>
+
     
   <resultMap type="route" id="routeMap">
       <id column="rno" property="rno"/>
       <result column="route_name" property="spotName"/>
       <result column="route_order" property="spotOrder"/>
   </resultMap>
-    
+     -->
   <!-- 카풀신청 -->
   <insert id="insert" parameterType="journeyRider"
           useGeneratedKeys="true" keyColumn="rjno" keyProperty="journeyRiderNo">
-    insert into talat_journey_rider(journey,driver,mstat,mcont,dstar,rstar) 
-    values(#{journey.jno},#{driver.mno},#{machingStatus},#{machingContent},#{driverStar},#{riderStar})
+    insert into talat_journey_rider(jno,mno,mstat,mcont,dstar,rstar) 
+    values(#{journey.jno},#{driver.mno},0,null,0,0)
   </insert>
 
   <!-- 나의 여정 내역(list) -->
@@ -68,15 +90,17 @@
   <select id="findByKeywords" resultMap="journeyRiderMap" parameterType="map">
   <![CDATA[
     select 
-      m.mname driver_name,
+      distinct j.jno,
+      j.jdate jno_jdate,
+      j.jtime jno_jtime,
       t1.jno t1_jno,
       t2.jno t2_jno,
       t1.rno t1_rno,
       t1.spot_name t1_spot_name,
       t2.rno t2_rno,
       t2.spot_name t2_spot_name,
-      j.jdate jno_jdate,
-      j.jtime jno_jtime
+      m.mno driver_mno,
+      m.mname driver_mname
     from 
 	    (
 	    select  
