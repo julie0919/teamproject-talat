@@ -3,11 +3,12 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>라이더 문의 목록1</title>
+<title>라이더 문의 목록</title>
 </head>
 <body>
 <h1>라이더 문의 목록</h1>
@@ -18,32 +19,20 @@
 </tr>
 </thead>
 <tbody>
-<jsp:useBean id="list" type="List<RiderQnA>" scope="request"/>
-<%
-SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
-SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
-for (RiderQnA rq : list) {
-%>
-  <tr>
-  <td><a href='detail?no=<%=rq.getNo()%>'><%=rq.getNo()%></a></td>
-  <td><%=rq.getQtype().getTypeTitle()%></td>
-  <td><%=formatterDate.format(rq.getRegisteredDate())%></td>
-  <td><%=formatterTime.format(rq.getRegisteredDate())%></td>
-<%
-  if (rq.getStatus() == 0) {
-%>
-    <td>답변대기</td>
-<%
-  } else {
-%>
-    <td>답변완료</td>
-<%
-  }
-%>
-  </tr>
-<%
-}
-%>
+<c:forEach items="${list}" var="rq">
+<tr>
+  <td><a href='detail?no=${rq.no}'>${rq.no}</a></td>
+  <td>${rq.qtype.typeTitle}</td>
+  <td><fmt:formatDate value="${rq.registeredDate}" pattern="yyyy-MM-dd"/></td>
+  <td><fmt:formatDate value="${rq.registeredDate}" pattern="HH:mm:ss"/></td>
+<c:if test="${rq.status==0}">
+  <td>답변대기</td>
+</c:if>
+<c:if test="${rq.status==1}">
+  <td>답변완료</td>
+</c:if>
+</tr>
+</c:forEach>
 </tbody>
 </table>
 </body>
