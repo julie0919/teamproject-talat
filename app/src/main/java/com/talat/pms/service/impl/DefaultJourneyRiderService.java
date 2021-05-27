@@ -26,22 +26,7 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
   // 등록 업무
   @Override
   public int add(JourneyRider journeyRider) throws Exception {
-    return (int) transactionTemplate.execute(new TransactionCallback() {
-      @Override
-      public Object doInTransaction() throws Exception {
-        int count = journeyRiderDao.insert(journeyRider); 
-
-        if (journeyRider.getJourneys().size() > 0) {
-          HashMap<String,Object> params = new HashMap<>();
-          params.put("journeyRiderNo", journeyRider.getJourneyRiderNo());
-          params.put("journeys", journeyRider.getJourneys());
-
-          journeyRiderDao.insertJourney(params);
-        }
-
-        return count;
-      }
-    });
+    return journeyRiderDao.insert(journeyRider);
   }
 
   // 목록 조회 업무
@@ -50,12 +35,17 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
     return journeyRiderDao.findAll();
   }
 
-  // 상세 조회 업무
+  // 여정 상세조회
   @Override
-  public JourneyRider get(int no) throws Exception {
-    return journeyRiderDao.findByNo(no); 
+  public JourneyRider getJno(int no) throws Exception {
+    return journeyRiderDao.findByJNo(no);
   }
 
+  // 나의 여정 상세조회
+  @Override
+  public JourneyRider getRjno(int no) throws Exception {
+    return journeyRiderDao.findByRjNo(no);
+  }
 
   // 변경 업무
   @Override
@@ -69,8 +59,7 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
     return (int) transactionTemplate.execute(new TransactionCallback() {
       @Override
       public Object doInTransaction() throws Exception {
-        riderQnADao.delete(no);
-        journeyRiderDao.deleteJourney(no);
+        riderQnADao.deleteByJourneyRiderNo(no);
         return journeyRiderDao.delete(no);
       }
     });
@@ -106,11 +95,6 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
   @Override
   public List<Journey> getJourneys(int journeyRiderNo) throws Exception {
     return journeyRiderDao.findJourneys(journeyRiderNo);
-  }
-
-  @Override
-  public int deleteJourney(int journeyRiderNo) throws Exception {
-    return journeyRiderDao.deleteJourney(journeyRiderNo);
   }
 
 }
