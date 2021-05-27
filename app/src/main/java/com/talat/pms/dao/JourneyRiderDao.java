@@ -15,7 +15,9 @@ public interface JourneyRiderDao {
 
   List<JourneyRider> findByJourneyNo(int journeyNo) throws Exception;
 
-  JourneyRider findByNo(int no) throws Exception;
+  JourneyRider findByRjNo(int no) throws Exception;
+
+  JourneyRider findByJNo(int no) throws Exception;
 
   int update(JourneyRider journeyRider) throws Exception;
 
@@ -25,7 +27,6 @@ public interface JourneyRiderDao {
 
   int insertJourney(Map<String,Object> params) throws Exception;
 
-  int deleteJourney(int joureyRiderNo) throws Exception;
 }
 
 

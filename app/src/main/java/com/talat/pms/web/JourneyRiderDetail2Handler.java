@@ -1,7 +1,6 @@
 package com.talat.pms.web;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,21 +14,16 @@ import com.talat.pms.service.JourneyRiderService;
 @WebServlet("/journey/rider/detail2")
 public class JourneyRiderDetail2Handler extends HttpServlet {
 
-  SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
-  SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
-
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     JourneyRiderService journeyRiderService = (JourneyRiderService) request.getServletContext().getAttribute("journeyRiderService");
 
-    response.setContentType("text/html;charset=UTF-8");
-
     int no = Integer.parseInt(request.getParameter("no"));
 
     try {
-      JourneyRider journeyRider = journeyRiderService.get(no);
+      JourneyRider journeyRider = journeyRiderService.getRjno(no);
       request.setAttribute("journeyRider", journeyRider);
 
       response.setContentType("text/html;charset=UTF-8");

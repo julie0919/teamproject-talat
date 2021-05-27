@@ -20,6 +20,9 @@
       <result column="jno_jdate" property="journeyDate"/>
       <result column="jno_jtime" property="journeyTime"/>
       <result column="jno_jcontent" property="content"/>
+      <result column="jno_pet" property="pet"/>
+      <result column="jno_seat_psgr_cap" property="seatPassenger"/>
+      <result column="jno_seat_rear_cap" property="seatRear"/>
     </association>
     
     <association property="departure" javaType="route"> <!-- 출발지 -->
@@ -45,6 +48,7 @@
   <resultMap type="member" id="memberMap">
       <id column="driver_mno" property="mno"/>
       <result column="driver_mname" property="mname"/>
+      <result column="driver_star_avg" property="starAverage"/>
   </resultMap>
     <!-- 
   <resultMap type="journey" id="journeyMap">
@@ -67,28 +71,57 @@
   <insert id="insert" parameterType="journeyRider"
           useGeneratedKeys="true" keyColumn="rjno" keyProperty="journeyRiderNo">
     insert into talat_journey_rider(jno,mno,mstat,mcont,dstar,rstar) 
-    values(#{journey.jno},#{driver.mno},0,null,0,0)
+    values(#{journey.jno},#{driver.mno},#{matchingStatus},#{matchingContent},#{driverStar},#{riderStar})
   </insert>
 
   <!-- 나의 여정 내역(list) -->
   <select id="findAll" resultMap="journeyRiderMap">
     select
-      distinct jr.rjno,
+      jr.rjno,
       jr.mstat,
-      r.rno,
-      r.spot_name as route_name,
-      r.spot_order as route_order,
+      jr.dstar,
+      t1.rno,
+      t1.spot_name as t1_spot_name,
+      t1.spot_order as t1_spot_order,
+      t3.rno,
+      t3.spot_name as t3_spot_name,
+      t3.spot_order as t3_spot_order,
       j.jno,
       j.jfee as jno_jfee,
       j.jdate as jno_jdate,
       j.jtime as jno_jtime,
       m.mno as driver_mno,
       m.mname as driver_mname
-    from talat_journey_rider jr
-      inner join talat_journey j on j.jno=jr.jno
-      inner join talat_memb m on m.mno=jr.mno
-      inner join talat_journey_route r on r.jno=j.jno
-    where jr.mstat = 1
+    from talat_journey_rider jr,
+      (
+      select  
+        rno,
+        jno,
+        spot_order,
+        spot_name
+      from talat_journey_route
+      where spot_order=1
+      ) as t1
+      ,
+      (
+      select  
+        rno,
+        jno,
+        spot_order,
+        spot_name
+      from talat_journey_route
+      where spot_order=100
+      ) as t3
+      ,
+      talat_journey j
+      ,
+      talat_memb m
+    where 
+      j.jno=jr.jno
+      and m.mno=jr.mno
+      and t1.jno=j.jno
+      and t3.jno=t1.jno
+    group by jr.rjno
   </select>
    
    
@@ -99,6 +132,11 @@
       j.jno,
       j.jdate jno_jdate,
       j.jtime jno_jtime,
+      j.jfee jno_jfee,
+      j.pet jno_pet,
+      j.seat_psgr_cap,
+      j.seat_rear_cap,
+      j.jcont jno_jcontent,
       t1.rno t1_rno,
       t1.spot_name t1_spot_name,
       t2.rno t2_rno,
@@ -147,7 +185,10 @@
 	    talat_memb m
 	    ,
 	    talat_journey j
-	  where t1.jno = t2.jno 
+	    ,
+	    talat_join tj
+	  where t1.jno = t2.jno
+	      and tj.mno=m.mno 
 	      and t2.jno = t3.jno
 	      and j.jno=t1.jno
 	      and j.mno=m.mno
@@ -160,22 +201,114 @@
         
   </select>
 
-  <select id="findByNo" resultMap="journeyRiderMap" parameterType="int">
+  <select id="findByRjNo" resultMap="journeyRiderMap" parameterType="int">
     select
       jr.rjno,
-      m.mno as driver_mno,
-      m.mname as driver_mname,
+      jr.mstat,
+      jr.dstar,
+      t1.rno,
+      t1.spot_name as t1_spot_name,
+      t1.spot_order as t1_spot_order,
+      t3.rno,
+      t3.spot_name as t3_spot_name,
+      t3.spot_order as t3_spot_order,
       j.jno,
+      j.jfee as jno_jfee,
       j.jdate as jno_jdate,
       j.jtime as jno_jtime,
-      j.jfee as jno_jfee,
-      r.rno,
-      r.spot_name as route_spot
-     from talat_journey_rider jr
-      inner join talat_journey j on jr.jno=j.jno
-      inner join talat_memb m on jr.mno=m.mno
-      inner join talat_journey_route r on jr.jno=r.jno
-     where jr.rjno = #{value}
+      m.mno as driver_mno,
+      m.mname as driver_mname
+    from talat_journey_rider jr,
+      (
+      select  
+        rno,
+        jno,
+        spot_order,
+        spot_name
+      from talat_journey_route
+      where spot_order=1
+      ) as t1
+      ,
+      (
+      select  
+        rno,
+        jno,
+        spot_order,
+        spot_name
+      from talat_journey_route
+      where spot_order=100
+      ) as t3
+      ,
+      talat_journey j
+      ,
+      talat_memb m
+    where 
+      jr.rjno=#{value}
+      and j.jno=jr.jno
+      and m.mno=jr.mno
+      and t1.jno=j.jno
+      and t3.jno=t1.jno
+  </select>
+  
+  <select id="findByJNo" resultMap="journeyRiderMap" parameterType="int">
+  <![CDATA[
+    select 
+      j.jno,
+      m.mname driver_mname,
+      tj.star_avg driver_star_avg,
+      j.jdate jno_jdate,
+      j.jtime jno_jtime,
+      j.jfee jno_jfee,
+      t1.spot_name t1_spot_name,
+      t2.spot_name t2_spot_name,
+      t3.spot_name t3_spot_name,
+      j.pet jno_pet,
+      j.seat_psgr_cap jno_seat_psgr_cap,
+      j.seat_rear_cap jno_seat_rear_cap,
+      j.jcont jno_jcontent
+    from
+      (
+      select  
+        rno,
+        jno,
+        spot_order,
+        spot_name
+      from talat_journey_route
+      where spot_order=1
+      ) as t1
+      ,
+      (
+      select  
+        rno,
+        jno,
+        spot_order,
+        spot_name
+      from talat_journey_route
+      where spot_order > 1 and spot_order < 100
+      ) as t2
+      ,
+      (
+      select  
+        rno,
+        jno,
+        spot_order,
+        spot_name
+      from talat_journey_route
+      where spot_order = 100
+      ) as t3
+      ,
+      talat_memb m,
+      talat_journey j,
+      talat_join tj
+    where 
+      j.jno=#{value}
+      and j.mno = m.mno
+      and t1.jno = j.jno
+      and t2.jno = j.jno
+      and t3.jno = j.jno
+      and tj.mno = m.mno
+    group by j.jno, t1.spot_name
+       ]]>
   </select>
   <!-- 여정 변경 -->
   <!-- 
@@ -202,10 +335,12 @@
     values(#{journeyRiderNo}, #{journeyNo})
   </insert>
   
+  <!-- 
   <delete id="deleteJourney" parameterType="int">
     delete from talat_journey_rider 
     where jno = #{value}
   </delete>
+   -->
 </mapper>
 
 

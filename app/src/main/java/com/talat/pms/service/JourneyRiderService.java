@@ -1,7 +1,6 @@
 package com.talat.pms.service;
 
 import java.util.List;
-import org.apache.ibatis.session.SqlSession;
 import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.JourneyRider;
 
@@ -13,7 +12,9 @@ public interface JourneyRiderService {
 
   List<JourneyRider> listOfJourney(int journeyNo) throws Exception;
 
-  JourneyRider get(int no) throws Exception;
+  JourneyRider getJno(int no) throws Exception;
+
+  JourneyRider getRjno(int no) throws Exception;
 
   int update(JourneyRider journeyRider) throws Exception;
 
@@ -23,10 +24,6 @@ public interface JourneyRiderService {
 
   List<Journey> getJourneys(int journeyRiderNo) throws Exception;
 
-  int deleteJourney(int journeyRiderNo) throws Exception;
-
-  //  List<Map<String,String>> selectMap(SqlSession session) throws Exception;
-  List<JourneyRider> selectList(SqlSession session) throws Exception;
 }
 
 

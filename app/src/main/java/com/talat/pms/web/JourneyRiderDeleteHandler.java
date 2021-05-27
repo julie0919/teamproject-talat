@@ -1,6 +1,7 @@
 package com.talat.pms.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,18 +20,23 @@ public class JourneyRiderDeleteHandler extends HttpServlet {
       throws ServletException, IOException {
 
     JourneyRiderService journeyRiderService = (JourneyRiderService) request.getServletContext().getAttribute("journeyRiderService");
+    response.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = response.getWriter();
 
     try {
       int no = Integer.parseInt(request.getParameter("no"));
 
-      JourneyRider oldJourneyRider = journeyRiderService.get(no);
+      JourneyRider oldJourneyRider = journeyRiderService.getRjno(no);
 
       if (oldJourneyRider == null) {
         throw new Exception("해당 번호의 여정이 없습니다.");
+      } else if (oldJourneyRider.getMatchingStatus() == 1) {
+        out.println("이미 매칭이 완료되어 취소가 불가능합니다.");
+        return;
       }
 
       journeyRiderService.delete(no);
-      response.sendRedirect("list");
+
     } catch (Exception e) {
       throw new ServletException(e);
     }
