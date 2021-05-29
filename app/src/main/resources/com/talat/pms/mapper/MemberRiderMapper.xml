@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talat.pms.dao.MemberRiderDao">
+
+  <resultMap id="memberRiderMap" type="memberRider">
+    <id column="mno" property="rmno"/>
+    <result column="nic" property="nickName"/>
+    <result column="gender" property="gender"/>
+    <result column="pst_no" property="postNo"/>
+    <result column="basic_addr" property="basicAddress"/>
+    <result column="det_addr" property="detailAddress"/>
+    <result column="prof" property="profile"/>
+    <result column="pref_gender" property="preferenceGender"/>
+    <result column="mrdt" property="registeredDate"/>
+    <result column="star_avg" property="starAverage"/>
+    <result column="rev_avg" property="reviewAverage"/>
+  </resultMap>
+  
+  <insert id="insert" parameterType="memberRider">
+    insert into talat_join(mno, nic,gender,pst_no,basic_addr,det_addr,prof,pref_gender,star_avg,rev_avg)
+    values(#{rmno}, #{nickName}, #{gender}, #{postNo}, #{basicAddress}, #{detailAddress}
+          , #{profile}, #{preferenceGender}, #{starAverage}, #{reviewAverage})
+  </insert>
+
+</mapper>
+
+
+
+
+
+
+

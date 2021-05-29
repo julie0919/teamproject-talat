@@ -1,31 +1,27 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.talat.pms.domain.Member;
-import com.talat.pms.service.MemberService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.talat.pms.domain.MemberDriver;
+import com.talat.pms.service.MemberDriverService;
 
-@SuppressWarnings("serial")
-@WebServlet("/login")
-public class LoginHandler extends HttpServlet {
+@Controller
+public class LoginHandler {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    response.setContentType("text/html;charset=UTF-8");
-    request.getRequestDispatcher("/jsp/loginUser/login_form.jsp").include(request, response);
+  MemberDriverService memberDriverService;
+
+  public LoginHandler(MemberDriverService memberDriverService) {
+    this.memberDriverService = memberDriverService;
   }
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-
-    MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
+  @RequestMapping("/login")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    if (request.getMethod().equals("GET")) {
+      return "/jsp/loginUser/login_form.jsp";
+    }
 
     String email = request.getParameter("email");
     String password = request.getParameter("password");
@@ -40,26 +36,16 @@ public class LoginHandler extends HttpServlet {
       response.addCookie(cookie);
     }
 
-    try {
-      Member member = memberService.get(email, password);
-      response.setContentType("text/html;charset=UTF-8");
+    MemberDriver member = memberDriverService.get(email, password);
 
-      if (member == null) {
-        request.getSession().invalidate(); 
-        response.setContentType("text/html;charset=UTF-8");
-        request.getRequestDispatcher("/jsp/loginUser/login_fail.jsp").include(request, response);
-        response.setHeader("Refresh", "1;url=login");
+    if (member == null) {
+      request.getSession().invalidate(); 
+      return "/jsp/loginUser/login_fail.jsp";
 
-      } else {
-        request.getSession().setAttribute("loginUser", member);
-        response.setContentType("text/html;charset=UTF-8");
-        request.getRequestDispatcher("/jsp/loginUser/login_success.jsp").include(request, response);
-        response.setHeader("Refresh", "1;url=userInfo");
-      }
-
-    } catch (Exception e) {
-      throw new ServletException(e);
-    } 
+    } else {
+      request.getSession().setAttribute("loginUser", member);
+      return "/jsp/loginUser/login_success.jsp";
+    }
   }
 }
 

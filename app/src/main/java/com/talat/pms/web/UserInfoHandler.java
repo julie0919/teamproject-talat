@@ -1,20 +1,16 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@SuppressWarnings("serial")
-@WebServlet("/userInfo")
-public class UserInfoHandler extends HttpServlet {
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+@Controller
+public class UserInfoHandler {
 
-    response.setContentType("text/html;charset=UTF-8");
-    request.getRequestDispatcher("/jsp/loginUser/login_userInfo.jsp").include(request, response);
+  @RequestMapping("/userInfo")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    return "/jsp/loginUser/login_userInfo.jsp";
   }
 }

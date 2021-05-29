@@ -1,22 +1,17 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@SuppressWarnings("serial")
-@WebServlet("/member/add1")
-public class MemberAddHandler1 extends HttpServlet {
+@Controller
+public class MemberAddHandler1 {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  @RequestMapping("/member/add1")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8"); 
-    request.getRequestDispatcher("/jsp/member/form1.jsp").include(request, response);
+    return "/jsp/member/form1.jsp";
 
   }
 }

@@ -1,20 +1,16 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@SuppressWarnings("serial")
-@WebServlet("/member/add2")
-public class MemberAddHandler2 extends HttpServlet {
+@Controller
+public class MemberAddHandler2{
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  @RequestMapping("/member/add2")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     HttpSession session = request.getSession();
     session.setAttribute("mname", request.getParameter("mname"));
@@ -24,7 +20,11 @@ public class MemberAddHandler2 extends HttpServlet {
     session.setAttribute("birth", request.getParameter("birth"));
     session.setAttribute("mType", request.getParameter("mType"));
 
-    response.setContentType("text/html;charset=UTF-8"); 
-    request.getRequestDispatcher("/jsp/member/form2.jsp").include(request, response);
+    if (request.getParameter("mType").equals("1")) {
+      return "/jsp/member/form2.jsp";
+    } else if (request.getParameter("mType").equals("2")) {
+      return "/jsp/member/form2_driver.jsp";
+    }
+    return "/jsp/member/memberlist.jsp";
   }
 }
