@@ -33,9 +33,13 @@ public class JourneyRiderDeleteHandler extends HttpServlet {
       } else if (oldJourneyRider.getMatchingStatus() == 1) {
         out.println("이미 매칭이 완료되어 취소가 불가능합니다.");
         return;
+      } else {
+        out.println("취소가 완료되었습니다.");
       }
 
       journeyRiderService.delete(no);
+
+      response.sendRedirect("my_journey_list");
 
     } catch (Exception e) {
       throw new ServletException(e);

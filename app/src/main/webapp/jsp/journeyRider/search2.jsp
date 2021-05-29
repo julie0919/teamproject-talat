@@ -18,7 +18,6 @@
 <input type='time' name='keyword4' value='${param.keyword4}' readonly><br>
 </form>
  
- <form action="add" method="post">
 <table border='1'>
 <thead>
 <tr>
@@ -28,19 +27,18 @@
 <tbody>
 <c:forEach items="${journeyRiders}" var="jr">
 <tr>
-  <td><a href='detail1?no=${jr.journey.jno}'>${jr.journey.jno}</a></td>
+  <td><a href='search_detail?no=${jr.journey.jno}'>${jr.journey.jno}</a></td>
   <td>${jr.driver.mname}</td>
   <td>${jr.departure.spotName}</td> 
   <td>${jr.arrival.spotName}</td> 
   <td>${jr.journey.journeyTime}</td>
   <td>${jr.journey.journeyDate}</td>
   <td>채팅</td>
-  <td><input type="submit" value="카풀신청"></td>
+  <td><a href='add?no=${jr.journey.jno}'>카풀신청</a></td>
 </tr>
 </c:forEach> 
 </tbody>
 </table>
-</form>
 </body>
 </html>
       

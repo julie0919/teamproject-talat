@@ -34,7 +34,7 @@
 <tr><th>여정설명</th><td><textarea name='content' rows='10' cols='60'>${journeyRider.journey.content}</textarea></td></tr>
 <tr>
 <td>
-  <input type='reset' value='돌아가기' onClick="history.back()"><a href='add1'>카풀신청</a> 
+  <input type='reset' value='돌아가기' onClick="history.back()"><a href='add'>카풀신청</a> 
 </td>
 </tr>
 </tbody>

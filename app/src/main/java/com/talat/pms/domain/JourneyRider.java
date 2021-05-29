@@ -15,6 +15,7 @@ public class JourneyRider {
   private Route departure;
   private Route arrival;
   private Route spot;
+  private int jno;
 
   @Override
   public String toString() {
@@ -22,7 +23,7 @@ public class JourneyRider {
         + ", matchingContent=" + matchingContent + ", driverStar=" + driverStar + ", riderStar="
         + riderStar + ", journey=" + journey + ", journeys=" + journeys + ", driver=" + driver
         + ", rider=" + rider + ", departure=" + departure + ", arrival=" + arrival + ", spot="
-        + spot + "]";
+        + spot + ", jno=" + jno + "]";
   }
 
   public int getJourneyRiderNo() {
@@ -121,6 +122,14 @@ public class JourneyRider {
     this.spot = spot;
   }
 
+  public int getJno() {
+    return jno;
+  }
+
+  public void setJno(int jno) {
+    this.jno = jno;
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -131,6 +140,7 @@ public class JourneyRider {
     long temp;
     temp = Double.doubleToLongBits(driverStar);
     result = prime * result + (int) (temp ^ (temp >>> 32));
+    result = prime * result + jno;
     result = prime * result + ((journey == null) ? 0 : journey.hashCode());
     result = prime * result + journeyRiderNo;
     result = prime * result + ((journeys == null) ? 0 : journeys.hashCode());
@@ -169,6 +179,8 @@ public class JourneyRider {
       return false;
     if (Double.doubleToLongBits(driverStar) != Double.doubleToLongBits(other.driverStar))
       return false;
+    if (jno != other.jno)
+      return false;
     if (journey == null) {
       if (other.journey != null)
         return false;
@@ -202,6 +214,7 @@ public class JourneyRider {
       return false;
     return true;
   }
+
 
 
 
