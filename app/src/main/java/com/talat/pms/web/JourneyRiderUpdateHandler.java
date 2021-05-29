@@ -1,68 +1,46 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.JourneyRider;
 import com.talat.pms.service.JourneyRiderService;
 
 // 여정 변경
-@SuppressWarnings("serial")
-@WebServlet("/journeyRider/update")
-public class JourneyRiderUpdateHandler extends HttpServlet {
+@Controller
+public class JourneyRiderUpdateHandler {
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  JourneyRiderService journeyRiderService;
 
-    JourneyRiderService journeyRiderService = (JourneyRiderService) request.getServletContext().getAttribute("journeyService");
+  public JourneyRiderUpdateHandler(JourneyRiderService journeyRiderService) {
+    this.journeyRiderService = journeyRiderService;
+  }
 
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
+  @RequestMapping("/journey/rider/update")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<title>여정 변경</title>");
+    HttpSession session = request.getSession();
 
-    try {
-      request.setCharacterEncoding("UTF-8");
-      int no = Integer.parseInt(request.getParameter("no"));
+    int jno = Integer.parseInt(request.getParameter("no"));
+    int rjno = (int) session.getAttribute("journeyRiderNo");
 
-      JourneyRider oldJourneyRider = journeyRiderService.get(no);
-      if (oldJourneyRider == null) {
-        throw new Exception("해당 번호의 여정이 없습니다.");
-      } 
+    JourneyRider jr = new JourneyRider();
+    jr.setMatchingStatus(0);
+    jr.setJourneyRiderNo(rjno);
 
-      JourneyRider journeyRider = new JourneyRider();
-      // search 화면
-      journeyRiderService.update(journeyRider);
+    Journey journey = new Journey();
+    journey.setJno(jno);
+    jr.setJourney(journey);
+    //      Member rider = new Member();
+    //      rider.setMno(12); //로그인 유저
+    //      jr.setRider(rider);
 
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>여정 변경</h1>");
-      out.println("<p>여정을 변경하였습니다.</p>");
+    journeyRiderService.update(jr);
 
-    } catch (Exception e) {
-      StringWriter strWriter = new StringWriter();
-      PrintWriter printWriter = new PrintWriter(strWriter);
-      e.printStackTrace(printWriter);
-
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>여정 변경 오류</h1>");
-      out.printf("<p>%s</p>\n", e.getMessage());
-      out.printf("<pre>%s</pre>\n", strWriter.toString());
-      out.println("<p><a href='list'>목록</a></p>");
-    }
-
-    out.println("</body>");
-    out.println("</html>");
+    return "redirect:my_journey_list";
 
   }
 }

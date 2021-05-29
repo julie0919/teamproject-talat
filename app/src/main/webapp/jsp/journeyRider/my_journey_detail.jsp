@@ -12,24 +12,36 @@
 <body>
 <h1>나의 여정내역</h1>
 <p>여정 상세정보</p>
-<form action='update' method='post'>
 <table border='1'>
 <tbody>
+<tr><th>여정신청번호</th> <td><input type='text' name='journeyRiderNo' value='${journeyRider.journeyRiderNo}' readonly></td></tr>
 <tr><th>여정 날짜</th><td>${journeyRider.journey.journeyDate}</td></tr>
 <tr><th>여정 시간</th><td>${journeyRider.journey.journeyTime}</td></tr>
 <tr><th>운임 요금</th><td>${journeyRider.journey.fee}</td></tr>
 <tr>
 <td>
-  <input type='submit' value='변경'><a href='delete?no=${journeyRider.journeyRiderNo}'>취소</a> 
+  <a href='updateSearch?keyword1=${keyword1}&keyword2=${keyword2}&keyword3=${keyword3}&keyword4=${keyword4}'>변경</a>
+  <a href='delete?no=${journeyRider.journeyRiderNo}'>취소</a> 
 </td>
 </tr>
 </tbody>
 <tfoot>
-<tr><th>출발지</th> <td><input type='text' name='departure' value='${journeyRider.departure.spotName}' readonly></td></tr>
-<tr><th>도착지</th> <td><input type='text' name='Arrival' value='${journeyRider.arrival.spotName}' readonly></td></tr>
+<c:forEach items="${routes}" var="r">
+<c:if test="${r.spotOrder == 1}">
+<tr><th>출발지</th> <td><input type='text' name='departure' value='${r.spotName}' readonly></td></tr>
+</c:if>
+<c:if test="${r.spotOrder == 2}">
+<tr><th>경유지</th> <td><input type='text' name='route1' value='${r.spotName}' readonly></td></tr>
+</c:if>
+<c:if test="${r.spotOrder == 3}">
+<tr><th>경유지</th> <td><input type='text' name='route2' value='${r.spotName}' readonly></td></tr>
+</c:if>
+<c:if test="${r.spotOrder == 100}">
+<tr><th>도착지</th> <td><input type='text' name='arrival' value='${r.spotName}' readonly></td></tr>
+</c:if>
+</c:forEach>
 </tfoot>
 </table>
-</form>
 <hr>
 <div id=qna1>
   <p><a href="../../qna/rider/add1">분실물 문의</a><br>드라이버 파트너와 연락할 수 있게 도와드립니다.</p>
@@ -43,6 +55,6 @@
 <div id=qna4>
   <p><a href="../../qna/rider/add4">여정 관련 고객지원</a><br>도움이 필요한 다른 문제가 있다면 여기를 클릭하세요.</p>
 </div>
-<a href="list">돌아가기</a>
+<a href="my_journey_list">돌아가기</a>
 </body>
 </html>

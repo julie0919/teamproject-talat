@@ -1,39 +1,38 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.talat.pms.domain.JourneyRider;
 import com.talat.pms.service.JourneyRiderService;
+import com.talat.pms.service.JourneyService;
 
-// 여정 내역
-@SuppressWarnings("serial")
-@WebServlet("/journey/rider/my_journey_list")
-public class JourneyRiderMyJourneyListHandler extends HttpServlet {
+// 나의 여정 내역
+@Controller
+public class JourneyRiderMyJourneyListHandler {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  JourneyRiderService journeyRiderService;
+  JourneyService journeyService;
 
-    JourneyRiderService journeyRiderService = (JourneyRiderService) request.getServletContext().getAttribute("journeyRiderService");
-
-    try {
-      List<JourneyRider> journeyRiders = journeyRiderService.list();
-
-      request.setAttribute("journeyRiders", journeyRiders);
-
-      response.setContentType("text/html;charset=UTF-8");
-      request.getRequestDispatcher("/jsp/journeyRider/my_journey_list.jsp").include(request, response);
-
-    } catch (Exception e) {
-      throw new ServletException(e);
-
-    } 
+  public JourneyRiderMyJourneyListHandler(JourneyRiderService journeyRiderService, JourneyService journeyService) {
+    this.journeyRiderService = journeyRiderService;
+    this.journeyService = journeyService;
   }
+
+  @RequestMapping("/journey/rider/my_journey_list")
+  public String execuet(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    List<JourneyRider> journeyRiders = journeyRiderService.list();
+
+    request.setAttribute("journeyRiders", journeyRiders);
+    request.setAttribute("journey", journeyService.list());
+
+
+    return "/jsp/journeyRider/my_journey_list.jsp";
+
+  } 
 }
 
 

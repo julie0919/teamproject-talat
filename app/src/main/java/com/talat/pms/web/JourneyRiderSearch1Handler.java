@@ -1,24 +1,17 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-// 여정 검색
-@SuppressWarnings("serial")
-@WebServlet("/journey/rider/search1")
-public class JourneyRiderSearch1Handler extends HttpServlet {
+// 여정 검색 1
+@Controller
+public class JourneyRiderSearch1Handler {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  @RequestMapping("/journey/rider/search1")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    response.setContentType("text/html;charset=UTF-8");
-    request.getRequestDispatcher("/jsp/journeyRider/search1.jsp").include(request, response);
-
+    return "/jsp/journeyRider/search1.jsp";
   }
-
 }

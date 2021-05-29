@@ -9,8 +9,12 @@
     <id column="rjno" property="journeyRiderNo"/>
     <result column="mstat" property="matchingStatus"/>
     <result column="mcont" property="matchingContent"/>
+    
+    <!-- 리뷰-> association -->
+    <!-- 
     <result column="dstar" property="driverStar"/>
     <result column="rstar" property="riderStar"/>
+     -->
 
     <association property="driver" javaType="member" resultMap="memberMap"/>
     
@@ -52,25 +56,8 @@
   <resultMap type="member" id="memberMap">
       <id column="driver_mno" property="mno"/>
       <result column="driver_mname" property="mname"/>
-      <result column="driver_star_avg" property="starAverage"/>
   </resultMap>
-    <!-- 
-  <resultMap type="journey" id="journeyMap">
-      <id column="jno" property="jno"/>
-      <result column="jno_jfee" property="fee"/>
-      <result column="jno_jdate" property="journeyDate"/>
-      <result column="jno_jtime" property="journeyTime"/>
-      <result column="jno_jcontent" property="content"/>
-  </resultMap>    
-  
 
-    
-  <resultMap type="route" id="routeMap">
-      <id column="rno" property="rno"/>
-      <result column="route_name" property="spotName"/>
-      <result column="route_order" property="spotOrder"/>
-  </resultMap>
-     -->
   <!-- 카풀신청 -->
   <insert id="insert" parameterType="journeyRider" useGeneratedKeys="true" keyProperty="journeyRiderNo">
     insert into talat_journey_rider(jno,mno,mstat) 
@@ -85,7 +72,6 @@
     select
       jr.rjno,
       jr.mstat,
-      jr.dstar,
       t1.rno,
       t1.spot_name as t1_spot_name,
       t1.spot_order as t1_spot_order,
@@ -211,7 +197,6 @@
     select
       jr.rjno,
       jr.mstat,
-      jr.dstar,
       t1.rno,
       t1.spot_name as t1_spot_name,
       t1.spot_order as t1_spot_order,
@@ -261,7 +246,6 @@
     select 
       j.jno,
       m.mname driver_mname,
-      tj.star_avg driver_star_avg,
       j.jdate jno_jdate,
       j.jtime jno_jtime,
       j.jfee jno_jfee,
@@ -317,76 +301,12 @@
        ]]>
        </select>
        
-  <select id="findByJourneyNo" resultMap="journeyRiderMap" parameterType="int">
-  <![CDATA[
-    select 
-      j.jno,
-      m.mname driver_mname,
-      tj.star_avg driver_star_avg,
-      j.jdate jno_jdate,
-      j.jtime jno_jtime,
-      j.jfee jno_jfee,
-      t1.spot_name t1_spot_name,
-      t2.spot_name t2_spot_name,
-      t3.spot_name t3_spot_name,
-      j.pet jno_pet,
-      j.seat_psgr_cap jno_seat_psgr_cap,
-      j.seat_rear_cap jno_seat_rear_cap,
-      j.jcont jno_jcontent
-    from
-      (
-      select  
-        rno,
-        jno,
-        spot_order,
-        spot_name
-      from talat_journey_route
-      where spot_order=1
-      ) as t1
-      ,
-      (
-      select  
-        rno,
-        jno,
-        spot_order,
-        spot_name
-      from talat_journey_route
-      where spot_order > 1 and spot_order < 100
-      ) as t2
-      ,
-      (
-      select  
-        rno,
-        jno,
-        spot_order,
-        spot_name
-      from talat_journey_route
-      where spot_order = 100
-      ) as t3
-      ,
-      talat_memb m,
-      talat_journey j,
-      talat_join tj
-    where 
-      j.jno=#{value}
-      and j.mno = m.mno
-      and t1.jno = j.jno
-      and t2.jno = j.jno
-      and t3.jno = j.jno
-      and tj.mno = m.mno
-    group by j.jno, t1.spot_name
-       ]]>
-       
-  </select>
   <!-- 여정 변경 -->
   <update id="update" parameterType="journeyRider">
     update talat_journey_rider set
         jno = #{journey.jno}
-        mstat = #{matchingStatus},
         <!-- 
         mcont = #{mathingContent},
-        dstar = #{driverStar},
-        rstar = #{riderStar}
          -->
     where rjno = #{journeyRiderNo}
   </update>
@@ -397,17 +317,6 @@
     where rjno = #{value}
   </delete>
   
-  <insert id="insertJourneys" parameterType="map">
-    insert into talat_journey_rider(rjno, jno)
-    values(#{journeyRiderNo}, #{journeyNo})
-  </insert>
-  
-  <!-- 
-  <delete id="deleteJourney" parameterType="int">
-    delete from talat_journey_rider 
-    where jno = #{value}
-  </delete>
-   -->
 </mapper>
 
 

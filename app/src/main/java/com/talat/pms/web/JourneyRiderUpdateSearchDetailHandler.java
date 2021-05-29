@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.talat.pms.domain.JourneyRider;
 import com.talat.pms.service.JourneyRiderService;
 
-// 여정 검색 상세정보
+// 여정 변경 시 검색 상세정보
 @Controller
-public class JourneyRiderSearchDetailHandler {
+public class JourneyRiderUpdateSearchDetailHandler {
 
   JourneyRiderService journeyRiderService;
 
-  public JourneyRiderSearchDetailHandler(JourneyRiderService journeyRiderService) {
+  public JourneyRiderUpdateSearchDetailHandler(JourneyRiderService journeyRiderService) {
     this.journeyRiderService = journeyRiderService;
   }
 
-  @RequestMapping("/journey/rider/search_detail")
+  @RequestMapping("/journey/rider/update_search_detail")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     int no = Integer.parseInt(request.getParameter("no"));
@@ -25,7 +25,7 @@ public class JourneyRiderSearchDetailHandler {
     JourneyRider journeyRider = journeyRiderService.getJno(no);
     request.setAttribute("journeyRider", journeyRider);
 
-    return "/jsp/journeyRider/search_detail.jsp";
+    return "/jsp/journeyRider/update_search_detail.jsp";
   }
 }
 

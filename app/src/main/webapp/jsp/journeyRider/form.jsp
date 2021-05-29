@@ -17,7 +17,7 @@
 	<input type='time' value='${journeyRiders.journey.journeyTime}' readonly><br>
 	<input type='text' value='${journeyRiders.journey.seatPassenger}' readonly>
 	<input type='text' value='${journeyRiders.journey.seatRear}' readonly>
-	<input type='text' value='${journeyRiders.journey.pet}' readonly><br>
+	<input type='text' value='${journeyRiders.journey.pet}' readonly><br> 
 <p><a href='my_journey_list'>카풀 내역 보기</a> <a href='search1'>홈으로 돌아가기</a></p>
 </body>
 </html>

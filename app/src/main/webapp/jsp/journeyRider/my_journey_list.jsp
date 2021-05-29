@@ -34,9 +34,15 @@
   <td>${jr.journey.journeyDate}</td>
   <td>${jr.journey.journeyTime}</td>
   <td>${jr.journey.fee}</td>
-  <td>${jr.driver.mname}</td>
+  <td>
+  <c:forEach items="${journey}" var="j">
+    <c:if test="${jr.journey.jno == j.jno}">
+      ${j.driver.mname}
+    </c:if>
+  </c:forEach>
+  </td>
   <td>${jr.departure.spotName} - ${jr.arrival.spotName}</td>
-  <td>${jr.driverStar}</td>
+  <td>별점</td>
   </tr>
 </c:forEach>
 </tbody>

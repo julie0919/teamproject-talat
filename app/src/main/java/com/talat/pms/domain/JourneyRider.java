@@ -6,8 +6,6 @@ public class JourneyRider {
   private int journeyRiderNo;
   private int matchingStatus;
   private String matchingContent;
-  private double driverStar;
-  private double riderStar;
   private Journey journey;
   private List<Journey> journeys;
   private Member driver;
@@ -15,15 +13,15 @@ public class JourneyRider {
   private Route departure;
   private Route arrival;
   private Route spot;
+  private List<Route> spots;
   private int jno;
 
   @Override
   public String toString() {
     return "JourneyRider [journeyRiderNo=" + journeyRiderNo + ", matchingStatus=" + matchingStatus
-        + ", matchingContent=" + matchingContent + ", driverStar=" + driverStar + ", riderStar="
-        + riderStar + ", journey=" + journey + ", journeys=" + journeys + ", driver=" + driver
-        + ", rider=" + rider + ", departure=" + departure + ", arrival=" + arrival + ", spot="
-        + spot + ", jno=" + jno + "]";
+        + ", matchingContent=" + matchingContent + ", journey=" + journey + ", journeys=" + journeys
+        + ", driver=" + driver + ", rider=" + rider + ", departure=" + departure + ", arrival="
+        + arrival + ", spot=" + spot + ", spots=" + spots + ", jno=" + jno + "]";
   }
 
   public int getJourneyRiderNo() {
@@ -48,22 +46,6 @@ public class JourneyRider {
 
   public void setMatchingContent(String matchingContent) {
     this.matchingContent = matchingContent;
-  }
-
-  public double getDriverStar() {
-    return driverStar;
-  }
-
-  public void setDriverStar(double driverStar) {
-    this.driverStar = driverStar;
-  }
-
-  public double getRiderStar() {
-    return riderStar;
-  }
-
-  public void setRiderStar(double riderStar) {
-    this.riderStar = riderStar;
   }
 
   public Journey getJourney() {
@@ -122,6 +104,14 @@ public class JourneyRider {
     this.spot = spot;
   }
 
+  public List<Route> getSpots() {
+    return spots;
+  }
+
+  public void setSpots(List<Route> spots) {
+    this.spots = spots;
+  }
+
   public int getJno() {
     return jno;
   }
@@ -137,9 +127,6 @@ public class JourneyRider {
     result = prime * result + ((arrival == null) ? 0 : arrival.hashCode());
     result = prime * result + ((departure == null) ? 0 : departure.hashCode());
     result = prime * result + ((driver == null) ? 0 : driver.hashCode());
-    long temp;
-    temp = Double.doubleToLongBits(driverStar);
-    result = prime * result + (int) (temp ^ (temp >>> 32));
     result = prime * result + jno;
     result = prime * result + ((journey == null) ? 0 : journey.hashCode());
     result = prime * result + journeyRiderNo;
@@ -147,9 +134,8 @@ public class JourneyRider {
     result = prime * result + ((matchingContent == null) ? 0 : matchingContent.hashCode());
     result = prime * result + matchingStatus;
     result = prime * result + ((rider == null) ? 0 : rider.hashCode());
-    temp = Double.doubleToLongBits(riderStar);
-    result = prime * result + (int) (temp ^ (temp >>> 32));
     result = prime * result + ((spot == null) ? 0 : spot.hashCode());
+    result = prime * result + ((spots == null) ? 0 : spots.hashCode());
     return result;
   }
 
@@ -177,8 +163,6 @@ public class JourneyRider {
         return false;
     } else if (!driver.equals(other.driver))
       return false;
-    if (Double.doubleToLongBits(driverStar) != Double.doubleToLongBits(other.driverStar))
-      return false;
     if (jno != other.jno)
       return false;
     if (journey == null) {
@@ -205,12 +189,15 @@ public class JourneyRider {
         return false;
     } else if (!rider.equals(other.rider))
       return false;
-    if (Double.doubleToLongBits(riderStar) != Double.doubleToLongBits(other.riderStar))
-      return false;
     if (spot == null) {
       if (other.spot != null)
         return false;
     } else if (!spot.equals(other.spot))
+      return false;
+    if (spots == null) {
+      if (other.spots != null)
+        return false;
+    } else if (!spots.equals(other.spots))
       return false;
     return true;
   }

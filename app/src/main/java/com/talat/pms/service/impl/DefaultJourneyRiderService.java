@@ -2,22 +2,24 @@ package com.talat.pms.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
-import com.talat.mybatis.TransactionCallback;
-import com.talat.mybatis.TransactionManager;
-import com.talat.mybatis.TransactionTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 import com.talat.pms.dao.JourneyRiderDao;
 import com.talat.pms.dao.RiderQnADao;
-import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.JourneyRider;
 import com.talat.pms.service.JourneyRiderService;
 
+@Service
 public class DefaultJourneyRiderService implements JourneyRiderService {
 
   TransactionTemplate transactionTemplate;
   JourneyRiderDao journeyRiderDao; 
   RiderQnADao riderQnADao;
 
-  public DefaultJourneyRiderService(TransactionManager txManager, JourneyRiderDao journeyRiderDao,  RiderQnADao riderQnADao) {
+  public DefaultJourneyRiderService(PlatformTransactionManager txManager, JourneyRiderDao journeyRiderDao,  RiderQnADao riderQnADao) {
     this.transactionTemplate = new TransactionTemplate(txManager);
     this.journeyRiderDao = journeyRiderDao;
     this.riderQnADao = riderQnADao;
@@ -56,11 +58,15 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
   // 삭제 업무
   @Override
   public int delete(int no) throws Exception {
-    return (int) transactionTemplate.execute(new TransactionCallback() {
+    return transactionTemplate.execute(new TransactionCallback<Integer>() {
       @Override
-      public Object doInTransaction() throws Exception {
-        riderQnADao.deleteByJourneyRiderNo(no);
-        return journeyRiderDao.delete(no);
+      public Integer doInTransaction(TransactionStatus status) {
+        try { // talat_review_driver -> talat_qna_rider -> talat_journey_rider 순서
+          riderQnADao.deleteByJourneyRiderNo(no);
+          return journeyRiderDao.delete(no);
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
       }
     });
   }
@@ -76,26 +82,7 @@ public class DefaultJourneyRiderService implements JourneyRiderService {
 
     return journeyRiderDao.findByKeywords(params);
   }
-  //
-  //  @Override
-  //  public List<JourneyRider> selectList(SqlSession session) throws Exception {
-  //    List<JourneyRider> list = session.selectList("journeyRider.findBykeywords");
-  //    return list;
-  //  }
-  //  @Override
-  //  public List<Map<String, String>> selectMap(SqlSession session) throws Exception {
-  //    return list;
-  //  }
 
-  @Override
-  public List<JourneyRider> listOfJourney(int journeyNo) throws Exception {
-    return journeyRiderDao.findByJourneyNo(journeyNo);
-  }
-
-  @Override
-  public List<Journey> getJourneys(int journeyRiderNo) throws Exception {
-    return journeyRiderDao.findJourneys(journeyRiderNo);
-  }
 
 }
 

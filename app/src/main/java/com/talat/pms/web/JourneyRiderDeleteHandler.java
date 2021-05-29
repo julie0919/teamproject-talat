@@ -1,49 +1,49 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.talat.pms.domain.JourneyRider;
 import com.talat.pms.service.JourneyRiderService;
 
 // 여정 취소
-@SuppressWarnings("serial")
-@WebServlet("/journey/rider/delete")
-public class JourneyRiderDeleteHandler extends HttpServlet {
+@Controller
+public class JourneyRiderDeleteHandler {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  JourneyRiderService journeyRiderService;
 
-    JourneyRiderService journeyRiderService = (JourneyRiderService) request.getServletContext().getAttribute("journeyRiderService");
+  public JourneyRiderDeleteHandler(JourneyRiderService journeyRiderService) {
+    this.journeyRiderService = journeyRiderService;
+  }
+
+  @RequestMapping("/journey/rider/delete")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    int no = Integer.parseInt(request.getParameter("no"));
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
+    JourneyRider oldJourneyRider = journeyRiderService.getRjno(no);
 
-    try {
-      int no = Integer.parseInt(request.getParameter("no"));
+    //    Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+    if (oldJourneyRider == null) {
+      throw new Exception("해당 번호의 여정이 없습니다.");
+    } 
 
-      JourneyRider oldJourneyRider = journeyRiderService.getRjno(no);
+    //    if (oldJourneyRider.getRider().getMno() != loginUser.getMno()) {
+    //      throw new Exception("삭제 권한이 없습니다!");
 
-      if (oldJourneyRider == null) {
-        throw new Exception("해당 번호의 여정이 없습니다.");
-      } else if (oldJourneyRider.getMatchingStatus() == 1) {
-        out.println("이미 매칭이 완료되어 취소가 불가능합니다.");
-        return;
-      } else {
-        out.println("취소가 완료되었습니다.");
-      }
+    else if (oldJourneyRider.getMatchingStatus() == 1) {
+      out.println("이미 매칭이 완료되어 취소가 불가능합니다.");
+      return "/jsp/journeyRider/my_journey_list.jsp";
+    } 
 
-      journeyRiderService.delete(no);
 
-      response.sendRedirect("my_journey_list");
+    journeyRiderService.delete(no);
 
-    } catch (Exception e) {
-      throw new ServletException(e);
-    }
+    return "redirect:my_journey_list";
+
   }
 }
 

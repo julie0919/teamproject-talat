@@ -1,50 +1,51 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.JourneyRider;
 import com.talat.pms.domain.Member;
 import com.talat.pms.service.JourneyRiderService;
 
 // 카풀신청
-@SuppressWarnings("serial")
-@WebServlet("/journey/rider/add")
-public class JourneyRiderAddHandler extends HttpServlet {
+@Controller
+public class JourneyRiderAddHandler {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  JourneyRiderService journeyRiderService;
 
-    JourneyRiderService journeyRiderService = (JourneyRiderService) request.getServletContext().getAttribute("journeyRiderService");
+  public JourneyRiderAddHandler(JourneyRiderService journeyRiderService) {
+    this.journeyRiderService = journeyRiderService;
+  }
 
-    try {
-      int jno = Integer.parseInt(request.getParameter("no"));
-      JourneyRider jr = new JourneyRider();
-      jr.setMatchingStatus(0);
+  @RequestMapping("/journey/rider/add")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-      Journey journey = new Journey();
-      journey.setJno(jno);
-      jr.setJourney(journey);
+    int no = Integer.parseInt(request.getParameter("no"));
+    JourneyRider jr = new JourneyRider();
+    jr.setMatchingStatus(0);
 
-      Member rider = new Member();
-      rider.setMno(12); // 로그인 유저
-      jr.setRider(rider);
+    Journey journey = new Journey();
+    journey.setJno(no);
+    jr.setJourney(journey);
 
-      journeyRiderService.add(jr);
+    //    HttpServletRequest httpRequest = request;
+    //    Member loginUser = (Member) httpRequest.getSession().getAttribute("loginUser");
+    //    jr.setRider(loginUser);
 
-      request.setAttribute("journeyRiders", jr);
+    Member rider = new Member();
+    rider.setMno(12); // 로그인 유저
+    jr.setRider(rider);
 
-      response.setContentType("text/html;charset=UTF-8");
-      request.getRequestDispatcher("/jsp/journeyRider/form.jsp").include(request, response);
+    journeyRiderService.add(jr);
 
-    } catch (Exception e) {
-      throw new ServletException(e);
-    }
+    jr = journeyRiderService.getJno(no);
+
+    request.setAttribute("journeyRiders", jr);
+
+    return "/jsp/journeyRider/form.jsp";
+
   }
 
 }
