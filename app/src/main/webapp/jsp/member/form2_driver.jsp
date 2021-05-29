@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>회원가입_추가정보</h1>
-<form action='add' method='post' enctype='multipart/form-data'>
+<form action='addd1' method='post'>
 닉네임<br>
 <input type='text' name='nicName'><br>
 성별<br>
@@ -29,7 +29,7 @@
 <input type='radio' name='preferenceGender' value='2'>성별무관<br>
 <input type='hidden' name='starAverage' value='5'><br>
 <input type='hidden' name='reviewAverage' value='0'><br>
-<input type='submit' value='제출하기'> <a href='list'>취소</a>
+<input type='submit' value='다음'> <a href='list'>취소</a>
 </form>
 </body>
 </html>

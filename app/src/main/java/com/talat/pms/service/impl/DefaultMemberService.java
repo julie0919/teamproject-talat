@@ -1,12 +1,12 @@
 package com.talat.pms.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import org.springframework.stereotype.Service;
 import com.talat.pms.dao.MemberDao;
 import com.talat.pms.domain.Member;
 import com.talat.pms.service.MemberService;
 
+@Service
 public class DefaultMemberService implements MemberService {
 
   MemberDao memberDao;
@@ -17,29 +17,14 @@ public class DefaultMemberService implements MemberService {
 
   // 등록 업무
   @Override
-  public int add1(Member member) throws Exception {
-    return memberDao.insert1(member);
-  }
-
-  @Override
-  public int add2(Member member) throws Exception {
-    return memberDao.insert2(member);
+  public int add(Member member) throws Exception {
+    return memberDao.insert(member);
   }
 
   // 조회 업무
   @Override
   public List<Member> list() throws Exception {
     return memberDao.findAll();
-  }
-
-  // 사용자 조회 업무
-  @Override
-  public Member get(String email, String password) throws Exception {
-    Map<String,Object> params = new HashMap<>();
-    params.put("email", email);
-    params.put("password", password);
-
-    return memberDao.findByEmailPassword(params);
   }
 
   //사용자 조회 업무

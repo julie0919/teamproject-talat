@@ -10,7 +10,7 @@
 <title>회원목록</title>
 </head>
 <body>
-<h1>회원 목록</h1>
+<h1>드라이버 목록</h1>
 <p><a href='add1'>회원가입</a></p>
 <table border='1'>
 <thead>

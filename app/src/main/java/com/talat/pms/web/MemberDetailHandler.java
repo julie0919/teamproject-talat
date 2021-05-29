@@ -1,38 +1,34 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.talat.pms.domain.Member;
-import com.talat.pms.service.MemberService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.talat.pms.domain.MemberDriver;
+import com.talat.pms.service.MemberDriverService;
 
-@SuppressWarnings("serial")
-@WebServlet("/member/detail")
-public class MemberDetailHandler extends HttpServlet {
+@Controller
+public class MemberDetailHandler {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  MemberDriverService memberDriverService;
 
-    MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
+  public MemberDetailHandler(MemberDriverService memberDriverService) {
+    this.memberDriverService = memberDriverService;
+  }
 
-    try {
-      int no = Integer.parseInt(request.getParameter("mno"));
+  @RequestMapping("/member/detail")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-      Member m = memberService.get(no);
 
-      request.setAttribute("member", m);
-      response.setContentType("text/html;charset=UTF-8");
-      request.getRequestDispatcher("/jsp/member/detail.jsp").include(request, response);
+    int no = Integer.parseInt(request.getParameter("mno"));
 
-    } catch (Exception e) {
-      throw new ServletException(e);
-    }
+    MemberDriver m = memberDriverService.get(no);
+
+    request.setAttribute("member", m);
+    return "/jsp/member/detail.jsp";
   }
 }
+
 
 
 

@@ -14,7 +14,8 @@
 
 <style type="text/css">
   table {
-    border:1px solid black;
+    border:1px;
+    bordercolor:#000000;
     margin-left:20px;
   }
   th, td {
@@ -30,14 +31,19 @@
   <p>로그인 하지 않았습니다.</p>
 </c:if>
 <c:if test="${not empty loginUser}">
-<table>
+<table style="border:2px; outset;">
   <tbody>
   <tr>
-    <th>사진</th> 
-    <td><img src='upload/${loginUser.profile}_120x120.jpg' class="img-circle" style="border:5px solid gray; margin:3px;"></td></tr>
+  <th colspan="3">
+  <a style="font-size:25px;">기본정보</a></th>
+  <tr> 
+    <td rowspan="8"><a><img src='../../upload/${loginUser.profile}_120x120.jpg' class="img-circle" style="border:5px solid gray; margin:3px;"></a><br></td></tr>
   <tr>
+    <th>회원번호</th> 
+    <td><input name='mno' type='text' value='${loginUser.mno}' readonly>
+    <tr>
     <th>이름</th> 
-    <td>${loginUser.mname}&nbsp;
+    <td><input name='mname' type='text' value='${loginUser.mname}'>
       <c:if test="${loginUser.mType == 1}">
         <a style="color:#74E19D;"><b> 라이더님</b></a>
       </c:if>
@@ -46,37 +52,49 @@
       </c:if></td></tr>
   <tr>
     <th>닉네임</th> 
-    <td>${loginUser.nicName}</td></tr>
+    <td><input name='nicName' type='text' value='${loginUser.nickName}'></td></tr>
   <tr>
     <th>전화</th> 
-    <td>${loginUser.tel}<a style="color:#74E19D;"><b> 인증됨&nbsp;</b></a></td></tr>
+    <td><input name='tel' type='text' value='${loginUser.tel}'><a style="color:#74E19D;"><b> 인증됨</b></a></td></tr>
   <tr>
     <th>이메일</th> 
-    <td>${loginUser.email}<a style="color:#74E19D;"><b> 인증됨&nbsp;</b></a></td></tr>
-  <tr>
-    <th>가입일</th> 
-    <td>${loginUser.registeredDate}</td></tr>
+    <td><input name='email' type='text' value='${loginUser.email}'><a style="color:#74E19D;"><b> 인증됨</b></a></td></tr>
   <tr>
     <th>생년월일</th> 
-    <td>${loginUser.birth}</td></tr>
+    <td><input name='birth' type='date' value='${loginUser.birth}'></td></tr>
   <tr>
     <th>성별</th> 
     <td>
-    <c:if test="${loginUser.gender == 0}">
-      <a>여자</a>
-    </c:if>
-    <c:if test="${loginUser.gender == 1}">
-      <a>남자</a>
-    </c:if></td></tr>
+    <input name='gender' type='radio' value='0'${loginUser.gender == 0 ? "checked" : ""}>여자
+    <input name='gender' type='radio' value='1'${loginUser.gender == 1 ? "checked" : ""}>남자</td></tr>
+  </table>
+  <table>
   <tr>
-    <th>우편번호</th> 
-    <td>${loginUser.postNo}</td></tr>
+    <th colspan="2">
+    <a style="font-size:25px;">상세정보</a></th>
+    <th colspan="2">
+    <a style="font-size:25px;">나의평가</a></th>
   <tr>
-    <th>기본주소</th> 
-    <td>${loginUser.basicAddress}</td></tr>
-  <tr>
-    <th>상세주소</th> 
-    <td>${loginUser.detailAddress}</td></tr>
+    <th rowspan="3">우편번호</th> 
+    <td><input name='postNo' type='text' value='${loginUser.postNo}'></td>
+    <th>나의 별점</th> 
+    <td><input type="hidden" name="starAverage" value="${loginUser.starAverage}">
+    <a style="color:#FF9933;">
+        ${loginUser.starAverage == 0 ? "☆☆☆☆☆" :
+        loginUser.starAverage > 0 && loginUser.starAverage <= 1 ? "★☆☆☆☆" :
+        loginUser.starAverage > 1 && loginUser.starAverage <= 2 ? "★★☆☆☆" :
+        loginUser.starAverage >= 2 && loginUser.starAverage <= 3 ? "★★★☆☆" :
+        loginUser.starAverage >= 3 && loginUser.starAverage <= 4 ? "★★★★☆" : "5.0 ★★★★★"}</a></td>
+    <tr><td><input name='basicAddress' type='text' value='${loginUser.basicAddress}'></td>
+    <th>많이받은<br>리뷰</th> 
+    <td>
+      ${loginUser.reviewAverage == 0 ? "&nbsp;리뷰없음" :
+        loginUser.reviewAverage == 1 ? "&nbsp;친절해요!" :
+        loginUser.reviewAverage == 2 ? "&nbsp;편안해요!" :
+        loginUser.reviewAverage == 3 ? "&nbsp;깨끗해요!" :
+        loginUser.reviewAverage == 4 ? "&nbsp;약속된 곳에서 만났어요!" :
+        loginUser.reviewAverage == 5 ? "&nbsp;시간 잘 지켜요!" : "약속 잘 지켜요!"}</td></tr>
+    <tr><td><input name='detailAddress' type='text' value='${loginUser.detailAddress}'></td></tr>
   <tr>
     <th>
     <c:if test="${loginUser.mType == 1}">
@@ -89,34 +107,48 @@
     </c:if></th> 
     <td>
     <input name='preferenceGender' type='radio' value='0'
-      ${loginUser.preferenceGender == 0 ? "checked onclick='return(false);'" : "onclick='return(false);'"}>여자
+          ${loginUser.preferenceGender == 0 ? "checked" : ""}>여자
     <input name='preferenceGender' type='radio' value='1'
-      ${loginUser.preferenceGender == 1 ? "checked onclick='return(false);'" : "onclick='return(false);'"}>남자
+          ${loginUser.preferenceGender == 1 ? "checked" : ""}>남자
     <input name='preferenceGender' type='radio' value='2'
-      ${loginUser.preferenceGender == 2 ? "checked onclick='return(false);'" : "onclick='return(false);'"}>성별무관
+          ${loginUser.preferenceGender == 2 ? "checked" : ""}>성별무관</td></tr>
+    </table>
+  <c:if test="${loginUser.mType == 2}">
+  <table>
+    <tr>
+    <th colspan="2">
+    <a style="font-size:25px;">차량정보</a></th>
+    <th colspan="2">
+    <a style="font-size:25px;">드라이버 상세정보</a></th>  
   <tr>
-    <th>나의 별점</th> 
-    <td><a style="color:#FF9933;">
-        ${loginUser.starAverage}&nbsp;${loginUser.starAverage == 0 ? "☆☆☆☆☆" :
-        loginUser.starAverage > 0 && loginUser.starAverage <= 1 ? "★☆☆☆☆" :
-        loginUser.starAverage > 1 && loginUser.starAverage <= 2 ? "★★☆☆☆" :
-        loginUser.starAverage >= 2 && loginUser.starAverage <= 3 ? "★★★☆☆" :
-        loginUser.starAverage >= 3 && loginUser.starAverage <= 4 ? "★★★★☆" : "5.0 ★★★★★"}</a></td></tr>
+    <th>차량번호</th> 
+    <td><input name='carNo' type='text' value='${loginUser.carNo}'></td>
+    <th>면허번호</th> 
+    <td><input name='licenseNo' type='text' value='${loginUser.licenseNo}'></td></tr>
   <tr>
-    <th>많이받은<br>리뷰</th> 
-    <td>
-      ${loginUser.reviewAverage == 0 ? "&nbsp;없음" :
-        loginUser.reviewAverage == 1 ? "&nbsp;친절해요!" :
-        loginUser.reviewAverage == 2 ? "&nbsp;편안해요!" :
-        loginUser.reviewAverage == 3 ? "&nbsp;깨끗해요!" :
-        loginUser.reviewAverage == 4 ? "&nbsp;약속된 곳에서 만났어요!" :
-        loginUser.reviewAverage == 5 ? "&nbsp;시간 잘 지켜요!" : "약속 잘 지켜요!"}</td></tr>
+    <th>차량모델명</th> 
+    <td><input name='carModel' type='text' value='${loginUser.carModel}'></td>
+    <th>면허종류</th> 
+    <td><input name='licenseType' type='text' value='${loginUser.licenseType}'></td></tr>
+  <tr>
+    <th>차량색상</th> 
+    <td><input name='carColor' type='text' value='${loginUser.carColor}'></td>
+    <th>면허갱신일</th> 
+    <td><input name='licenseRenewal' type='date' value='${loginUser.licenseRenewal}'></td></tr>
+  <tr>
+    <th>차량연식</th> 
+    <td><input name='carYear' type='text' value='${loginUser.carYear}'></td>
+    <th>면허인증번호</th> 
+    <td><input name='licenseNo' type='text' value='${loginUser.licenseNo}'></td></tr>
+  <tr>
+    <th>차량명의</th> 
+    <td><input name='carOwner' type='text' value='${loginUser.carOwner}'></td></tr>
+  <tr>
+    <th>면허인증번호</th> 
+    <td><input name=licenseVerfNo type='text' value='${loginUser.licenseVerfNo}'></td></tr>
   </tbody>
-  <tfoot>
-  <tr><td colspan='2'>
-  </td></tr>
-</tfoot>
-</table>
+  </table>
+  </c:if>
 </c:if>
 </body>
 </html>

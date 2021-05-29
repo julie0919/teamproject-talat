@@ -14,7 +14,8 @@
 
 <style type="text/css">
   table {
-    border:1px solid black;
+    border:1px;
+    bordercolor:#000000;
     margin-left:20px;
   }
   th, td {
@@ -25,18 +26,19 @@
 </style>
 </head>
 <body>
-<h1>회원 프로필</h1>
 <form action='update' method='post' enctype='multipart/form-data'>
 <table style="border:2px; outset;">
   <tbody>
   <tr>
-    <th>사진</th> 
-    <td><a><img src='../upload/${member.profile}_120x120.jpg' class="img-circle" style="border:5px solid gray; margin:3px;"></a><br>
+  <th colspan="3">
+  <a style="font-size:25px;">기본정보</a></th>
+  <tr> 
+    <td rowspan="8"><a><img src='../../upload/${member.profile}_120x120.jpg' class="img-circle" style="border:5px solid gray; margin:3px;"></a><br>
            <input name='photo' type='file'></td></tr>
   <tr>
     <th>회원번호</th> 
     <td><input name='mno' type='text' value='${member.mno}' readonly>
-  <tr>
+    <tr>
     <th>이름</th> 
     <td><input name='mname' type='text' value='${member.mname}'>
       <c:if test="${member.mType == 1}">
@@ -55,10 +57,6 @@
     <th>이메일</th> 
     <td><input name='email' type='text' value='${member.email}'><a style="color:#74E19D;"><b> 인증됨</b></a></td></tr>
   <tr>
-    <th>가입일</th>
-    <td>
-    <input type="date" name="registereDate" value="${member.registeredDate}" readonly></td></tr>
-  <tr>
     <th>생년월일</th> 
     <td><input name='birth' type='date' value='${member.birth}'></td></tr>
   <tr>
@@ -66,15 +64,34 @@
     <td>
     <input name='gender' type='radio' value='0'${member.gender == 0 ? "checked" : ""}>여자
     <input name='gender' type='radio' value='1'${member.gender == 1 ? "checked" : ""}>남자</td></tr>
+  </table>
+  <table>
   <tr>
-    <th>우편번호</th> 
-    <td><input name='postNo' type='text' value='${member.postNo}'></td></tr>
+    <th colspan="2">
+    <a style="font-size:25px;">상세정보</a></th>
+    <th colspan="2">
+    <a style="font-size:25px;">나의평가</a></th>
   <tr>
-    <th>기본주소</th> 
-    <td><input name='basicAddress' type='text' value='${member.basicAddress}'></td></tr>
-  <tr>
-    <th>상세주소</th> 
-    <td><input name='detailAddress' type='text' value='${member.detailAddress}'></td></tr>
+    <th rowspan="3">우편번호</th> 
+    <td><input name='postNo' type='text' value='${member.postNo}'></td>
+    <th>나의 별점</th> 
+    <td><input type="hidden" name="starAverage" value="${member.starAverage}">
+    <a style="color:#FF9933;">
+        ${member.starAverage == 0 ? "☆☆☆☆☆" :
+        member.starAverage > 0 && member.starAverage <= 1 ? "★☆☆☆☆" :
+        member.starAverage > 1 && member.starAverage <= 2 ? "★★☆☆☆" :
+        member.starAverage >= 2 && member.starAverage <= 3 ? "★★★☆☆" :
+        member.starAverage >= 3 && member.starAverage <= 4 ? "★★★★☆" : "5.0 ★★★★★"}</a></td>
+    <tr><td><input name='basicAddress' type='text' value='${member.basicAddress}'></td>
+    <th>많이받은<br>리뷰</th> 
+    <td>
+      ${member.reviewAverage == 0 ? "&nbsp;리뷰없음" :
+        member.reviewAverage == 1 ? "&nbsp;친절해요!" :
+        member.reviewAverage == 2 ? "&nbsp;편안해요!" :
+        member.reviewAverage == 3 ? "&nbsp;깨끗해요!" :
+        member.reviewAverage == 4 ? "&nbsp;약속된 곳에서 만났어요!" :
+        member.reviewAverage == 5 ? "&nbsp;시간 잘 지켜요!" : "약속 잘 지켜요!"}</td></tr>
+    <tr><td><input name='detailAddress' type='text' value='${member.detailAddress}'></td></tr>
   <tr>
     <th>
     <c:if test="${member.mType == 1}">
@@ -92,32 +109,47 @@
           ${member.preferenceGender == 1 ? "checked" : ""}>남자
     <input name='preferenceGender' type='radio' value='2'
           ${member.preferenceGender == 2 ? "checked" : ""}>성별무관</td></tr>
+    </table>
+  <c:if test="${member.mType == 2}">
+  <table>
+    <tr>
+    <th colspan="2">
+    <a style="font-size:25px;">차량정보</a></th>
+    <th colspan="2">
+    <a style="font-size:25px;">드라이버 상세정보</a></th>  
   <tr>
-    <th>나의 별점</th> 
-    <td><input type="hidden" name="starAverage" value="${starAverage}">
-    <a style="color:#FF9933;">
-        ${member.starAverage}&nbsp;${member.starAverage == 0 ? "☆☆☆☆☆" :
-        member.starAverage > 0 && member.starAverage <= 1 ? "★☆☆☆☆" :
-        member.starAverage > 1 && member.starAverage <= 2 ? "★★☆☆☆" :
-        member.starAverage >= 2 && member.starAverage <= 3 ? "★★★☆☆" :
-        member.starAverage >= 3 && member.starAverage <= 4 ? "★★★★☆" : "5.0 ★★★★★"}</a></td></tr>
+    <th>차량번호</th> 
+    <td><input name='carNo' type='text' value='${member.carNo}'></td>
+    <th>면허번호</th> 
+    <td><input name='licenseNo' type='text' value='${member.licenseNo}'></td></tr>
   <tr>
-    <th>많이받은<br>리뷰</th> 
-    <td>
-      ${member.reviewAverage == 0 ? "&nbsp;없음" :
-        member.reviewAverage == 1 ? "&nbsp;친절해요!" :
-        member.reviewAverage == 2 ? "&nbsp;편안해요!" :
-        member.reviewAverage == 3 ? "&nbsp;깨끗해요!" :
-        member.reviewAverage == 4 ? "&nbsp;약속된 곳에서 만났어요!" :
-        member.reviewAverage == 5 ? "&nbsp;시간 잘 지켜요!" : "약속 잘 지켜요!"}</td></tr>
+    <th>차량모델명</th> 
+    <td><input name='carModel' type='text' value='${member.carModel}'></td>
+    <th>면허종류</th> 
+    <td><input name='licenseType' type='text' value='${member.licenseType}'></td></tr>
+  <tr>
+    <th>차량색상</th> 
+    <td><input name='carColor' type='text' value='${member.carColor}'></td>
+    <th>면허갱신일</th> 
+    <td><input name='licenseRenewal' type='date' value='${member.licenseRenewal}'></td></tr>
+  <tr>
+    <th>차량연식</th> 
+    <td><input name='carYear' type='text' value='${member.carYear}'></td>
+    <th>면허인증번호</th> 
+    <td><input name='licenseNo' type='text' value='${member.licenseNo}'></td></tr>
+  <tr>
+    <th>차량명의</th> 
+    <td><input name='carOwner' type='text' value='${member.carOwner}'></td></tr>
+  <tr>
+    <th>면허인증번호</th> 
+    <td><input name=licenseVerfNo type='text' value='${member.licenseVerfNo}'></td></tr>
   </tbody>
-  <tfoot>
-  <tr><td colspan='2'>
-  <input type="submit" value="변경">
-  <button type="button" onclick="location.href='delete?no=${member.mno}'">삭제</button>
-  </td></tr>
-  </tfoot>
-</table>
+  </table>
+  </c:if>
+  <div style="padding-left:20px; padding-bottom:20px; padding-top:10px;">
+    <input type="submit" value="변경">
+    <button type="button" onclick="location.href='delete?no=${member.mno}'">삭제</button>
+  </div>
 </form>
 </body>
 </html>
