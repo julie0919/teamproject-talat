@@ -151,7 +151,7 @@
       inner join talat_journey_route r on j.jno=r.jno 
     where j.jno=#{value}
   </select>
-  
+   
   <update id="update" parameterType="journey">
     update talat_journey set
         jdate = #{journeyDate}, 

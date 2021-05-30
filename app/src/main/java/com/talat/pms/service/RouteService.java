@@ -7,8 +7,12 @@ import com.talat.pms.domain.Route;
 public interface RouteService {
 
   int add(Route route) throws Exception;
-  //
+
   List<Route> list() throws Exception;
+
+  List<Route> getRoutes(int no) throws Exception;
+
+  List<Route> getJourneyRiderRoutes(int no) throws Exception;
 
   Route get(int no) throws Exception;
 
@@ -18,9 +22,6 @@ public interface RouteService {
 
   List<Route> search(BigDecimal latitude, BigDecimal longitude) throws Exception;
 }
-
-
-
 
 
 

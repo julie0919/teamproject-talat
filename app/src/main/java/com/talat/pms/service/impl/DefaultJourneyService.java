@@ -1,16 +1,18 @@
 package com.talat.pms.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import com.talat.mybatis.TransactionCallback;
-import com.talat.mybatis.TransactionManager;
-import com.talat.mybatis.TransactionTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 import com.talat.pms.dao.JourneyDao;
 import com.talat.pms.dao.RouteDao;
 import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.Route;
 import com.talat.pms.service.JourneyService;
 
+@Service
 public class DefaultJourneyService implements JourneyService {
 
   TransactionTemplate transactionTemplate;
@@ -18,7 +20,7 @@ public class DefaultJourneyService implements JourneyService {
   JourneyDao journeyDao; 
   RouteDao routeDao;
 
-  public DefaultJourneyService(TransactionManager txManager, JourneyDao journeyDao, RouteDao routeDao) {
+  public DefaultJourneyService(PlatformTransactionManager txManager, JourneyDao journeyDao, RouteDao routeDao) {
     this.transactionTemplate = new TransactionTemplate(txManager);
     this.journeyDao = journeyDao;
     this.routeDao = routeDao;
@@ -26,21 +28,24 @@ public class DefaultJourneyService implements JourneyService {
 
   // 등록 업무
   @Override
-  public int add(Journey journey) throws Exception {
-    return (int) transactionTemplate.execute(new TransactionCallback() {
+  public int add(Journey journey, List<Route> routes) throws Exception {
+    return transactionTemplate.execute(new TransactionCallback<Integer>() {
       @Override
-      public Object doInTransaction() throws Exception {
-        int count = journeyDao.insert(journey); 
+      public Integer doInTransaction(TransactionStatus status) {
+        try {
+          // 트랜잭션으로 묶어서 실행할 작업을 기술한다.
+          // 1) 여정 정보를 입력한다.
+          int count = journeyDao.insert(journey, routes); 
 
-        if (journey.getRoutes().size() > 0) {
-          HashMap<String,Object> params = new HashMap<>();
-          params.put("jno", journey.getJno());
-          params.put("routes", journey.getRoutes());
+          for (Route r : routes) {
+            r.setJno(journey.getJno());
+            routeDao.insert(r);
+          }
+          return count;
 
-          journeyDao.insertRoutes(params);
+        } catch (Exception e) {
+          throw new RuntimeException(e);
         }
-
-        return count;
       }
     });
   }
@@ -64,22 +69,28 @@ public class DefaultJourneyService implements JourneyService {
 
   // 변경 업무
   @Override
-  public int update(Journey journey) throws Exception {
-    return (int) transactionTemplate.execute(new TransactionCallback() {
+  public int update(Journey journey, List<Route> routes) throws Exception {
+    return transactionTemplate.execute(new TransactionCallback<Integer>() {
       @Override
-      public Object doInTransaction() throws Exception {
-        int count = journeyDao.update(journey);
-        journeyDao.deleteRoutes(journey.getJno());
+      public Integer doInTransaction(TransactionStatus status) {
+        try {
+          int count = journeyDao.update(journey, routes);
 
-        if (journey.getRoutes().size() > 0) {
-          HashMap<String,Object> params = new HashMap<>();
-          params.put("projectNo", journey.getJno());
-          params.put("members", journey.getRoutes());
+          // 기존의 Routes 정보 삭제
+          // 1) 여정의 경로정보 삭제
+          // routeDao와 Mapper를 보면 routeDao.delete은 jno=${value}일 때의 route 정보 삭제
+          routeDao.delete(journey.getJno());
 
-          journeyDao.insertRoutes(params);
+          // 2) 새로운 경로정보 추가
+          for (Route r : routes) {
+            r.setJno(journey.getJno());
+            routeDao.insert(r);
+          }
+          return count;
+
+        } catch (Exception e) {
+          throw new RuntimeException(e);
         }
-
-        return count;
       }
     });
   }
@@ -87,33 +98,21 @@ public class DefaultJourneyService implements JourneyService {
   // 삭제 업무
   @Override
   public int delete(int no) throws Exception {
-    return (int) transactionTemplate.execute(new TransactionCallback() {
+    return transactionTemplate.execute(new TransactionCallback<Integer>() {
       @Override
-      public Object doInTransaction() throws Exception {
-        routeDao.deleteByJourneyNo(no);
-        journeyDao.deleteRoutes(no);
-        return  journeyDao.delete(no);
-      }
-    });
-  }
+      public Integer doInTransaction(TransactionStatus status) {
+        try {
 
-  @Override
-  public int deleteRoutes(int journeyNo) throws Exception {
-    return journeyDao.deleteRoutes(journeyNo);
-  }
+          // 트랜잭션으로 묶어서 실행할 작업을 기술한다.       
+          // 1) 여정의 경로정보 삭제
+          // routeDao와 Mapper를 보면 routeDao.delete은 jno=${value}일 때의 route 정보 삭제
+          routeDao.delete(no);
+          // 2) 여정 삭제
+          return journeyDao.delete(no);
 
-  @Override
-  public int updateRoutes(int journeyNo, List<Route> routes) throws Exception {
-    return (int) transactionTemplate.execute(new TransactionCallback() {
-      @Override
-      public Object doInTransaction() throws Exception {
-        journeyDao.deleteRoutes(journeyNo);
-
-        HashMap<String,Object> params = new HashMap<>();
-        params.put("journeyNo", journeyNo);
-        params.put("routes", routes);
-
-        return journeyDao.insertRoutes(params);
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
       }
     });
   }

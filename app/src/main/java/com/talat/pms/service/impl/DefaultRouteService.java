@@ -2,10 +2,12 @@ package com.talat.pms.service.impl;
 
 import java.math.BigDecimal;
 import java.util.List;
+import org.springframework.stereotype.Service;
 import com.talat.pms.dao.RouteDao;
 import com.talat.pms.domain.Route;
 import com.talat.pms.service.RouteService;
 
+@Service
 public class DefaultRouteService implements RouteService {
 
   RouteDao routeDao; 
@@ -31,6 +33,18 @@ public class DefaultRouteService implements RouteService {
   public Route get(int no) throws Exception {
     Route route = routeDao.findByNo(no);
     return route; 
+  }
+
+  // 여정의 경로 검색
+  @Override
+  public List<Route> getRoutes(int no) throws Exception {
+    return routeDao.findByJourneyNo(no);
+  }
+
+  // 라이더여정의 경로 검색
+  @Override
+  public List<Route> getJourneyRiderRoutes(int no) throws Exception {
+    return routeDao.findByJourneyRiderNo(no);
   }
 
   // 변경 업무
