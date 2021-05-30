@@ -4,24 +4,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.talat.pms.domain.RiderQnA;
-import com.talat.pms.service.RiderQnAService;
+import com.talat.pms.domain.DriverQnA;
+import com.talat.pms.service.DriverQnAService;
 
 @Controller
-public class RiderQnAManagerDeleteHandler {
+public class DriverQnAManagerDeleteHandler {
 
-  RiderQnAService riderQnAService;
+  DriverQnAService driverQnAService;
 
-  public RiderQnAManagerDeleteHandler(RiderQnAService riderQnAService) {
-    this.riderQnAService = riderQnAService;
+  public DriverQnAManagerDeleteHandler(DriverQnAService driverQnAService) {
+    this.driverQnAService = driverQnAService;
   }
 
-  @RequestMapping("/qna/rider/manager/delete")
+  @RequestMapping("/qna/driver/manager/delete")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     int no = Integer.parseInt(request.getParameter("no"));
 
-    RiderQnA oldRiderQnA = riderQnAService.get(no);
-    if (oldRiderQnA == null) {
+    DriverQnA oldDriverQnA = driverQnAService.get(no);
+    if (oldDriverQnA == null) {
       throw new Exception("해당 번호의 라이더 문의가 없습니다.");
     }
 
@@ -30,10 +30,8 @@ public class RiderQnAManagerDeleteHandler {
     //        throw new Exception("삭제 권한이 없습니다!");
     //      }
 
-    riderQnAService.delete(no);
-
+    driverQnAService.delete(no);
     return "redirect:list";
-
   }
 }
 

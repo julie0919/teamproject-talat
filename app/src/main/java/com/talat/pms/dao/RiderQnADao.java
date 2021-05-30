@@ -3,7 +3,6 @@ package com.talat.pms.dao;
 import java.util.List;
 import com.talat.pms.domain.RiderQnA;
 
-// BoardDao 의 규칙 정의
 public interface RiderQnADao {
 
   int insert(RiderQnA riderQnA) throws Exception;
@@ -14,9 +13,11 @@ public interface RiderQnADao {
 
   RiderQnA findByNo(int no) throws Exception;
 
-  int update(RiderQnA driverQnA) throws Exception;
+  int update(RiderQnA riderQnA) throws Exception;
 
-  int managerUpdate(RiderQnA driverQnA) throws Exception;
+  int managerUpdate(RiderQnA riderQnA) throws Exception;
+
+  int deleteByJourneyRiderNo(int journeyRiderNo) throws Exception;
 
   int delete(int no) throws Exception;
 }

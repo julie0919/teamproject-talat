@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talat.pms.dao.DriverQnADao">
+  
+  <resultMap id="DriverQnAMap" type="DriverQnA">
+    <id column="dqno" property="no"/>
+    <result column="jno" property="jno"/>
+    <result column="dqdate" property="registeredDate"/>
+    <result column="answ_stat_d" property="status"/>
+    <result column="dqcont" property="qContent"/>
+    <result column="answ_cont_d" property="aContent"/>
+    <result column="dfile" property="file"/>
+    
+    <!-- 여정신청 association -->
+
+    <association property="qtype" javaType="qna">
+      <id column="qna_no" property="no"/>
+      <result column="qna_title" property="typeTitle"/>
+    </association>
+    
+    <association property="writer" javaType="member">
+	    <id column="writer_no" property="mno"/>
+	    <result column="writer_name" property="mname"/>
+    </association>
+    
+    <association property="partner" javaType="member">
+      <id column="partner_no" property="mno"/>
+      <result column="partner_name" property="mname"/>
+    </association>
+    
+  </resultMap>
+  
+  <insert id="insert" parameterType="DriverQnA">
+    insert into talat_qna_driver(qno,qtitle,dqcont,jno,dfile) 
+    values(#{qtype.no},#{qtype.typeTitle},#{qContent},#{jno},#{file})
+  </insert>
+
+  <select id="findAll" resultMap="DriverQnAMap">
+    select
+      dq.dqno,
+      dq.dqdate,
+      dq.answ_stat_d,
+      dq.dfile,
+      q.qno as qna_no,
+      q.qtitle as qna_title,
+      dm.mno as writer_no,
+      dm.mname as writer_name,
+      rm.mno as partner_no,
+      rm.mname as partner_name
+    from talat_qna_driver dq
+      inner join talat_qna q on dq.qno=q.qno
+      inner join talat_journey j on dq.jno=j.jno
+      inner join talat_memb dm on j.mno=dm.mno
+      inner join talat_journey_rider rj on j.jno=rj.jno
+      inner join talat_memb rm on rj.mno=rm.mno
+    order by dq.dqno desc
+  </select>
+  
+  <select id="findByKeyword" resultMap="DriverQnAMap" parameterType="string">
+ 
+  </select>
+  
+  <select id="findByNo" resultMap="DriverQnAMap" parameterType="int">
+    select
+      dq.dqno,
+      dq.dqdate,
+      dq.answ_stat_d,
+      dq.dqcont,
+      dq.answ_cont_d,
+      dq.dfile,
+      q.qno as qna_no,
+      q.qtitle as qna_title,
+      dm.mno as writer_no,
+      dm.mname as writer_name,
+      rm.mno as partner_no,
+      rm.mname as partner_name
+    from talat_qna_driver dq
+      inner join talat_qna q on dq.qno=q.qno
+      inner join talat_journey j on dq.jno=j.jno
+      inner join talat_memb dm on j.mno=dm.mno
+      inner join talat_journey_rider rj on j.jno=rj.jno
+      inner join talat_memb rm on rj.mno=rm.mno
+    where dq.dqno = #{value}
+  </select>
+  
+  <update id="update" parameterType="DriverQnA">
+    update talat_qna_driver set
+        qno = #{qtype.no},
+        qtitle = #{qtype.typeTitle},
+        dqcont = #{qContent},
+        dfile = #{file}
+    where dqno = #{no}
+  </update>
+  
+  <update id="managerUpdate" parameterType="DriverQnA">
+    update talat_qna_driver set
+        answ_cont_d = #{aContent},
+        answ_stat_d = #{status}
+    where dqno = #{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from talat_qna_driver 
+    where dqno = #{value}
+  </delete>
+  
+  <delete id="deleteByJourneyNo" parameterType="int">
+    delete from talat_qna_driver
+    where jno = #{value}
+  </delete>
+
+</mapper>
+
+
+
+
+
+
+

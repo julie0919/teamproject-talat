@@ -9,20 +9,19 @@ import com.talat.pms.domain.DriverQnA;
 import com.talat.pms.service.DriverQnAService;
 
 @Controller
-public class DriverQnAListHandler {
+public class DriverQnAManagerListHandler {
 
   DriverQnAService driverQnAService;
 
-  public DriverQnAListHandler(DriverQnAService driverQnAService) {
+  public DriverQnAManagerListHandler(DriverQnAService driverQnAService) {
     this.driverQnAService = driverQnAService;
   }
 
-  @RequestMapping("/qna/driver/list")
+  @RequestMapping("/qna/driver/manager/list")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
     List<DriverQnA> driverQnas = driverQnAService.list();
     request.setAttribute("list", driverQnas);
-    return "/jsp/driverQnA/list.jsp";
+    return "/jsp/driverQnA/manager_list.jsp";
   }
 }
 
