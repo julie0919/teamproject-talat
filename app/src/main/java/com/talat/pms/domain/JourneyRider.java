@@ -8,7 +8,7 @@ public class JourneyRider {
   private String matchingContent;
   private Journey journey;
   private List<Journey> journeys;
-  private Member driver;
+  private MemberDriver driver;
   private Member rider;
   private Route departure;
   private Route arrival;
@@ -64,11 +64,11 @@ public class JourneyRider {
     this.journeys = journeys;
   }
 
-  public Member getDriver() {
+  public MemberDriver getDriver() {
     return driver;
   }
 
-  public void setDriver(Member driver) {
+  public void setDriver(MemberDriver driver) {
     this.driver = driver;
   }
 
@@ -201,8 +201,6 @@ public class JourneyRider {
       return false;
     return true;
   }
-
-
 
 
 }

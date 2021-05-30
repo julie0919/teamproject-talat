@@ -35,6 +35,7 @@ public class JourneyRiderSearch2Handler {
 
     List<JourneyRider> journeyRiders = journeyRiderService.search(keyword1, keyword2, keyword3, keyword4);
     request.setAttribute("journeyRiders", journeyRiders);
+    request.setAttribute("list", journeyRiderService.list());
 
     return "/jsp/journeyRider/search2.jsp";
 

@@ -28,7 +28,7 @@ public class JourneyRiderMyJourneyDetailHandler {
 
     JourneyRider journeyRider = journeyRiderService.getRjno(no);
     request.setAttribute("journeyRider", journeyRider);
-    request.setAttribute("routes", routeService.getJourneyRoutes(no));
+    request.setAttribute("routes", routeService.getJourneyRiderRoutes(no));
 
     HttpSession session = request.getSession();
     session.setAttribute("journeyRiderNo", no);

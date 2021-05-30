@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.talat.pms.domain.Journey;
 import com.talat.pms.domain.JourneyRider;
-import com.talat.pms.domain.Member;
+import com.talat.pms.domain.MemberRider;
 import com.talat.pms.service.JourneyRiderService;
 
 // 카풀신청
@@ -23,6 +23,7 @@ public class JourneyRiderAddHandler {
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     int no = Integer.parseInt(request.getParameter("no"));
+
     JourneyRider jr = new JourneyRider();
     jr.setMatchingStatus(0);
 
@@ -34,15 +35,15 @@ public class JourneyRiderAddHandler {
     //    Member loginUser = (Member) httpRequest.getSession().getAttribute("loginUser");
     //    jr.setRider(loginUser);
 
-    Member rider = new Member();
+    MemberRider rider = new MemberRider();
     rider.setMno(12); // 로그인 유저
     jr.setRider(rider);
 
     journeyRiderService.add(jr);
-
     jr = journeyRiderService.getJno(no);
-
     request.setAttribute("journeyRiders", jr);
+    request.setAttribute("list", journeyRiderService.list());
+    System.out.println(journeyRiderService.list());
 
     return "/jsp/journeyRider/form.jsp";
 

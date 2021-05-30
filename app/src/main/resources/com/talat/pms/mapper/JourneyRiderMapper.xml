@@ -16,7 +16,7 @@
     <result column="rstar" property="riderStar"/>
      -->
 
-    <association property="driver" javaType="member" resultMap="memberMap"/>
+    <association property="driver" javaType="memberDriver" resultMap="memberDriverMap"/>
     
     <association property="journey" javaType="journey">
       <id column="jno" property="jno"/>
@@ -47,13 +47,13 @@
       <result column="t3_spot_order" property="spotOrder"/>
     </association>
     
-    <association property="rider" javaType="member">
+    <association property="rider" javaType="memberRider">
       <id column="rider_mno" property="mno"/>
     </association>
     
   </resultMap>
     
-  <resultMap type="member" id="memberMap">
+  <resultMap type="memberDriver" id="memberDriverMap">
       <id column="driver_mno" property="mno"/>
       <result column="driver_mname" property="mname"/>
   </resultMap>
