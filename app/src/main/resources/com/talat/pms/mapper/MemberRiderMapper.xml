@@ -25,6 +25,11 @@
           , #{profile}, #{preferenceGender}, #{starAverage}, #{reviewAverage})
   </insert>
 
+  <delete id="delete" parameterType="int">
+    delete from talat_join
+    where mno=#{value}
+  </delete>
+
 </mapper>
 
 

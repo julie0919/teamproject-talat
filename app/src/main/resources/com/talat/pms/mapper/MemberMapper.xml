@@ -28,167 +28,64 @@
       tm.email,
       tm.tel,
       tm.birth,
-      tm.mtype,
-      tj.nic,
-      tj.gender,
-      tj.pst_no,
-      tj.basic_addr,
-      tj.det_addr,
-      tj.prof,
-      tj.pref_gender,
-      tj.mrdt,
-      tj.star_avg,
-      tj.rev_avg,
-      td.lic_no,
-      td.lic_type,
-      td.lic_renew,
-      td.lic_verf,
-      td.cno,
-      td.cname,
-      td.ccolor,
-      td.cyear,
-      td.cowner,
-      td.lic_photo,
-      td.ins_photo,
-      td.car_photo,
-      td.corp_photo,
-      td.apvl
+      tm.mtype
     from talat_memb tm
-      left outer join talat_join tj on tm.mno=tj.mno
-      left outer join talat_driver td on tm.mno=td.mno
     order by tm.mno asc
   </select>
   
-   <select id="findByEmailPassword" resultMap="memberMap" parameterType="map">
+    <select id="findByNo" resultMap="memberMap" parameterType="int">
     select 
-      tm.mno,
-      tm.mname,
-      tm.email,
-      tm.tel,
-      tm.birth,
-      tm.mtype,
-      tj.nic,
-      tj.gender,
-      tj.pst_no,
-      tj.basic_addr,
-      tj.det_addr,
-      tj.prof,
-      tj.pref_gender,
-      tj.mrdt,
-      tj.star_avg,
-      tj.rev_avg,
-      td.lic_no,
-      td.lic_type,
-      td.lic_renew,
-      td.lic_verf,
-      td.cno,
-      td.cname,
-      td.ccolor,
-      td.cyear,
-      td.cowner,
-      td.lic_photo,
-      td.ins_photo,
-      td.car_photo,
-      td.corp_photo,
-      td.apvl
-    from talat_memb tm
-      left outer join talat_join tj on tm.mno=tj.mno
-      left outer join talat_driver td on tm.mno=td.mno
-    where tm.email = #{email} and tm.pwd = password(#{password})
+      mno,
+      mname,
+      email,
+      tel,
+      birth,
+      mtype
+    from talat_memb
+    where mno=#{value}
   </select>
   
-  <select id="findByNo" resultMap="memberMap" parameterType="int">
+  
+  <select id="findByService" resultMap="memberMap" parameterType="int">
     select 
-      tm.mno,
-      tm.mname,
-      tm.email,
-      tm.tel,
-      tm.birth,
-      tm.mtype,
-      tj.nic,
-      tj.gender,
-      tj.pst_no,
-      tj.basic_addr,
-      tj.det_addr,
-      tj.prof,
-      tj.pref_gender,
-      tj.mrdt,
-      tj.star_avg,
-      tj.rev_avg,
-      td.lic_no,
-      td.lic_type,
-      td.lic_renew,
-      td.lic_verf,
-      td.cno,
-      td.cname,
-      td.ccolor,
-      td.cyear,
-      td.cowner,
-      td.lic_photo,
-      td.ins_photo,
-      td.car_photo,
-      td.corp_photo,
-      td.apvl
-    from talat_memb tm
-      left outer join talat_join tj on tm.mno=tj.mno
-      left outer join talat_driver td on tm.mno=td.mno
-    where tm.mno=#{value}
+      mno,
+      mname,
+      email,
+      tel,
+      birth,
+      mtype
+    from talat_memb
+    where mtype=#{value}
+  </select>
+  
+    <select id="admin" resultMap="memberMap">
+    select 
+      mno,
+      mname,
+      email,
+      tel,
+      birth,
+      mtype
+    from talat_memb
+    where tm.mtype=0
   </select>
  
   <update id="update" parameterType="member">
   update talat_memb tm
-    left outer join talat_join tj
-    on tm.mno=tj.mno
   <set> 
     <if test="mname != ''">tm.mname=#{mname}</if>
     <if test="email != ''">tm.email=#{email}</if>
     <if test="tel != ''">tm.tel=#{tel}</if>
     <if test="birth != null">tm.birth=#{birth}</if>
-    <if test="nickName != ''">tj.nic=#{nickName}</if>
-    <if test="postNo != ''">tj.pst_no=#{postNo}</if>
-    <if test="basicAddress != ''">tj.basic_addr=#{basicAddress}</if>
-    <if test="detailAddress != ''">tj.det_addr=#{detailAddress}</if>
-    <if test="preferenceGender != null">tj.pref_gender=#{preferenceGender}</if>
   </set>
-  where tm.mno=#{mno}
+  where tm.mno=#{value}
   </update>
   
-  <update id="update2">
-  update talat_memb tm, talat_join tj set 
-      tm.mname=#{tm.mname},
-      tm.email=#{tm.email},
-      tm.pwd=#{tm.password},
-      tm.tel=#{tm.tel},
-      tm.birth=#{tm.birth},
-      tj.nic=#{tj.nicName},
-      tj.pst_no=#{tj.postNo},
-      tj.basic_addr=#{tj.basicAddress},
-      tj.det_addr=#{tj.detailAddress},
-      tj.prof=#{tj.profile},
-      tj.pref_gender=#{tj.preferenceGender}
-  where tm.mno=#{value} and tj.mno=#{value}
-  </update>
-  
-  <delete id="delete_D" parameterType="int">
-    delete from td, tj, tm
-      using talat_driver td
-      inner join talat_join tj
-      inner join talat_memb tm
-      on td.mno=tj.mno
-      and tj.mno=tm.mno
-    where td.mno=#{value}
+  <delete id="delete" parameterType="int">
+    delete from talat_memb
+    where mno=#{value}
   </delete>
   
-    <delete id="delete_R" parameterType="int">
-    delete from td, tj, tm
-      using talat_driver td
-      inner join talat_join tj
-      inner join talat_memb tm
-      on td.mno=tj.mno
-      and tj.mno=tm.mno
-    where td.mno=#{value}
-  </delete>
- 
 </mapper>
 
 

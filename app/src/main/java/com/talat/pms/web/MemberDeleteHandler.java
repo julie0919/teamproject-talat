@@ -1,32 +1,40 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.talat.pms.domain.Member;
+import com.talat.pms.service.MemberDriverService;
+import com.talat.pms.service.MemberRiderService;
 import com.talat.pms.service.MemberService;
 
-@SuppressWarnings("serial")
-@WebServlet("/member/delete")
-public class MemberDeleteHandler extends HttpServlet {
+@Controller
+public class MemberDeleteHandler {
 
-  @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  MemberService memberService;
+  MemberRiderService memberRiderService;
+  MemberDriverService memberDriverService;
 
-    MemberService memberService = (MemberService) request.getServletContext().getAttribute("memberService");
+  public MemberDeleteHandler(
+      MemberService memberService, MemberRiderService memberRiderService, MemberDriverService memberDriverService) {
+    this.memberService = memberService;
+    this.memberRiderService = memberRiderService;
+    this.memberDriverService = memberDriverService;
+  }
 
-    try {
-      int no = Integer.parseInt(request.getParameter("no"));
+  @RequestMapping("/member/delete")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-      memberService.delete(no);
-      response.sendRedirect("list");
+    int no = Integer.parseInt(request.getParameter("mno"));
+    Member m = memberService.get(no);
 
-    } catch (Exception e) {
-      throw new ServletException(e);
+    if (m.getmType() == 1) {
+      memberService.deleteRider(no);
+    } else if (m.getmType() == 2) {
+      memberService.deleteDriver(no);
     }
+    return "redirect:list";
   }
 }
 

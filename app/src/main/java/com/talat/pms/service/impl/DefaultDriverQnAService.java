@@ -1,10 +1,12 @@
 package com.talat.pms.service.impl;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 import com.talat.pms.dao.DriverQnADao;
 import com.talat.pms.domain.DriverQnA;
 import com.talat.pms.service.DriverQnAService;
 
+@Service
 public class DefaultDriverQnAService implements DriverQnAService {
 
   DriverQnADao driverQnADao; 
@@ -22,23 +24,25 @@ public class DefaultDriverQnAService implements DriverQnAService {
   // 게시글 목록 조회 업무
   @Override
   public List<DriverQnA> list() throws Exception {
-    return driverQnADao.findByKeyword(null);
+    return driverQnADao.findAll();
   }
 
   // 게시글 상세 조회 업무
   @Override
   public DriverQnA get(int no) throws Exception {
-    DriverQnA driverQnA = driverQnADao.findByNo(no);
-    if (driverQnA != null) {
-      driverQnADao.updateViewCount(no);
-    }
-    return driverQnA; 
+    return driverQnADao.findByNo(no);
   }
 
   // 게시글 변경 업무
   @Override
   public int update(DriverQnA driverQnA) throws Exception {
     return driverQnADao.update(driverQnA);
+  }
+
+  // 답변 업데이트
+  @Override
+  public int managerUpdate(DriverQnA driverQnA) throws Exception {
+    return driverQnADao.managerUpdate(driverQnA);
   }
 
   // 게시글 삭제 업무

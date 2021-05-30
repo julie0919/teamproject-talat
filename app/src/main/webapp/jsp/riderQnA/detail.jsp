@@ -1,6 +1,6 @@
-<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@
   <td>답변완료</td>
 </c:if>
 </tr>
-<tr><th>문의 내용</th> <td><textarea name='qContent' rows='10' cols='60'>${riderQnA.qContent}</textarea></td></tr>
+<tr><th>문의 내용</th> <td><textarea name='qContent' rows='10' cols='60' ${riderQnA.status == 1 ? "readonly" : ""}>${riderQnA.qContent}</textarea></td></tr>
 <tr><th>문의 답변</th> <td><textarea name='aContent' rows='10' cols='60' readonly>${riderQnA.aContent}</textarea></td></tr>
 <tr><th>첨부파일</th> <td><input name='file' type='text' value='${riderQnA.file}'></td></tr>
 </tbody>

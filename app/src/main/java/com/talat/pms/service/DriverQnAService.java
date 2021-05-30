@@ -13,6 +13,8 @@ public interface DriverQnAService {
 
   int update(DriverQnA driverQnA) throws Exception;
 
+  int managerUpdate(DriverQnA driverQnA) throws Exception;
+
   int delete(int no) throws Exception;
 
   List<DriverQnA> search(String keyword) throws Exception;

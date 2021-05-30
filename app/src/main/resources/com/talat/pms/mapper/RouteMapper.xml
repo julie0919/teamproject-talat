@@ -10,8 +10,7 @@
     <result column="spot_order" property="spotOrder"/>
     <result column="lat" property="latitude"/>
     <result column="lng" property="longitude"/>
-    <result column="spot_name" property="spotName"/>
-    <result column="spot_time" property="spotTime"/>    
+    <result column="spot_name" property="spotName"/> 
   
   <association property="jno" javaType="journey">
       <id column="journey_no" property="jno"/>
@@ -19,8 +18,13 @@
   </resultMap>
   
   <insert id="insert" parameterType="route">
-    insert into talat_journey_route(jno,lat,lng,spot_name,spot_time) 
-    values(#{jno},#{latitude},#{longitude},#{spotName},#{spotTime})
+    insert into talat_journey_route(jno,lat,lng,spot_name,spot_order) 
+    values(
+      (select j.jno 
+      from talat_journey j
+      order by j.jno desc limit 1
+      )
+    ,#{latitude},#{longitude},#{spotName},#{spotOrder})
   </insert>
 
   <select id="findByNo" resultMap="routeMap" parameterType="int">
@@ -29,11 +33,38 @@
       r.lat,
       r.lng,
       r.spot_name,
-      r.spot_time,
+      r.spot_orders,
       j.jno as journey_no
     from talat_journey_route r
       inner join talat_journey j on r.jno=j.jno
     where r.rno = #{value}
+  </select>
+  
+  <select id="findByJourneyNo" resultMap="routeMap" parameterType="int">
+    select 
+      r.rno,
+      r.jno,
+      r.spot_order,
+      r.spot_name,
+      r.lat,
+      r.lng
+    from talat_journey_route r
+      inner join talat_journey j on j.jno=r.jno 
+    where j.jno=#{value}
+  </select>
+  
+  <select id="findByJourneyRiderNo" resultMap="routeMap" parameterType="int">
+    select 
+      r.rno,
+      r.jno,
+      r.spot_order,
+      r.spot_name,
+      r.lat,
+      r.lng
+    from talat_journey_route r
+      inner join talat_journey j on j.jno=r.jno 
+      inner join talat_journey_rider jr on jr.jno=j.jno
+    where jr.rjno=#{value}
   </select>
   
   <select id="findByKeyword" resultMap="routeMap" parameterType="string">
@@ -42,7 +73,7 @@
       r.lat,
       r.lng,
       r.spot_name,
-      r.spot_time,
+      r.spot_orders,
       j.jno as journey_no
     from talat_journey_route r
       inner join talat_journey j on r.jno=j.jno
@@ -59,14 +90,14 @@
     update talat_journey_route set
         lat = #{latitude}, 
         lng = #{longitude}, 
-        spot_name = #{spotName}, 
-        spot_time = #{spotTime}
+        spot_name = #{spotName}
+        spot_orders = #{spotOrder}
     where rno = #{rno}
   </update>
   
   <delete id="delete" parameterType="int">
     delete from talat_journey_route
-    where rno = #{value}
+    where jno=#{value}
   </delete>
 
 </mapper>

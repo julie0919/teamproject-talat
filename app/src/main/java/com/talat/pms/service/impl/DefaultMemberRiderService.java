@@ -7,6 +7,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import com.talat.pms.dao.MemberDao;
+import com.talat.pms.dao.MemberDriverDao;
 import com.talat.pms.dao.MemberRiderDao;
 import com.talat.pms.domain.Member;
 import com.talat.pms.domain.MemberRider;
@@ -16,11 +17,17 @@ import com.talat.pms.service.MemberRiderService;
 public class DefaultMemberRiderService implements MemberRiderService {
 
   TransactionTemplate transactionTemplate;
+  MemberDriverDao memberDriverDao;
   MemberRiderDao memberRiderDao;
   MemberDao memberDao;
 
-  public DefaultMemberRiderService(PlatformTransactionManager txManager, MemberRiderDao memberRiderDao, MemberDao memberDao) {
+  public DefaultMemberRiderService(
+      PlatformTransactionManager txManager,
+      MemberDriverDao memberDriverDao,
+      MemberRiderDao memberRiderDao,
+      MemberDao memberDao) {
     this.transactionTemplate = new TransactionTemplate(txManager);
+    this.memberDriverDao = memberDriverDao;
     this.memberRiderDao = memberRiderDao;
     this.memberDao = memberDao;
   }  

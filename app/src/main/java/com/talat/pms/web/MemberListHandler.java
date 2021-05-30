@@ -21,7 +21,7 @@ public class MemberListHandler{
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     List<MemberDriver> list = memberDriverService.list();
-
+    System.out.println(list);
     request.setAttribute("list", list);
 
     return "/jsp/member/memberlist.jsp";
