@@ -14,20 +14,32 @@
 <h1>새 라이더 문의</h1>
 <table border='1'>
 <tbody>
-<tr><th>번호</th> <td>${myJourney.jno}</td></tr>
-<tr><th>출발지</th> <td>${myJourney.departure.spotName}</td></tr>
-<tr><th>도착지</th> <td>${myJourney.arrival.spotName}</td></tr>
-<tr><th>여정날짜</th> <td><fmt:formatDate value="${myJourney.journeyDate}" pattern="yyyy-MM-dd"/></td></tr>
-<tr><th>도착시간</th> <td><fmt:formatDate value="${myJourney.journeyTime}" pattern="HH:mm:ss"/></td></tr>
-<tr><th>보조석 인원</th> <td>${myJourney.seatPassenger}</td></tr>
-<tr><th>뒷자석 인원</th> <td>${myJourney.seatRear}</td></tr>
-<c:if test="${myJourney.pet == 0}">
+<tr><th>번호</th> <td>${myRjourney.jno}</td></tr>
+<c:forEach items="${myRjourneyRoutes}" var="r">
+<c:if test="${r.spotOrder == 1}">
+<tr><th>출발지</th> <td>${r.spotName}</td></tr>
+</c:if>
+<c:if test="${r.spotOrder == 2}">
+<tr><th>경유지</th> <td>${r.spotName}</td></tr>
+</c:if>
+<c:if test="${r.spotOrder == 3}">
+<tr><th>경유지</th> <td>${r.spotName}</td></tr>
+</c:if>
+<c:if test="${r.spotOrder == 100}">
+<tr><th>도착지</th> <td>${r.spotName}</td></tr>
+</c:if>
+</c:forEach>
+<tr><th>여정날짜</th> <td><fmt:formatDate value="${myRjourney.journeyDate}" pattern="yyyy-MM-dd"/></td></tr>
+<tr><th>도착시간</th> <td><fmt:formatDate value="${myRjourney.journeyTime}" pattern="HH:mm:ss"/></td></tr>
+<tr><th>보조석 인원</th> <td>${myRjourney.seatPassenger}</td></tr>
+<tr><th>뒷자석 인원</th> <td>${myRjourney.seatRear}</td></tr>
+<c:if test="${myRjourney.pet == 0}">
   <tr><th>반려동물 탑승</th><td>아니오</td></tr>
 </c:if>
-<c:if test="${myJourney.pet == 1}">
+<c:if test="${myRjourney.pet == 1}">
   <tr><th>반려동물 탑승</th><td>예</td></tr>
 </c:if>
-<tr><th>여정 설명</th> <td><textarea name='content' rows='10' cols='60' readonly>${myJourney.content}</textarea></td></tr>
+<tr><th>여정 설명</th> <td><textarea name='content' rows='10' cols='60' readonly>${myRjourney.content}</textarea></td></tr>
 </tbody>
 </table>
 <hr>

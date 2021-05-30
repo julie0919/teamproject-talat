@@ -12,6 +12,9 @@
 <body>
 <h1>나의 여정내역</h1>
 <p>여정 상세정보</p>
+<c:set scope="session" var="myRjno" value="${journeyRider.journeyRiderNo}"/>
+<c:set scope="session" var="myRjourney" value="${journeyRider.journey}"/>
+<c:set scope="session" var="myRjourneyRoutes" value="${routes}"/>
 <table border='1'>
 <tbody>
 <tr><th>여정신청번호</th> <td><input type='text' name='journeyRiderNo' value='${journeyRider.journeyRiderNo}' readonly></td></tr>

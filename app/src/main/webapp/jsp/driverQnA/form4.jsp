@@ -8,15 +8,27 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>새 라이더 문의</title>
+<title>새 드라이버 문의</title>
 </head>
 <body>
-<h1>새 라이더 문의</h1>
+<h1>새 드라이버 문의</h1>
 <table border='1'>
 <tbody>
 <tr><th>번호</th> <td>${myJourney.jno}</td></tr>
-<tr><th>출발지</th> <td>${myJourney.departure.spotName}</td></tr>
-<tr><th>도착지</th> <td>${myJourney.arrival.spotName}</td></tr>
+<c:forEach items="${myJourneyRoutes}" var="r">
+<c:if test="${r.spotOrder == 1}">
+<tr><th>출발지</th> <td>${r.spotName}</td></tr>
+</c:if>
+<c:if test="${r.spotOrder == 2}">
+<tr><th>경유지</th> <td>${r.spotName}</td></tr>
+</c:if>
+<c:if test="${r.spotOrder == 3}">
+<tr><th>경유지</th> <td>${r.spotName}</td></tr>
+</c:if>
+<c:if test="${r.spotOrder == 100}">
+<tr><th>도착지</th> <td>${r.spotName}</td></tr>
+</c:if>
+</c:forEach>
 <tr><th>여정날짜</th> <td><fmt:formatDate value="${myJourney.journeyDate}" pattern="yyyy-MM-dd"/></td></tr>
 <tr><th>도착시간</th> <td><fmt:formatDate value="${myJourney.journeyTime}" pattern="HH:mm:ss"/></td></tr>
 <tr><th>보조석 인원</th> <td>${myJourney.seatPassenger}</td></tr>
@@ -43,7 +55,7 @@
 <hr>
 문의내용: <textarea name='qContent' rows='10' cols='60'></textarea><br>
 <p><input type='submit' value='등록'>
-<a href='my_journey_list'>목록</a></p>
+<a href='list'>목록</a></p>
 </form>
 </body>
 </html>
