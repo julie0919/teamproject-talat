@@ -1,7 +1,6 @@
 package com.talat.pms.domain;
 
 import java.math.BigDecimal;
-import java.sql.Time;
 
 public class Route {
   private int rno;
@@ -10,14 +9,14 @@ public class Route {
   private BigDecimal latitude;
   private BigDecimal longitude;  
   private String spotName;
-  private Time spotTime;
+
 
   @Override
   public String toString() {
     return "Route [rno=" + rno + ", jno=" + jno + ", spotOrder=" + spotOrder + ", latitude="
-        + latitude + ", longitude=" + longitude + ", spotName=" + spotName + ", spotTime="
-        + spotTime + "]";
+        + latitude + ", longitude=" + longitude + ", spotName=" + spotName + "]";
   }
+
   public int getRno() {
     return rno;
   }
@@ -54,12 +53,7 @@ public class Route {
   public void setSpotName(String spotName) {
     this.spotName = spotName;
   }
-  public Time getSpotTime() {
-    return spotTime;
-  }
-  public void setSpotTime(Time spotTime) {
-    this.spotTime = spotTime;
-  }
+
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -70,9 +64,9 @@ public class Route {
     result = prime * result + rno;
     result = prime * result + ((spotName == null) ? 0 : spotName.hashCode());
     result = prime * result + spotOrder;
-    result = prime * result + ((spotTime == null) ? 0 : spotTime.hashCode());
     return result;
   }
+
   @Override
   public boolean equals(Object obj) {
     if (this == obj)
@@ -103,12 +97,6 @@ public class Route {
       return false;
     if (spotOrder != other.spotOrder)
       return false;
-    if (spotTime == null) {
-      if (other.spotTime != null)
-        return false;
-    } else if (!spotTime.equals(other.spotTime))
-      return false;
     return true;
   }
-
 }

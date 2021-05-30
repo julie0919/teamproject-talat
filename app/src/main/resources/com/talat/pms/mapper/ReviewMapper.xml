@@ -6,19 +6,17 @@
 <mapper namespace="com.talat.pms.dao.ReviewDao">
   
   <resultMap id="reviewMap" type="review">
-    <id column="rev_no" property="no"/>
+    <id column="rev_no" property="revNo"/>
     <result column="rev" property="review"/>
   </resultMap>
   
   <insert id="insert" parameterType="review">
     insert into talat_review(rev_no,rev) 
-    values(#{review},#{review})
+    values(#{revNo},#{review})
   </insert>
   
   <select id="findAll" resultMap="reviewMap">
-    select 
-      rev_no,
-      rev
+    select *
     from talat_review
     order by rev_no asc
   </select>

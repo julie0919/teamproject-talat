@@ -1,14 +1,17 @@
 package com.talat.pms.domain;
 
 public class Review {
-  private int no;
+  private int revNo;
   private String review;
-
-  public int getNo() {
-    return no;
+  @Override
+  public String toString() {
+    return "Review [revNo=" + revNo + ", review=" + review + "]";
   }
-  public void setNo(int no) {
-    this.no = no;
+  public int getRevNo() {
+    return revNo;
+  }
+  public void setRevNo(int revNo) {
+    this.revNo = revNo;
   }
   public String getReview() {
     return review;
@@ -20,7 +23,7 @@ public class Review {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + no;
+    result = prime * result + revNo;
     result = prime * result + ((review == null) ? 0 : review.hashCode());
     return result;
   }
@@ -33,7 +36,7 @@ public class Review {
     if (getClass() != obj.getClass())
       return false;
     Review other = (Review) obj;
-    if (no != other.no)
+    if (revNo != other.revNo)
       return false;
     if (review == null) {
       if (other.review != null)
@@ -42,10 +45,4 @@ public class Review {
       return false;
     return true;
   }
-  @Override
-  public String toString() {
-    return "Review [no=" + no + ", review=" + review + "]";
-  }
-
-
 }

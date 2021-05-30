@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talat.pms.dao.ReviewDriverDao">
+  
+  <resultMap id="reviewDriverMap" type="reviewDriver">
+    <id column="rjno" property="rjno"/>
+    <result column="rstar" property="rstar"/>
+    <result column="drevdate" property="dRevRegisteredDate"/>
+    <result column="drevstat" property="dRevStat"/>
+        
+    <!-- 멤버 association -->
+    <association property="dwriter" javaType="member">
+      <id column="dwriter_no" property="mno"/>
+      <result column="dwriter_name" property="mname"/>
+    </association>
+    
+    <association property="rpartner" javaType="member">
+      <id column="rpartner_no" property="mno"/>
+      <result column="rpartner_name" property="mname"/> 
+    </association>
+
+    <!-- 리뷰 collection -->
+    <collection property="reviews" ofType="review">
+      <id column="rev_no" property="revNo"/>
+      <result column="rev" property="review"/>
+    </collection>
+        
+  </resultMap>
+  
+  <insert id="insert" parameterType="ReviewDriver">
+    insert into talat_review_driver(rjno,rev_no,rev,rstar,drevstat) 
+    values
+    <foreach collection="reviews" item="r" separator=",">
+      (#{rjno},#{r.revNo},#{r.review},#{rstar},#{dRevStat});
+    </foreach>
+  </insert>
+
+  <select id="findAll" resultMap="reviewDriverMap">
+    select
+      rd.rjno,
+      rd.rstar,
+      rd.drevdate,
+      rd.drevstat,
+      r.rev_no as rev_no,
+      r.rev as rev,
+      dm.mno as dwriter_no,
+      dm.mname as dwriter_name,
+      rm.mno as rpartner_no,
+      rm.mname as rpartner_name
+    from talat_review_driver rd
+      left outer join talat_review r on rd.rev_no=r.rev_no
+      inner join talat_journey_rider rj on rd.rjno=rj.rjno
+      inner join talat_memb rm on rj.mno=rm.mno
+      inner join talat_journey j on rj.jno=j.jno
+      inner join talat_memb dm on j.mno=dm.mno 
+    order by rd.rjno desc
+  </select>
+
+</mapper>
+
+
+
+
+
+
+

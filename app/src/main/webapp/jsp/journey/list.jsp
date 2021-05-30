@@ -17,13 +17,15 @@
 </thead>
 <tbody>
 
-
 <c:forEach items="${list}" var="j">
  <tr>
   <td><a href='detail?jno=${j.jno}'>${j.jno}</a></td>
   <td>${j.driver.mname}</td>
   <td>${j.departure.spotName}</td>
   <td>${j.arrival.spotName}</td>
+  
+  <!-- javaScript 사용시 다중 submit 을 통해 j.departure / arrival 로 사용가능 -->
+  
   <td><fmt:formatDate value="${j.journeyTime}" pattern="HH:mm:ss"/></td>
   <td><fmt:formatDate value="${j.journeyDate}" pattern="yyyy-MM-dd"/></td>
   </tr>

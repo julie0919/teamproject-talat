@@ -1,64 +1,37 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.talat.pms.domain.Review;
 import com.talat.pms.service.ReviewService;
 
-@SuppressWarnings("serial")
-@WebServlet("/review/add")
-public class ReviewAddHandler extends HttpServlet {
+@Controller
+public class ReviewAddHandler {
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  ReviewService reviewService;
 
-    ReviewService reviewService = (ReviewService) request.getServletContext().getAttribute("reviewService");
+  public ReviewAddHandler(ReviewService reviewService) {
+    this.reviewService = reviewService;
+    System.out.println("ReviewAddHandler 객체 생성됨!");
+  }
 
-    Review r = new Review();
+  @RequestMapping("/review/add")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    // 클라이언트가 POST 요청으로 보낸 데이터가 UTF-8임을 알려준다.
-    request.setCharacterEncoding("UTF-8");
-
-    r.setReview(request.getParameter("review"));
-
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<title>리뷰 등록</title>");
-
-    try {
-      reviewService.add(r);
-
-      out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>리뷰 등록</h1>");
-      out.println("<p>리뷰를 등록했습니다.</p>");
-
-    } catch (Exception e) {
-      StringWriter strWriter = new StringWriter();
-      PrintWriter printWriter = new PrintWriter(strWriter);
-      e.printStackTrace(printWriter);
-
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>리뷰 등록 오류</h1>");
-      out.printf("<pre>%s</pre>\n", strWriter.toString());
-      out.println("<p><a href='list'>목록</a></p>");
+    if (request.getMethod().equals("GET")) {
+      return "/jsp/review/reviewData/reviewData_form.jsp";
     }
 
-    out.println("</body>");
-    out.println("</html>");
+    Review r = new Review();
+    r.setReview(request.getParameter("reivew"));
+
+    reviewService.add(r);
+
+    return "/jsp/review/reviewData/reviewData_sucess.jsp";
+    // response.setHeader("Refresh", "1;url=review/list");
+
   }
 }
 

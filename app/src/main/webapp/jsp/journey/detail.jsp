@@ -1,50 +1,50 @@
-<%@page import="com.talat.pms.domain.Journey"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>여정 목록1</title>
+<title>여정 상세</title>
 </head>
 <body>
-<h1>여정 목록</h1>
+<h1>여정 상세보기</h1>
+<form action='update' method='post'>
 <table border='1'>
-<thead>
-<tr>
-<th>번호</th> <th>드라이버</th> <th>출발지</th> <th>도착지</th> <th>시간</th> <th>일자</th>
-</tr>
-</thead>
 <tbody>
-<%
-List<Journey> list = (List<Journey>) request.getAttribute("list");
-for (Journey j : list) {
-  out.println("<tr>");
-  out.println("<td><a href='detail?jno=" + j.getJno() + "'>" + j.getJno() + "</a></td>");
-  out.println("<td>" + j.getDriver().getMname() + "</td>");
-  out.println("<td>" + j.getDeparture() + "</td>");
-  out.println("<td>" + j.getArrival() + "</td>");
-  out.println("<td>" + j.getJourneyTime() + "</td>");
-  out.println("<td>" + j.getJourneyDate() + "</td>");
-  out.println("</tr>");
-}
-%>
+<tr><th>번호</th> <td><input type='text' name='jno' value='${journey.jno}' readonly></td></tr>
+<c:forEach items="${routes}" var="r">
+<c:if test="${r.spotOrder==1}">
+<tr><th>출발지</th> <td><input name='departure' type='text' value='${r.spotName}'></td></tr>
+</c:if>
+<c:if test="${r.spotOrder==2}">
+    <tr><th>경유지</th><td><input name='route1' type='text' value='${r.spotName}'></td></tr>
+</c:if>
+<c:if test="${r.spotOrder==3}">
+    <tr><th>경유지</th><td><input name='route2' type='text' value='${r.spotName}'></td></tr>
+</c:if>
+<c:if test="${r.spotOrder==100}">
+<tr><th>도착지</th> <td><input name='arrival' type='text' value='${r.spotName}'></td></tr>
+</c:if>
+</c:forEach>
+
+<tr><th>여정날짜</th> <td><fmt:formatDate value="${journey.journeyDate}" pattern="yyyy-MM-dd"/></td></tr>
+<tr><th>도착시간</th> <td><fmt:formatDate value="${journey.journeyTime}" pattern="HH:mm:ss"/></td></tr>
+<tr><th>보조석 인원</th> <td>${journey.seatPassenger}</td></tr>
+<tr><th>뒷자석 인원</th> <td>${journey.seatRear}</td></tr>
+<c:if test="${journey.pet == 0}">
+  <tr><th>반려동물 탑승</th><td>아니오</td></tr>
+</c:if>
+<c:if test="${journey.pet == 1}">
+  <tr><th>반려동물 탑승</th><td>예</td></tr>
+</c:if>
+<tr><th>여정 설명</th> <td><textarea name='content' rows='10' cols='60'>${journey.content}</textarea></td></tr>
 </tbody>
 </table>
-<form action='search' method='get'>
-<input type='text' name='keyword'> 
-<button>검색</button>
+<input type='submit' value='변경'> 
+<a href='delete?jno=${journey.jno}'>삭제</a>
 </form>
-<form method='get'>
-<select name='item'>
-  <option value='0' >전체</option>
-  <option value='1' >출발지</option>
-  <option value='2' >도착지</option>
-</select>
-<input type='search' name='keyword' value=''> 
-<button>검색</button>
-</form>
+<p><a href='list'>목록</a></p>
 </body>
 </html>
-    

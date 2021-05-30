@@ -1,72 +1,81 @@
 package com.talat.pms.web;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@SuppressWarnings("serial")
-@WebServlet("/journey/add2")
-public class JourneyAdd2Handler extends HttpServlet {
+@Controller
+public class JourneyAdd2Handler {
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-
-    //    HttpSession session = request.getSession();
-
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<meta charset='UTF-8'>");
-    out.println("<title>여정 등록</title>");
-    out.println("</head>");
-    out.println("<body>");
-    out.println("<h1>여정 등록: 2단계</h1>");
-    out.println("<p>함께 할 라이더를 찾아볼까요!</p>");
-
-    //    Journey j = new Journey();
-    //    j.setDeparture((String) session.getAttribute("departure"));
-    //    j.setArrival((String) session.getAttribute("arrival"));
-    //    j.setJourneyDate(Date.valueOf((String) session.getAttribute("journeyDate")));
-    //    j.setJourneyTime(Time.valueOf((String) session.getAttribute("journeyTime")));
-    //
-    //    out.printf("출발지: <input type='text' name='departure' value='%s' readonly><br>\n", j.getDeparture());
-    //    out.printf("도착지: <input type='text' name='arrival' value='%s' readonly><br>\n", j.getArrival());
-    //    out.printf("날짜: <input type='date' name='journeyDate' value='%s' readonly><br>\n", j.getJourneyDate());
-    //    out.printf("시간: <input type='time' name='journeyTime' value='%s' readonly><br>\n<br><br>\n", j.getJourneyTime());
-
-    out.println("<form action='add' method='post'>");
-    out.println("<h2>상세 옵션</h2>");
-    out.println("라이더 좌석 선택<br>");
-    out.println("보조석: <input type='text' name='seatPsng'><br>");
-    out.println("뒷좌석: <input type='text' name='seatRear'><br>");
-    out.println("반려동물 탑승: \n");
-    out.println("<input type='radio' name='pet' value='1'>");
-    out.println("<label for='pet'>예</label>&nbsp;&nbsp;&nbsp;");
-    out.println("<input type='radio' name='pet' value='0'>");
-    out.println("<label for='pet'>아니오</label><br>");
-
-    out.println("여정 운임: <input type='text' name='fee'>원<br>");
-
-    out.println("<h2>여정 설명</h2>");
-
-    out.println("<textarea name='journeyContent' rows='10' cols='60'></textarea><br>");
-
-    out.println("<p><input type='submit' value='여정 등록하기'>");
-    out.println("<a href='list'>취소</a></p>");
-    out.println("</form>");
-
-    out.println("</body>");
-    out.println("</html>");
-
+  class CarRoute {
+    int seqNo;
+    double latitude;
+    double longitude;
+    String location;
+    public CarRoute(int seqNo, String location, double latitude, double longitude) {
+      this.seqNo = seqNo;
+      this.location = location;
+      this.latitude = latitude;
+      this.longitude = longitude;
+    }
   }
+
+  @RequestMapping("/journey/add2")
+  public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    HttpSession session = request.getSession();
+    int maxNo = Integer.parseInt(request.getParameter("indx"));
+    int startNo = 1;
+    int routeSeqNo = 1;
+    ArrayList<CarRoute> routes = new ArrayList<>();
+    routes.add(new CarRoute(routeSeqNo++, request.getParameter("bname"+ startNo),37.621930705941516,127.07873319407591
+        /*, 
+        new BigDecimal(request.getParameter("lt1")), 
+        new BigDecimal(request.getParameter("lg1")))*/));
+
+    for (int i = 2; i < maxNo; i++) {
+      routes.add(new CarRoute(routeSeqNo++, request.getParameter("bname" + i),37.621930705941516,127.07873319407591
+          /*, 
+          new BigDecimal(request.getParameter("lt" + i)), 
+          new BigDecimal(request.getParameter("lg" + i))*/));
+      //request.setAttribute("bname" + i, request.getParameter("bname" + i));
+      System.out.println(request.getParameter("bname" + i));
+    }
+
+    routes.add(new CarRoute(100, request.getParameter("bname" + maxNo),37.621930705941516,127.07873319407591
+        /*, 
+        new BigDecimal(request.getParameter("lt" + Integer.parseInt(request.getParameter("indx")))), 
+        new BigDecimal(request.getParameter("lg" + Integer.parseInt(request.getParameter("indx"))))*/));
+    System.out.println(request.getParameter("bname" + maxNo));
+    //    int no = 1;
+    //    while (true) {
+    //      String route = request.getParameter("route" + no);
+    //      if (route == null) {
+    //        break;
+    //      }
+    //
+    //      routes.add(new CarRoute(routeSeqNo++, route, 
+    //          new BigDecimal(request.getParameter("lt")), 
+    //          new BigDecimal(request.getParameter("lg"))));
+    //      request.setAttribute("route"+ no++, route);
+    //    }
+    //
+    //    routes.add(new CarRoute(100, request.getParameter("arrival"), 
+    //        new BigDecimal(request.getParameter("lt")), 
+    //        new BigDecimal(request.getParameter("lg"))));
+    //
+    session.setAttribute("routes", routes);
+
+    request.setAttribute("departure", request.getParameter("bname1"));
+    request.setAttribute("arrival", request.getParameter("bname" + maxNo));
+    session.setAttribute("journeyDate", request.getParameter("journeyDate"));
+    session.setAttribute("journeyTime", request.getParameter("journeyTime"));
+
+    return "/jsp/journey/form2.jsp";
+  }
+
 }
 
 
