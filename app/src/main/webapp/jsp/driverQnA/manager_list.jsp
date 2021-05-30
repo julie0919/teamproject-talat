@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>라이더 문의 목록_관리자</title>
+<title>드라이버 문의 목록_관리자</title>
 </head>
 <body>
-<h1>라이더 문의 목록_관리자</h1>
+<h1>드라이버 문의 목록_관리자</h1>
 <table border='1'>
 <thead>
 <tr>
@@ -17,17 +17,17 @@
 </tr>
 </thead>
 <tbody>
-<c:forEach items="${list}" var="rq">
+<c:forEach items="${list}" var="dq">
   <tr>
-  <td><a href='detail?no=${rq.no}'>${rq.no}</a></td>
-  <td>${rq.writer.mname}</td>
-  <td>${rq.partner.mname}</td>
-  <td><fmt:formatDate value="${rq.registeredDate}" pattern="yyyy-MM-dd"/></td>
-  <td><fmt:formatDate value="${rq.registeredDate}" pattern="HH:mm:ss"/></td>
-<c:if test="${rq.status==0}">
+  <td><a href='detail?no=${dq.no}'>${dq.no}</a></td>
+  <td>${dq.writer.mname}</td>
+  <td>${dq.partner.mname}</td>
+  <td><fmt:formatDate value="${dq.registeredDate}" pattern="yyyy-MM-dd"/></td>
+  <td><fmt:formatDate value="${dq.registeredDate}" pattern="HH:mm:ss"/></td>
+<c:if test="${dq.status==0}">
   <td>답변대기</td>
 </c:if>
-<c:if test="${rq.status==1}">
+<c:if test="${dq.status==1}">
   <td>답변완료</td>
 </c:if>
   </tr>

@@ -34,8 +34,8 @@
   </resultMap>
   
   <insert id="insert" parameterType="riderQnA">
-    insert into talat_qna_rider(qno,qtitle,rjno,rqcont,rfile) 
-    values(#{qtype.no},#{qtype.typeTitle},#{rjno},#{qContent},#{file})
+    insert into talat_qna_rider(qno,qtitle,rqcont,rjno,rfile) 
+    values(#{qtype.no},#{qtype.typeTitle},#{qContent},#{rjno},#{file})
   </insert>
 
   <select id="findAll" resultMap="riderQnAMap">
@@ -51,7 +51,7 @@
       dm.mno as partner_no,
       dm.mname as partner_name
     from talat_qna_rider rq
-    inner join talat_qna q on rq.qno=q.qno
+      inner join talat_qna q on rq.qno=q.qno
       inner join talat_journey_rider rj on rq.rjno=rj.rjno
       inner join talat_memb rm on rj.mno=rm.mno
       inner join talat_journey j on rj.jno=j.jno
@@ -105,6 +105,11 @@
   <delete id="delete" parameterType="int">
     delete from talat_qna_rider 
     where rqno = #{value}
+  </delete>
+  
+  <delete id="deleteByJourneyRiderNo" parameterType="int">
+    delete from talat_qna_rider
+    where rjno = #{value}
   </delete>
 
 </mapper>

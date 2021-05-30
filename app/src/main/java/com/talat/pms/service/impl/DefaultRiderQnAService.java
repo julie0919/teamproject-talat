@@ -1,10 +1,12 @@
 package com.talat.pms.service.impl;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 import com.talat.pms.dao.RiderQnADao;
 import com.talat.pms.domain.RiderQnA;
 import com.talat.pms.service.RiderQnAService;
 
+@Service
 public class DefaultRiderQnAService implements RiderQnAService {
 
   RiderQnADao riderQnADao; 

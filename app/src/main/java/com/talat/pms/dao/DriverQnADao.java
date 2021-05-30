@@ -3,10 +3,11 @@ package com.talat.pms.dao;
 import java.util.List;
 import com.talat.pms.domain.DriverQnA;
 
-// BoardDao 의 규칙 정의
 public interface DriverQnADao {
 
   int insert(DriverQnA driverQnA) throws Exception;
+
+  List<DriverQnA> findAll() throws Exception;
 
   List<DriverQnA> findByKeyword(String keyword) throws Exception;
 
@@ -14,7 +15,9 @@ public interface DriverQnADao {
 
   int update(DriverQnA driverQnA) throws Exception;
 
-  int updateViewCount(int no) throws Exception;
+  int managerUpdate(DriverQnA driverQnA) throws Exception;
+
+  int deleteByJourneyNo(int journeyNo) throws Exception;
 
   int delete(int no) throws Exception;
 }

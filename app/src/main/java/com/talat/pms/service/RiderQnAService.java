@@ -5,7 +5,7 @@ import com.talat.pms.domain.RiderQnA;
 
 public interface RiderQnAService {
 
-  int add(RiderQnA driverQnA) throws Exception;
+  int add(RiderQnA riderQnA) throws Exception;
 
   List<RiderQnA> list() throws Exception;
 
