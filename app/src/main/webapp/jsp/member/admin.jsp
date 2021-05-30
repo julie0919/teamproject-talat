@@ -7,29 +7,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원목록</title>
+<title>운영자</title>
 </head>
 <body>
-<h1>드라이버 목록</h1>
-<p><a href='add1'>회원가입</a></p>
 <table border='1'>
 <thead>
 <tr>
 <th style='width:100px;'>이름</th> 
 <th style='width:100px;'>이메일</th>
 <th style='width:150px;'>전화번호</th>
-<th style='width:100px;'>멤버타입</th>
+<th style='width:100px;'>비고</th>
 </tr>
 </thead>
 <tbody>
-<c:forEach items="${list}" var="m">
 <tr>
-<td><a href='detail?mno=${m.mno}'>${m.mname}</a></td>
-<td>${m.email}</td>
-<td>${m.tel}</td>
-<td>${m.mType == 1 ? "라이더" : "드라이버"}</td>
+<td>${ad.mname}</td>
+<td>${ad.email}</td>
+<td>${ad.tel}</td>
+<td>${ad.mType == 0 ? "운영자" : ""}(${ad.mType})</td>
 </tr>
-</c:forEach>
 </tbody>
 </table>
 </body>

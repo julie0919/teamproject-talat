@@ -148,7 +148,7 @@
   </c:if>
   <div style="padding-left:20px; padding-bottom:20px; padding-top:10px;">
     <input type="submit" value="변경">
-    <button type="button" onclick="location.href='delete?no=${member.mno}'">삭제</button>
+    <button type="button" onclick="location.href='delete?mno=${member.mno}'">삭제</button>
   </div>
 </form>
 </body>

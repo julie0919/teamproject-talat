@@ -11,9 +11,15 @@ public interface MemberService {
 
   Member get(int no) throws Exception;
 
+  Member getService(int no) throws Exception;
+
+  Member admin() throws Exception;
+
   int update(Member member) throws Exception;
 
-  int delete(int no) throws Exception;
+  int deleteRider(int no) throws Exception;
+
+  int deleteDriver(int no) throws Exception;
 
 }
 

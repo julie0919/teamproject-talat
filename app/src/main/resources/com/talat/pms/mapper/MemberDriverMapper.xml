@@ -42,6 +42,43 @@
     
   </resultMap>
   
+  <sql id="select1">
+    select 
+      tm.mno,
+      tm.mname,
+      tm.email,
+      tm.tel,
+      tm.birth,
+      tm.mtype,
+      tj.nic,
+      tj.gender,
+      tj.pst_no,
+      tj.basic_addr,
+      tj.det_addr,
+      tj.prof,
+      tj.pref_gender,
+      tj.mrdt,
+      tj.star_avg,
+      tj.rev_avg,
+      td.lic_no,
+      td.lic_type,
+      td.lic_renew,
+      td.lic_verf,
+      td.cno,
+      td.cname,
+      td.ccolor,
+      td.cyear,
+      td.cowner,
+      td.lic_photo,
+      td.ins_photo,
+      td.car_photo,
+      td.corp_photo,
+      td.apvl
+    from talat_memb tm
+      inner join talat_join tj on tm.mno=tj.mno
+      inner join talat_driver td on tm.mno=td.mno
+  </sql>
+  
     <insert id="insert" parameterType="memberDriver">
     insert into talat_driver
       (mno,lic_no,lic_type,lic_renew,lic_verf,cno,cname,ccolor,cyear,cowner,
@@ -52,105 +89,24 @@
 </insert>
   
  <select id="findAll" resultMap="memberDriverMap" >
-    select 
-      tm.mno,
-      tm.mname,
-      tm.email,
-      tm.tel,
-      tm.mtype,
-      tj.nic,
-      tj.gender,
-      tj.pst_no,
-      tj.basic_addr,
-      tj.det_addr,
-      tj.pref_gender,
-      tj.mrdt,
-      td.cno,
-      td.cname,
-      td.cyear,
-      td.cowner,
-      td.apvl
-    from talat_memb tm
-      inner join talat_join tj on tm.mno=tj.mno
-      inner join talat_driver td on tm.mno=td.mno
+    <include refid="select1"/>
     order by tm.mno asc
   </select>
   
   <select id="findByNo" resultMap="memberDriverMap" parameterType="int">
-    select 
-      tm.mno,
-      tm.mname,
-      tm.email,
-      tm.tel,
-      tm.birth,
-      tm.mtype,
-      tj.nic,
-      tj.gender,
-      tj.pst_no,
-      tj.basic_addr,
-      tj.det_addr,
-      tj.prof,
-      tj.pref_gender,
-      tj.mrdt,
-      tj.star_avg,
-      tj.rev_avg,
-      td.lic_no,
-      td.lic_type,
-      td.lic_renew,
-      td.lic_verf,
-      td.cno,
-      td.cname,
-      td.ccolor,
-      td.cyear,
-      td.cowner,
-      td.lic_photo,
-      td.ins_photo,
-      td.car_photo,
-      td.corp_photo,
-      td.apvl
-    from talat_memb tm
-      inner join talat_join tj on tm.mno=tj.mno
-      inner join talat_driver td on tm.mno=td.mno
+    <include refid="select1"/>
     where tm.mno=#{value}
   </select>
   
   <select id="findByEmailPassword" resultMap="memberDriverMap" parameterType="map">
-    select 
-      tm.mno,
-      tm.mname,
-      tm.email,
-      tm.tel,
-      tm.birth,
-      tm.mtype,
-      tj.nic,
-      tj.gender,
-      tj.pst_no,
-      tj.basic_addr,
-      tj.det_addr,
-      tj.prof,
-      tj.pref_gender,
-      tj.mrdt,
-      tj.star_avg,
-      tj.rev_avg,
-      td.lic_no,
-      td.lic_type,
-      td.lic_renew,
-      td.lic_verf,
-      td.cno,
-      td.cname,
-      td.ccolor,
-      td.cyear,
-      td.cowner,
-      td.lic_photo,
-      td.ins_photo,
-      td.car_photo,
-      td.corp_photo,
-      td.apvl
-    from talat_memb tm
-      left outer join talat_join tj on tm.mno=tj.mno
-      left outer join talat_driver td on tm.mno=td.mno
+    <include refid="select1"/>
     where tm.email = #{email} and tm.pwd = password(#{password})
   </select>
+  
+    <delete id="delete" parameterType="int">
+    delete from talat_driver
+    where mno=#{value}
+  </delete>
  
 </mapper>
 
