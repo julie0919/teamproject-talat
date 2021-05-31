@@ -31,7 +31,7 @@ public class RiderQnAManagerDetailHandler {
     //      }
 
     request.setAttribute("riderQnA", riderQnA);
-    return "/jsp/riderQnA/manager_detail.jsp";
+    return "riderQnA/manager_detail";
   }
 }
 

@@ -21,7 +21,7 @@ public class RiderQnAManagerListHandler {
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     List<RiderQnA> riderQnas = riderQnAService.list();
     request.setAttribute("list", riderQnas);
-    return "/jsp/riderQnA/manager_list.jsp";
+    return "riderQnA/manager_list";
   }
 }
 

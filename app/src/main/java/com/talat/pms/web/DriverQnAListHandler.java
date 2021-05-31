@@ -22,7 +22,7 @@ public class DriverQnAListHandler {
 
     List<DriverQnA> driverQnas = driverQnAService.list();
     request.setAttribute("list", driverQnas);
-    return "/jsp/driverQnA/list.jsp";
+    return "driverQnA/list";
   }
 }
 

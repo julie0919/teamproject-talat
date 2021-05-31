@@ -25,13 +25,8 @@ public class RiderQnADetailHandler {
       throw new Exception("해당 번호의 라이더 문의가 없습니다.");
     }
 
-    //      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-    //      if ( loginUser.getMno() == 1) {
-    //        out.println("<input type='submit' value='변경'> ");
-    //      }
-
     request.setAttribute("riderQnA", riderQnA);
-    return "/jsp/riderQnA/detail.jsp";
+    return "riderQnA/detail";
   }
 }
 

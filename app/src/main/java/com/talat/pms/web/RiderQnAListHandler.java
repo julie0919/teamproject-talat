@@ -22,7 +22,7 @@ public class RiderQnAListHandler {
 
     List<RiderQnA> riderQnas = riderQnAService.list();
     request.setAttribute("list", riderQnas);
-    return "/jsp/riderQnA/list.jsp";
+    return "riderQnA/list";
   }
 }
 

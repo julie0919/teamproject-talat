@@ -26,6 +26,11 @@ public class RiderQnAUpdateHandler {
       throw new Exception("해당 번호의 라이더 문의가 없습니다.");
     }
 
+    //    Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+    //    if (oldRiderQnA.getWriter().getMno() != loginUser.getMno()) {
+    //      throw new Exception("수정 권한이 없습니다!");
+    //    }
+
     RiderQnA rq = new RiderQnA();
     rq.setNo(oldRiderQnA.getNo());
 

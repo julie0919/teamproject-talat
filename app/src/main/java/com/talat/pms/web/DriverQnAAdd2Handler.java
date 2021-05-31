@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.talat.pms.domain.DriverQnA;
 import com.talat.pms.domain.QnA;
 import com.talat.pms.service.DriverQnAService;
@@ -23,9 +24,9 @@ public class DriverQnAAdd2Handler {
   }
 
   @RequestMapping("/qna/driver/add2")
-  public String execute(HttpServletRequest request, HttpServletResponse response/*, RedirectAttributes redirectAttrs*/) throws Exception {
+  public String execute(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttrs) throws Exception {
     if (request.getMethod().equals("GET")) {
-      return "/jsp/driverQnA/form2.jsp";
+      return "driverQnA/form2";
     }
 
     HttpSession session = request.getSession();
@@ -57,7 +58,7 @@ public class DriverQnAAdd2Handler {
     }
 
     driverQnAService.add(dq);
-    //    redirectAttrs.addFlashAttribute("msg","reqSuccess");
+    redirectAttrs.addFlashAttribute("msg","reqSuccess");
 
     return "redirect:../../journey/list";
   }

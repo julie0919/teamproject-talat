@@ -1,19 +1,18 @@
 package com.talat.pms.web;
 
 import java.util.UUID;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.talat.pms.domain.QnA;
 import com.talat.pms.domain.RiderQnA;
 import com.talat.pms.service.RiderQnAService;
 
 @Controller
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 public class RiderQnAAdd1Handler {
 
   RiderQnAService riderQnAService;
@@ -23,9 +22,9 @@ public class RiderQnAAdd1Handler {
   }
 
   @RequestMapping("/qna/rider/add1")
-  public String execute(HttpServletRequest request, HttpServletResponse response/*, RedirectAttributes redirectAttrs*/) throws Exception {
+  public String add1(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttrs) throws Exception {
     if (request.getMethod().equals("GET")) {
-      return "/jsp/riderQnA/form1.jsp";
+      return "riderQnA/form1";
     }
 
     HttpSession session = request.getSession();
@@ -57,7 +56,7 @@ public class RiderQnAAdd1Handler {
     }
 
     riderQnAService.add(rq);
-    //    redirectAttrs.addFlashAttribute("msg","reqSuccess");
+    redirectAttrs.addFlashAttribute("msg","reqSuccess");
 
     return "redirect:../../journey/rider/my_journey_list";
   }

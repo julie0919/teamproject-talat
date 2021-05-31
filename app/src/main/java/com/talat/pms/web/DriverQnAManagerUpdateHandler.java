@@ -22,8 +22,13 @@ public class DriverQnAManagerUpdateHandler {
 
     DriverQnA oldDriverQnA = driverQnAService.get(no);
     if (oldDriverQnA == null) {
-      throw new Exception("해당 번호의 라이더 문의가 없습니다.");
+      throw new Exception("해당 번호의 드라이버 문의가 없습니다.");
     }
+
+    //      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+    //      if (1 != loginUser.getMno()) {
+    //        throw new Exception("수정 권한이 없습니다!");
+    //      }
 
     DriverQnA dq = new DriverQnA();
     dq.setNo(oldDriverQnA.getNo());

@@ -21,7 +21,7 @@ public class DriverQnAManagerListHandler {
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     List<DriverQnA> driverQnas = driverQnAService.list();
     request.setAttribute("list", driverQnas);
-    return "/jsp/driverQnA/manager_list.jsp";
+    return "driverQnA/manager_list";
   }
 }
 

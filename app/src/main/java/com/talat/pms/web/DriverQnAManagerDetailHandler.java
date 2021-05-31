@@ -31,7 +31,7 @@ public class DriverQnAManagerDetailHandler {
     //      }
 
     request.setAttribute("driverQnA", driverQnA);
-    return "/jsp/driverQnA/manager_detail.jsp";
+    return "driverQnA/manager_detail";
   }
 }
 

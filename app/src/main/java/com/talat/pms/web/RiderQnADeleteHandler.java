@@ -25,7 +25,7 @@ public class RiderQnADeleteHandler {
     }
 
     //    Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-    //    if (oldBoard.getWriter().getNo() != loginUser.getNo()) {
+    //    if (oldRiderQnA.getWriter().getMno() != loginUser.getMno()) {
     //      throw new Exception("삭제 권한이 없습니다!");
     //    }
 
