@@ -21,7 +21,7 @@ public class MemberListHandler{
     this.memberRiderService = memberRiderService;
   }
 
-  @RequestMapping("/member/list")
+  @RequestMapping("/apvl/list")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     List<MemberDriver> list1 = memberDriverService.list();
