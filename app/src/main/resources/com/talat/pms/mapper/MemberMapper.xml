@@ -71,14 +71,14 @@
   </select>
  
   <update id="update" parameterType="member">
-  update talat_memb tm
+  update talat_memb
   <set> 
-    <if test="mname != ''">tm.mname=#{mname}</if>
-    <if test="email != ''">tm.email=#{email}</if>
-    <if test="tel != ''">tm.tel=#{tel}</if>
-    <if test="birth != null">tm.birth=#{birth}</if>
+    <if test="mname != ''">mname=#{mname},</if>
+    <if test="email != ''">email=#{email},</if>
+    <if test="tel != ''">tel=#{tel},</if>
+    <if test="birth != null">birth=#{birth}</if>
   </set>
-  where tm.mno=#{value}
+  where mno=#{mno}
   </update>
   
   <delete id="delete" parameterType="int">

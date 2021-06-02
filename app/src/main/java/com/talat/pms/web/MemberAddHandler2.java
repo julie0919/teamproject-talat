@@ -20,11 +20,11 @@ public class MemberAddHandler2{
     session.setAttribute("birth", request.getParameter("birth"));
     session.setAttribute("mType", request.getParameter("mType"));
 
-    if (request.getParameter("mType").equals("1")) {
-      return "/jsp/member/form2.jsp";
-    } else if (request.getParameter("mType").equals("2")) {
-      return "/jsp/member/form2_driver.jsp";
+    if (request.getParameter("mType").equals("2")) {
+      return "/member/form2";
+    } else if (request.getParameter("mType").equals("1")) {
+      return "/member/form2_driver";
     }
-    return "/jsp/member/memberlist.jsp";
+    return "member/memberlist";
   }
 }

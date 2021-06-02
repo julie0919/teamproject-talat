@@ -9,6 +9,8 @@ public interface MemberRiderDao {
 
   List<MemberRider> findAll() throws Exception;
 
+  MemberRider findByNo(int no) throws Exception;
+
   int update(MemberRider memberRider) throws Exception;
 
   int delete(int no) throws Exception;

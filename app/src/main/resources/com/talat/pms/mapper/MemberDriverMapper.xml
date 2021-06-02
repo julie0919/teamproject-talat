@@ -103,16 +103,38 @@
     where tm.email = #{email} and tm.pwd = password(#{password})
   </select>
   
-    <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="int">
     delete from talat_driver
     where mno=#{value}
   </delete>
+  
+  <update id="update" parameterType="memberDriver">
+  update talat_driver
+  <set>
+    <if test="lic_no != ''">lic_no=#{licenseNo}</if>
+    <if test="lic_type != ''">lic_type=#{licenseType}</if>
+    <if test="lic_renew != ''">lic_renew=#{licenseRenewal}</if>
+    <if test="lic_verf != ''">lic_verf=#{licenseVerfNo}</if>
+    <if test="cno != ''">cno=#{carNo}</if>
+    <if test="cname != ''">cname=#{carModel}</if>
+    <if test="ccolor != ''">ccolor=#{carColor}</if>
+    <if test="cyear != ''">cyear=#{carYear}</if>
+    <if test="cowner != ''">cowner=#{carOwner}</if>
+    <if test="lic_photo != ''">lic_photo=#{licensePhoto}</if>
+    <if test="ins_photo != ''">ins_photo=#{insurancePhoto}</if>
+    <if test="car_photo != ''">car_photo=#{carPhoto}</if>
+    <if test="corp_photo != ''">corp_photo=#{corporationPhoto}</if>
+  </set>
+  where mno=#{dmno}
+  </update>
+  
+  <update id="updateApvl" parameterType="int">
+  update talat_driver
+  <set>
+    <if test="approval != ''">apvl=#{approval}</if>
+    <if test="approvalContent != ''">aovl_cont=#{approvalContent}</if>
+  </set>
+  where mno=#{dmno}
+  </update>
  
 </mapper>
-
-
-
-
-
-
-

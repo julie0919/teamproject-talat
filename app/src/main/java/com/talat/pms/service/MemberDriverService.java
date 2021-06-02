@@ -11,11 +11,13 @@ public interface MemberDriverService {
 
   List<MemberDriver> list() throws Exception;
 
-  int update(MemberRider memberRider) throws Exception;
-
   public MemberDriver get(String email, String password) throws Exception;
 
   MemberDriver get(int no) throws Exception;
+
+  int update(MemberDriver memberDriver, MemberRider memberRider, Member member) throws Exception;
+
+  int apvlUpdate(MemberDriver memberDriver) throws Exception;
 
   int delete(int no) throws Exception;
 

@@ -11,7 +11,7 @@ public class MemberAddHandler1 {
   @RequestMapping("/member/add1")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    return "/jsp/member/form1.jsp";
+    return "member/form1";
 
   }
 }

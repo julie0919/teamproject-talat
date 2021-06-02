@@ -23,7 +23,7 @@ public class MemberAdminInforHandler{
 
     request.setAttribute("ad", m);
 
-    return "/jsp/member/admin.jsp";
+    return "member/admin";
 
   }
 }

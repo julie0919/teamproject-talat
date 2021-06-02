@@ -73,8 +73,24 @@ public class DefaultMemberDriverService implements MemberDriverService {
 
   // 변경 업무
   @Override
-  public int update(MemberRider memberRider) throws Exception {
-    return memberDriverDao.update(memberRider);
+  public int update(MemberDriver memberDriver, MemberRider memberRider, Member member) throws Exception {
+    return transactionTemplate.execute(new TransactionCallback<Integer>() {
+      @Override
+      public Integer doInTransaction(TransactionStatus status) {
+        try {
+          memberDao.update(member);
+          memberRiderDao.update(memberRider);
+          return memberDriverDao.update(memberDriver);
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
+      }
+    });
+  }
+
+  @Override
+  public int apvlUpdate(MemberDriver memberDriver) throws Exception {
+    return memberDriverDao.updateApvl(memberDriver);
   }
 
   // 삭제 업무

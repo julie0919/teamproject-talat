@@ -20,7 +20,7 @@ public class LoginHandler {
   @RequestMapping("/login")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     if (request.getMethod().equals("GET")) {
-      return "/jsp/loginUser/login_form.jsp";
+      return "loginUser/login_form";
     }
 
     String email = request.getParameter("email");
@@ -40,11 +40,11 @@ public class LoginHandler {
 
     if (member == null) {
       request.getSession().invalidate(); 
-      return "/jsp/loginUser/login_fail.jsp";
+      return "loginUser/login_fail";
 
     } else {
       request.getSession().setAttribute("loginUser", member);
-      return "/jsp/loginUser/login_success.jsp";
+      return "loginUser/login_success";
     }
   }
 }

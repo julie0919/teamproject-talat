@@ -3,7 +3,6 @@ package com.talat.pms.dao;
 import java.util.List;
 import java.util.Map;
 import com.talat.pms.domain.MemberDriver;
-import com.talat.pms.domain.MemberRider;
 
 public interface MemberDriverDao {
 
@@ -15,7 +14,9 @@ public interface MemberDriverDao {
 
   MemberDriver findByEmailPassword(Map<String,Object> params) throws Exception;
 
-  int update(MemberRider memberRider) throws Exception;
+  int update(MemberDriver memberDriver) throws Exception;
+
+  int updateApvl(MemberDriver memberDriver) throws Exception;
 
   int delete(int no) throws Exception;
 

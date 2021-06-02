@@ -76,8 +76,8 @@ public class DefaultMemberService implements MemberService {
       @Override
       public Integer doInTransaction(TransactionStatus status) {
         try {
-          memberRiderDao.delete(no);
           memberDriverDao.delete(no);
+          memberRiderDao.delete(no);
           return memberDao.delete(no);
         } catch (Exception e) {
           throw new RuntimeException(e);

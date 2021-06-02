@@ -10,7 +10,9 @@ public interface MemberRiderService {
 
   List<MemberRider> list() throws Exception;
 
-  int update(MemberRider memberRider) throws Exception;
+  MemberRider get(int no) throws Exception;
+
+  int update(Member member, MemberRider memberRider) throws Exception;
 
   int delete(int no) throws Exception;
 

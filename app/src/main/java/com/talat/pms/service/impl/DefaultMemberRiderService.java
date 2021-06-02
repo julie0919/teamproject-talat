@@ -57,14 +57,40 @@ public class DefaultMemberRiderService implements MemberRiderService {
 
   // 변경 업무
   @Override
-  public int update(MemberRider memberRider) throws Exception {
-    return memberRiderDao.update(memberRider);
+  public int update(Member member, MemberRider memberRider) throws Exception {
+    return transactionTemplate.execute(new TransactionCallback<Integer>() {
+      @Override
+      public Integer doInTransaction(TransactionStatus status) {
+        try {
+          memberDao.update(member);
+          return memberRiderDao.update(memberRider);
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
+      }
+    });
   }
 
   // 삭제 업무
   @Override
   public int delete(int no) throws Exception {
-    return memberRiderDao.delete(no);
+    return transactionTemplate.execute(new TransactionCallback<Integer>() {
+      @Override
+      public Integer doInTransaction(TransactionStatus status) {
+        try {
+          int count = memberRiderDao.delete(no);
+          memberDao.delete(no);
+          return count;
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
+      }
+    });
+  }
+
+  @Override
+  public MemberRider get(int no) throws Exception {
+    return memberRiderDao.findByNo(no);
   }
 
 }

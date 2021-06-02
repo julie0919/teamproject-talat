@@ -11,6 +11,6 @@ public class UserInfoHandler {
   @RequestMapping("/userInfo")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    return "/jsp/loginUser/login_userInfo.jsp";
+    return "loginUser/login_userInfo";
   }
 }
