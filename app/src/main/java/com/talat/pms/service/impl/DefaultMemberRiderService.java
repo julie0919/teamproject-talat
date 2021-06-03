@@ -1,6 +1,8 @@
 package com.talat.pms.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -91,6 +93,15 @@ public class DefaultMemberRiderService implements MemberRiderService {
   @Override
   public MemberRider get(int no) throws Exception {
     return memberRiderDao.findByNo(no);
+  }
+
+  @Override
+  public MemberRider get(String email, String password) throws Exception {
+    Map<String,Object> params = new HashMap<>();
+    params.put("email", email);
+    params.put("password", password);
+
+    return memberDriverDao.findByEmailPassword(params);
   }
 
 }

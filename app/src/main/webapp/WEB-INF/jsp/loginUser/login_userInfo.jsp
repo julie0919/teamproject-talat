@@ -55,10 +55,10 @@
     <th>이름</th> 
     <td><input name='mname' type='text' value='${loginUser.mname}'>
       <c:if test="${loginUser.mType == 1}">
-        <a style="color:#74E19D;"><b> 라이더님</b></a>
+        <a style="color:#74E19D;"><b> 드라이버님</b></a>
       </c:if>
       <c:if test="${loginUser.mType == 2}">
-        <a style="color:#74E19D;"><b> 드라이버님</b></a>
+        <a style="color:#74E19D;"><b> 라이더님</b></a>
       </c:if></td></tr>
   <tr>
     <th>닉네임</th> 
@@ -123,7 +123,7 @@
     <input name='preferenceGender' type='radio' value='2'
           ${loginUser.preferenceGender == 2 ? "checked" : ""}>성별무관</td></tr>
     </table>
-  <c:if test="${loginUser.mType == 2}">
+  <c:if test="${loginUser.mType == 1}">
   <table>
     <tr>
     <th colspan="2">

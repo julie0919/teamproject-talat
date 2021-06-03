@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>리뷰관리</title>
 
 <style type="text/css">
  a:link { color: #01A9DB; text-decoration: none;}
@@ -31,7 +31,7 @@
   <div style="width:130px; height:400px; margin:30px auto; text-align:center; ">
   <script>
   $(document).ready(function(){
-    $("#spreadBtn02").click(function(){
+    $("#spreadBtn01").click(function(){
       if($("#hiddenList01").is(":visible")){
          $("#hiddenList01").slideUp();
            }else{
@@ -40,7 +40,7 @@
         });
       });
   </script> 
-<a id="spreadBtn02" class="btn01" style="font-size:13px; vertical-align:bottom;">회원관리 ▼</a>
+<a id="spreadBtn01" class="btn01" style="font-size:13px; vertical-align:bottom;">회원관리 ▼</a>
   <ul id="hiddenList01" class="example01" style="display:none; list-style-type:square; background-color:white; border:solid 3px #01DFD7;">
   <li style="font-size:13px;"><a href='adminlist'>회원 조회</a></li>
   <li style="font-size:13px;"><a href='adminapvllist'>드라이버 승인</a></li>
@@ -57,26 +57,14 @@
           });
         });
   </script>
-  <a id="spreadBtn02" class="btn02" style="font-size:13px; vertical-align:bottom;">카풀관리 ▼</a>
+<a id="spreadBtn02" class="btn02" style="font-size:13px; vertical-align:bottom;">카풀관리 ▼</a>
   <ul id="hiddenList02" class="example02" style="display:none; list-style-type:square; background-color:white; border:solid 3px #01DFD7;">
   <li style="font-size:13px;"><a href='adminjourney'>여정 관리</a></li>
   </ul><br>
     </div>
   </div>
-  <div style="background-color: white; float: left; width:550px; height:210px; margin:100px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  처리내역
-  </div>
-  <div style="background-color: white; float: left; width:330px; height:210px; margin:100px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  신고
-  </div>
-  <div style="background-color: white; float: left; width:290px; height:210px; margin:20px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  문의
-  </div>
-  <div style="background-color: white; float: left; width:290px; height:210px; margin:20px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  리뷰
-  </div>
-  <div style="background-color: white; float: left; width:290px; height:210px; margin:20px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  실시간이용
+  <div style="margin:35px 0px 0px 80px; float:left;"><a style="background-color:white; font-size:20px;">리뷰 관리</a></div>
+  <div style="background-color:#FAFAFA; float:left; width:800px; height:500px; margin:20px 0px 0px 200px; border-top: solid 7px #BDBDBD;">
   </div>
 </div>
 </body>

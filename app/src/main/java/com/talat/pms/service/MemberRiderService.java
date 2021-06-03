@@ -10,6 +10,8 @@ public interface MemberRiderService {
 
   List<MemberRider> list() throws Exception;
 
+  MemberRider get(String email, String password) throws Exception; 
+
   MemberRider get(int no) throws Exception;
 
   int update(Member member, MemberRider memberRider) throws Exception;

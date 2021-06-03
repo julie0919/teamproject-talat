@@ -23,11 +23,11 @@ public class MemberDeleteHandler_Driver {
     Member m = memberService.get(no);
 
     switch (m.getmType()) {
-      case 1: {
+      case 2: {
         memberService.deleteRider(no);
         return "redirect:list";
       }
-      case 2:{
+      case 1:{
         memberService.deleteDriver(no);
         return "redirect:list";
       }

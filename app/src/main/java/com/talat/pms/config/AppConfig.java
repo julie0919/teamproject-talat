@@ -14,7 +14,10 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 // 프론트 컨트롤러는 페이지 컨트롤러와 페이지 컨트롤러가 의존하는 객체를 생성하기 위해
 // 빈 컨테이너를 사용한다.
@@ -95,5 +98,16 @@ public class AppConfig {
     sqlSessionFactoryBean.setMapperLocations(
         appCtx.getResources("classpath:com/talat/pms/mapper/*Mapper.xml"));
     return sqlSessionFactoryBean.getObject();
+  }
+
+  @Bean
+  public ViewResolver viewResolver() {
+    // 기존의 기본 ViewResolver를 이 메서드가 리턴하는 객체로 대처한다.
+    // - 요청 핸들러가 리턴한 jsp 이름을 가지고 앞뒤로 경로를 붙여서 찾는다.
+    InternalResourceViewResolver vr = new InternalResourceViewResolver();
+    vr.setViewClass(JstlView.class); // JSTL 을 처리해줄 클래스 지정
+    vr.setPrefix("/WEB-INF/jsp/");
+    vr.setSuffix(".jsp");
+    return vr;
   }
 }

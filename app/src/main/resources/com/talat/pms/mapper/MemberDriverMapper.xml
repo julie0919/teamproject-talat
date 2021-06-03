@@ -79,6 +79,28 @@
       inner join talat_driver td on tm.mno=td.mno
   </sql>
   
+  <sql id="select2">
+    select 
+      tm.mno,
+      tm.mname,
+      tm.email,
+      tm.tel,
+      tm.birth,
+      tm.mtype,
+      tj.nic,
+      tj.gender,
+      tj.pst_no,
+      tj.basic_addr,
+      tj.det_addr,
+      tj.prof,
+      tj.pref_gender,
+      tj.mrdt,
+      tj.star_avg,
+      tj.rev_avg
+    from talat_memb tm
+      inner join talat_join tj on tm.mno=tj.mno
+  </sql>
+  
     <insert id="insert" parameterType="memberDriver">
     insert into talat_driver
       (mno,lic_no,lic_type,lic_renew,lic_verf,cno,cname,ccolor,cyear,cowner,
@@ -99,7 +121,7 @@
   </select>
   
   <select id="findByEmailPassword" resultMap="memberDriverMap" parameterType="map">
-    <include refid="select1"/>
+    <include refid="select2"/>
     where tm.email = #{email} and tm.pwd = password(#{password})
   </select>
   

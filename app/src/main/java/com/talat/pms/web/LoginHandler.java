@@ -7,14 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.talat.pms.domain.MemberDriver;
 import com.talat.pms.service.MemberDriverService;
+import com.talat.pms.service.MemberRiderService;
 
 @Controller
 public class LoginHandler {
 
   MemberDriverService memberDriverService;
+  MemberRiderService memberRiderService;
 
-  public LoginHandler(MemberDriverService memberDriverService) {
+  public LoginHandler(MemberDriverService memberDriverService, MemberRiderService memberRiderService) {
     this.memberDriverService = memberDriverService;
+    this.memberRiderService = memberRiderService;
   }
 
   @RequestMapping("/login")
@@ -37,11 +40,10 @@ public class LoginHandler {
     }
 
     MemberDriver member = memberDriverService.get(email, password);
-
+    System.out.println(member);
     if (member == null) {
       request.getSession().invalidate(); 
       return "loginUser/login_fail";
-
     } else {
       request.getSession().setAttribute("loginUser", member);
       return "loginUser/login_success";

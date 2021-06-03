@@ -11,9 +11,9 @@ public interface MemberDriverService {
 
   List<MemberDriver> list() throws Exception;
 
-  public MemberDriver get(String email, String password) throws Exception;
-
   MemberDriver get(int no) throws Exception;
+
+  public MemberDriver get(String email, String password) throws Exception; 
 
   int update(MemberDriver memberDriver, MemberRider memberRider, Member member) throws Exception;
 

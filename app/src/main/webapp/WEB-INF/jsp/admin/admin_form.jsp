@@ -25,7 +25,7 @@
   </div>
 </div>
 <!-- 백그라운드 폼 -->
-<div style="width:1300px; height:650px; background-color:#e4f2ef; margin:150px auto; float:center;
+<div style="width:1150px; height:650px; background-color:#e4f2ef; margin:100px auto; float:center;
       border-top: solid 3px #01DFD7;">
   <div style="float:left; width:180px; height:700px; padding:auto; font-size:20px;">
   <div style="width:130px; height:400px; margin:30px auto; text-align:center; ">
@@ -46,37 +46,7 @@
   <li style="font-size:13px;"><a href='adminapvllist'>드라이버 승인</a></li>
   <li style="font-size:13px;"><a href='adminreview'>리뷰 관리</a></li>
   </ul><br>
-    <script>
-  $(document).ready(function(){
-      $("#spreadBtn02").click(function(){
-        if($("#hiddenList02").is(":visible")){
-           $("#hiddenList02").slideUp();
-             }else{
-                $("#hiddenList02").slideDown();
-              }
-          });
-        });
-  </script>
-  <a id="spreadBtn02" class="btn02" style="font-size:13px; vertical-align:bottom;">카풀관리 ▼</a>
-  <ul id="hiddenList02" class="example02" style="display:none; list-style-type:square; background-color:white; border:solid 3px #01DFD7;">
-  <li style="font-size:13px;"><a href='adminjourney'>여정 관리</a></li>
-  </ul><br>
     </div>
-  </div>
-  <div style="background-color: white; float: left; width:550px; height:210px; margin:100px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  처리내역
-  </div>
-  <div style="background-color: white; float: left; width:330px; height:210px; margin:100px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  신고
-  </div>
-  <div style="background-color: white; float: left; width:290px; height:210px; margin:20px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  문의
-  </div>
-  <div style="background-color: white; float: left; width:290px; height:210px; margin:20px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  리뷰
-  </div>
-  <div style="background-color: white; float: left; width:290px; height:210px; margin:20px 0px 0px 10px; border-top: solid 3px #01DFD7;">
-  실시간이용
   </div>
 </div>
 </body>

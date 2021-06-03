@@ -11,35 +11,24 @@ import com.talat.pms.service.MemberDriverService;
 import com.talat.pms.service.MemberRiderService;
 
 @Controller
-public class MemberListHandler{
+public class AdminList {
 
-  MemberDriverService memberDriverService;
   MemberRiderService memberRiderService;
-
-  public MemberListHandler(MemberDriverService memberDriverService, MemberRiderService memberRiderService) {
+  MemberDriverService memberDriverService;
+  public AdminList(MemberRiderService memberRiderService, MemberDriverService memberDriverService) {
     this.memberDriverService = memberDriverService;
     this.memberRiderService = memberRiderService;
   }
 
-  @RequestMapping("/member/list")
+  @RequestMapping("/adminlist")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    List<MemberDriver> list1 = memberDriverService.list();
-    System.out.println(list1);
-    List<MemberRider> list2 = memberRiderService.list();
-    System.out.println(list2);
-    request.setAttribute("list1", list1);
-    request.setAttribute("list2", list2);
+    List<MemberRider> rider = memberRiderService.list();
+    List<MemberDriver> driver = memberDriverService.list();
 
-    return "member/memberlist";
+    request.setAttribute("rider", rider);
+    request.setAttribute("driver", driver);
 
-
+    return "admin/adminList";
   }
 }
-
-
-
-
-
-
-

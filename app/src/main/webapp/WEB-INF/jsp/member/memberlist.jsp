@@ -30,7 +30,7 @@
 <td><a href='detail?mno=${m1.mno}'>${m1.mname}</a></td>
 <td>${m1.email}</td>
 <td>${m1.tel}</td>
-<td>${m1.mType == 1 ? "라이더" : "드라이버"}</td>
+<td>${m1.mType == 1 ? "드라이버" : ""}</td>
 <td>${m1.approval == 0 ? "<a style='color:red;'>미승인</a>" : "<a style='color:blue;'>승인완료</a>"}</td>
 </tr>
 </c:if>
@@ -55,7 +55,7 @@
 <td><a href='detail?mno=${m2.mno}'>${m2.mname}</a></td>
 <td>${m2.email}</td>
 <td>${m2.tel}</td>
-<td>${m2.mType == 1 ? "라이더" : "드라이버"}</td>
+<td>${m2.mType == 2 ? "라이더" : ""}</td>
 </tr>
 </c:if>
 </c:forEach>

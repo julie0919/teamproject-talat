@@ -17,11 +17,13 @@
 <input type='radio' name='gender' value='1'>남자 <br>
  <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 우편번호<br>
-<input type='text' name='postNo'><br>
+<input type='text' id="postNo" name='postNo'><br>
 기본주소<br>
-<input type='text' name='basicAddress'><br>
+<input type='text' id="basicAddress" name='basicAddress'><br>
 상세주소<br>
-<input type='text' name='detailAddress'><br>
+<input type='text' id="detailAddress" name='detailAddress'><br>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 function execDaumPostcode() {
         new daum.Postcode({
