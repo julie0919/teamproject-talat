@@ -1,6 +1,7 @@
 package com.talat.pms.dao;
 
 import java.util.List;
+import java.util.Map;
 import com.talat.pms.domain.Member;
 
 public interface MemberDao {
@@ -12,6 +13,8 @@ public interface MemberDao {
   Member findByNo(int no) throws Exception;
 
   Member findByService(int no) throws Exception;
+
+  Member findByEmailPassword(Map<String,Object> params) throws Exception;
 
   Member admin() throws Exception;
 

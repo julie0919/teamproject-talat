@@ -121,8 +121,11 @@
   </select>
   
   <select id="findByEmailPassword" resultMap="memberDriverMap" parameterType="map">
-    <include refid="select2"/>
-    where tm.email = #{email} and tm.pwd = password(#{password})
+    select 
+      mno,
+      email
+      from talat_memb
+    where email = #{email} and pwd = password(#{password})
   </select>
   
   <delete id="delete" parameterType="int">

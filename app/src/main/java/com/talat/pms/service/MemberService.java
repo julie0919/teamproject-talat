@@ -13,6 +13,8 @@ public interface MemberService {
 
   Member getService(int no) throws Exception;
 
+  Member get(String email, String password) throws Exception; 
+
   Member admin() throws Exception;
 
   int update(Member member) throws Exception;

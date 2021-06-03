@@ -1,6 +1,8 @@
 package com.talat.pms.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -99,6 +101,14 @@ public class DefaultMemberService implements MemberService {
         }
       }
     });
+  }
+
+  @Override
+  public Member get(String email, String password) throws Exception {
+    Map<String,Object> params = new HashMap<>();
+    params.put("email", email);
+    params.put("password", password);
+    return memberDao.findByEmailPassword(params);
   }
 
 }

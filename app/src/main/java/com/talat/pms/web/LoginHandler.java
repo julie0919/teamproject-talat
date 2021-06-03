@@ -5,17 +5,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.talat.pms.domain.MemberDriver;
+import com.talat.pms.domain.Member;
 import com.talat.pms.service.MemberDriverService;
 import com.talat.pms.service.MemberRiderService;
+import com.talat.pms.service.MemberService;
 
 @Controller
 public class LoginHandler {
 
+  MemberService memberService;
   MemberDriverService memberDriverService;
   MemberRiderService memberRiderService;
 
-  public LoginHandler(MemberDriverService memberDriverService, MemberRiderService memberRiderService) {
+  public LoginHandler(MemberService memberService, MemberDriverService memberDriverService, MemberRiderService memberRiderService) {
+    this.memberService = memberService;
     this.memberDriverService = memberDriverService;
     this.memberRiderService = memberRiderService;
   }
@@ -39,8 +42,7 @@ public class LoginHandler {
       response.addCookie(cookie);
     }
 
-    MemberDriver member = memberDriverService.get(email, password);
-    System.out.println(member);
+    Member member = memberService.get(email, password);
     if (member == null) {
       request.getSession().invalidate(); 
       return "loginUser/login_fail";

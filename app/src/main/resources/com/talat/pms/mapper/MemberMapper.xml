@@ -33,6 +33,18 @@
     order by tm.mno asc
   </select>
   
+    <select id="findByEmailPassword" resultMap="memberMap" parameterType="map">
+    select 
+      mno,
+      mname,
+      email,
+      tel,
+      birth,
+      mtype
+      from talat_memb
+    where email = #{email} and pwd = password(#{password})
+  </select>
+  
     <select id="findByNo" resultMap="memberMap" parameterType="int">
     select 
       mno,
