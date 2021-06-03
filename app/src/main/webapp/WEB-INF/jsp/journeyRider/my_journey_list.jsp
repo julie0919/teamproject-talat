@@ -23,7 +23,6 @@
 <th>운임요금</th> 
 <th>드라이버</th> 
 <th>출발지 - 도착지</th>
-<th>별점</th>
 </tr>
 </thead>
 <tbody>
@@ -42,7 +41,6 @@
   </c:forEach>
   </td>
   <td>${jr.departure.spotName} - ${jr.arrival.spotName}</td>
-  <td>별점</td>
   </tr>
 </c:forEach>
 </tbody>

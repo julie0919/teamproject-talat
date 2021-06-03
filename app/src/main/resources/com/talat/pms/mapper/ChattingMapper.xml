@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talat.pms.dao.ChattingDao">
+  
+  <resultMap id="chattingMap" type="chatting">
+    <id column="ctno" property="ctno"/>
+    <result column="ctcont" property="chattingContent"/>
+    <result column="ctdate" property="chattingDate"/>
+    <result column="cttime" property="chattingTime"/>
+    <result column="cttype" property="chattingType"/>
+  
+    <association property="journey" javaType="journey">
+	    <id column="jno" property="jno"/>
+    </association>
+    
+    <association property="rider" javaType="memberRider">
+      <id column="rider_mno" property="mno"/>
+      <result column="rider_mname" property="mname"/>
+    </association>
+  </resultMap>
+  
+  <insert id="insert" parameterType="chatting">
+    insert into talat_chatting(jno,mno,ctcont,cttype) 
+    values(#{journey.jno},#{rider.mno},#{chattingContent},#{chattingType})
+  </insert>
+  
+  <select id="findAll" resultMap = "chattingMap">
+    select 
+	    j.jno,
+	    ct.ctno,
+	    ct.ctcont,
+	    ct.ctdate,
+	    ct.cttime,
+	    ct.cttype,
+	    m.mno rider_mno,
+	    m.mname rider_mname
+    from 
+      talat_chatting ct,
+      talat_journey j,
+      talat_memb m
+    where 
+      j.jno = ct.jno
+      and ct.mno = m.mno
+    group by ct.ctno
+  </select>
+  
+  <select id="findByJno" resultMap="chattingMap" parameterType="int">
+    select
+      ct.ctno,
+      j.jno,
+      m.mno rider_mno,
+      m.mname rider_mname
+    from 
+      talat_journey j,
+      talat_memb m,
+      talat_chatting ct
+    where 
+      j.jno = ct.jno
+      and ct.mno = m.mno
+      and j.jno =#{value} 
+      group by m.mname, j.jno
+  </select>
+
+</mapper>
+
+
+
+
+
+
+

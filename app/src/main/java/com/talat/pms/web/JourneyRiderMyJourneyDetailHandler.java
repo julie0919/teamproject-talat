@@ -37,7 +37,10 @@ public class JourneyRiderMyJourneyDetailHandler {
     session.getAttribute("keyword3");
     session.getAttribute("keyword4");
 
-    return "/jsp/journeyRider/my_journey_detail.jsp";
+    if (journeyRider.getMatchingStatus() == 0) {
+      return "journeyRider/my_journey_detail";
+    } 
+    return "journeyRider/my_journey_detail2";
 
   }
 }

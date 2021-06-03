@@ -12,6 +12,6 @@ public class JourneyRiderSearch1Handler {
   @RequestMapping("/journey/rider/search1")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    return "/jsp/journeyRider/search1.jsp";
+    return "journeyRider/search1";
   }
 }

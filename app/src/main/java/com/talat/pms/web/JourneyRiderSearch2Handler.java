@@ -37,7 +37,7 @@ public class JourneyRiderSearch2Handler {
     request.setAttribute("journeyRiders", journeyRiders);
     request.setAttribute("list", journeyRiderService.list());
 
-    return "/jsp/journeyRider/search2.jsp";
+    return "journeyRider/search2";
 
   }
 }
