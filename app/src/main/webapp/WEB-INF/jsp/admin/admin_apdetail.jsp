@@ -39,7 +39,6 @@
     <c:set var="profileUrl">../images/person_80x80.jpg</c:set>
   </c:if>
 
-<form action='apupdate' method='post'>
 <table style="border:2px; outset;">
   <tbody>
   <tr>
@@ -100,7 +99,7 @@
       선호성별
     </c:if></th> 
     <td>
-      ${apmember.preferenceGender == 0 ? "여자" : apmember.preferenceGender == 1 ? "남자" : "성별무관"}></td></tr>
+      ${apmember.preferenceGender == 0 ? "여자" : apmember.preferenceGender == 1 ? "남자" : "성별무관"}</td></tr>
     </table>
   <table>
     <tr>
@@ -123,7 +122,7 @@
     <th>면허종류</th> 
     <td>${apmember.licenseType == 1 ? "1종보통" : "2종보통"}</td>
     <th>보험증</th> 
-    <td>${dmember.insurancePhoto}</td></tr>
+    <td>${apmember.insurancePhoto}</td></tr>
   <tr>
     <th>차량색상</th> 
     <td>${apmember.carColor}</td>
@@ -143,7 +142,7 @@
     <td>${apmember.carOwner}</td>
   <tr>
     <th>면허인증번호</th> 
-    <td>${apmember.licenseVerfNo}'></td></tr>
+    <td>${apmember.licenseVerfNo}</td></tr>
   </tbody>
 </table>
 <table>
@@ -164,10 +163,9 @@
 </tbody>
 </table>
   <div style="padding-left:20px; padding-bottom:20px; padding-top:10px;">
-    <input type="submit" value="변경">
+    <input type="button" value="변경" onclick="location.href='apvlsuccess'">
     <input type="button" value="취소" onclick="location.href='adminapvllist'">
   </div>
-</form>
 </c:if>
 </body>
 </html>

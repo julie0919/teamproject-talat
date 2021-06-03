@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>승인 관리</title>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <style type="text/css">
  a:link { color: #01A9DB; text-decoration: none;}
  a:visited { color: #01A9DB; text-decoration: none;}
@@ -37,29 +38,18 @@
   <li style="font-size:13px;"><a href='adminapvllist'>드라이버 승인</a></li>
   <li style="font-size:13px;"><a href='adminreview'>리뷰 관리</a></li>
   </ul><br> -->
-  <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">회원관리 ▼</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">회원 조회</a>
-            <a class="dropdown-item" href="#">드라이버 승인</a>
-            <a class="dropdown-item" href="#">리뷰관리</a>
-          </div>
-        </li>
-  <script>
-  $(document).ready(function(){
-      $("#spreadBtn02").click(function(){
-        if($("#hiddenList02").is(":visible")){
-           $("#hiddenList02").slideUp();
-             }else{
-                $("#hiddenList02").slideDown();
-              }
-          });
-        });
-  </script>
-  <a id="spreadBtn02" class="btn02" style="font-size:13px; vertical-align:bottom;">카풀관리 ▼</a>
-  <ul id="hiddenList02" class="example02" style="display:none; list-style-type:square; background-color:white; border:solid 3px #01DFD7;">
-  <li style="font-size:13px;"><a href='adminjourney'>여정 관리</a></li>
-  </ul><br>
+  <li class="nav-item dropdown"  style="list-style:none;">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">회원관리</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="adminlist">회원 조회</a>
+      <a class="dropdown-item" href="adminapvllist">드라이버 승인</a>
+      <a class="dropdown-item" href="adminreview">리뷰관리</a>
+    </div>
+  </li>
+ <li class="nav-item dropdown"  style="list-style:none;">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">카풀관리</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="adminjourney">여정관리</a></div></li>
     </div>
   </div>
   <div style="margin:35px 0px 0px 80px; float:left;"><a style="background-color:white; font-size:20px;">드라이버 승인</a></div>
