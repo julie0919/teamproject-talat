@@ -6,15 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.talat.pms.domain.JourneyRider;
 import com.talat.pms.service.JourneyRiderService;
+import com.talat.pms.service.RouteService;
 
 // 여정 검색 상세정보
 @Controller
 public class JourneyRiderSearchDetailHandler {
 
   JourneyRiderService journeyRiderService;
+  RouteService routeService;
 
-  public JourneyRiderSearchDetailHandler(JourneyRiderService journeyRiderService) {
+  public JourneyRiderSearchDetailHandler(JourneyRiderService journeyRiderService, RouteService routeService) {
     this.journeyRiderService = journeyRiderService;
+    this.routeService = routeService;
   }
 
   @RequestMapping("/journey/rider/search_detail")
@@ -24,8 +27,9 @@ public class JourneyRiderSearchDetailHandler {
 
     JourneyRider journeyRider = journeyRiderService.getJno(no);
     request.setAttribute("journeyRider", journeyRider);
+    request.setAttribute("routes", routeService.getRoutes(no));
 
-    return "/jsp/journeyRider/search_detail.jsp";
+    return "journeyRider/search_detail";
   }
 }
 

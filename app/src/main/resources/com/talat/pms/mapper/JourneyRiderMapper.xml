@@ -10,12 +10,6 @@
     <result column="mstat" property="matchingStatus"/>
     <result column="mcont" property="matchingContent"/>
     
-    <!-- 리뷰-> association -->
-    <!-- 
-    <result column="dstar" property="driverStar"/>
-    <result column="rstar" property="riderStar"/>
-     -->
-
     <association property="driver" javaType="memberDriver" resultMap="memberDriverMap"/>
     
     <association property="journey" javaType="journey">
@@ -56,6 +50,10 @@
   <resultMap type="memberDriver" id="memberDriverMap">
       <id column="driver_mno" property="mno"/>
       <result column="driver_mname" property="mname"/>
+      <result column="driver_ccolor" property="carColor"/>
+      <result column="driver_cname" property="carModel"/>
+      <result column="driver_cno" property="carNo"/>
+      <result column="driver_star_avg" property="starAverage"/>
   </resultMap>
 
   <!-- 카풀신청 -->
@@ -188,7 +186,7 @@
 	      and (t2.spot_name like concat('%', #{keyword2}, '%') or t3.spot_name like concat('%', #{keyword2}, '%')) 
 	      and j.jdate = #{keyword3}
         and j.jtime  <=  #{keyword4}
-    group by j.jno, t1.spot_name, t3.spot_name 
+    group by j.jno, t1.spot_order
         ]]>
         
   </select>
@@ -246,6 +244,10 @@
     select 
       j.jno,
       m.mname driver_mname,
+      d.ccolor driver_ccolor,
+      d.cname driver_cname,
+      d.cno driver_cno,
+      tj.star_avg driver_star_avg,
       j.jdate jno_jdate,
       j.jtime jno_jtime,
       j.jfee jno_jfee,
@@ -289,7 +291,8 @@
       ,
       talat_memb m,
       talat_journey j,
-      talat_join tj
+      talat_join tj,
+      talat_driver d
     where 
       j.jno=#{value}
       and j.mno = m.mno
@@ -297,20 +300,11 @@
       and t2.jno = j.jno
       and t3.jno = j.jno
       and tj.mno = m.mno
+      and m.mno = d.mno
     group by j.jno, t1.spot_name
        ]]>
        </select>
        
-  <!-- 여정 변경 -->
-  <update id="update" parameterType="journeyRider">
-    update talat_journey_rider set
-        jno = #{journey.jno}
-        <!-- 
-        mcont = #{mathingContent},
-         -->
-    where rjno = #{journeyRiderNo}
-  </update>
-  
   <!-- 신청 여정 삭제 -->
   <delete id="delete" parameterType="int">
     delete from talat_journey_rider 

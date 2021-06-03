@@ -27,18 +27,8 @@ public class JourneyRiderDeleteHandler {
     JourneyRider oldJourneyRider = journeyRiderService.getRjno(no);
 
     //    Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-    if (oldJourneyRider == null) {
-      throw new Exception("해당 번호의 여정이 없습니다.");
-    } 
-
     //    if (oldJourneyRider.getRider().getMno() != loginUser.getMno()) {
     //      throw new Exception("삭제 권한이 없습니다!");
-
-    else if (oldJourneyRider.getMatchingStatus() == 1) {
-      out.println("이미 매칭이 완료되어 취소가 불가능합니다.");
-      return "/jsp/journeyRider/my_journey_list.jsp";
-    } 
-
 
     journeyRiderService.delete(no);
 

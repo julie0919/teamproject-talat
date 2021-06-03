@@ -23,7 +23,7 @@
 <tr><th>운임 요금</th><td>${journeyRider.journey.fee}</td></tr>
 <tr>
 <td>
-  <a href='delete?no=${journeyRider.journeyRiderNo}'>취소</a> 
+  <a href='링크수정'>리뷰</a> 
 </td>
 </tr>
 </tbody>
@@ -42,6 +42,7 @@
 <tr><th>도착지</th> <td><input type='text' name='arrival' value='${r.spotName}' readonly></td></tr>
 </c:if>
 </c:forEach>
+<tr><th>리뷰</th><td>${journeyRider.driver.mname} 드라이버 님께 별점을 남겼습니다! </td></tr>
 </tfoot>
 </table>
 <hr>
