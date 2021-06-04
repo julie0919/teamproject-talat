@@ -30,7 +30,7 @@
   
   .arrow_box_rider {
   position: relative;
-  background: #23DAC7;
+  background: #46BD7B;
  
 }
 .arrow_box_rider:after {
@@ -43,7 +43,7 @@
   position: absolute;
   pointer-events: none;
   border-color: rgba(35, 218, 199, 0);
-  border-left-color: #23DAC7;
+  border-left-color: #46BD7B;
   border-width: 10px;
   margin-top: -15px;
 }
@@ -77,6 +77,7 @@
   border-width: 5px;
   margin-top: -5px;
 }
+
   </style>
 </head>
 <body>
@@ -86,6 +87,7 @@
   <div class="card-header">${j.driver.mname} 드라이버</div>
   <div class="card-body">
 <c:forEach items="${chattings}" var="c">
+<c:if test="${j.jno == c.journey.jno}">
 <c:if test="${loginUser.mno == c.rider.mno}">
 <div class="chat">
 	<c:if test="${c.chattingType == 3}">
@@ -96,13 +98,14 @@
 	</c:if>
 </div>
 </c:if>
+</c:if>
 </c:forEach>
 <input type='hidden' name='no' value='${j.jno}'/>
 <input type='hidden' name='cttype' value='${3}'/>
 <input type='hidden' name='mno' value='${loginUser.mno}'/>
 <div class="input-group mb-3">
   <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-describedby="button-addon2" name="input">
-  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">전송</button>
+  <button class="btn btn-success" type="submit" id="button-addon2">전송</button>
 </div>
   </div>
 </div>
