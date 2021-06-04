@@ -16,7 +16,7 @@ public class ApprovalupdateHandler {
     this.memberDriverService = memberDriverService;
   }
 
-  @RequestMapping("/apupdate")
+  @RequestMapping("/ap/update")
   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     int no = Integer.parseInt(request.getParameter("mno"));
