@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset='UTF-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>라이더 메시지</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/reset.css">
@@ -30,7 +31,7 @@
   
   .arrow_box_driver {
   position: relative;
-  background: #23DAC7;
+  background: #46BD7B;
  
 }
 .arrow_box_driver:after {
@@ -44,7 +45,7 @@
   position: absolute;
   pointer-events: none;
   border-color: rgba(35, 218, 199, 0);
-  border-left-color: #23DAC7;
+  border-left-color: #46BD7B;
   border-width: 10px;
   margin-top: -15px;
 }
@@ -107,7 +108,7 @@
 <input type='hidden' name='mno' value='${ct.rider.mno}'>
 <div class="input-group mb-3">
   <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-describedby="button-addon2" name="input">
-  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">전송</button>
+  <button class="btn btn-success" type="submit" id="button-addon2">전송</button>
 </div>
 </div>
 </div>
